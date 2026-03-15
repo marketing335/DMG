@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutonomoLibre - Fiscalidad para Autonomos 2026</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="logo">AL</span>
+      <span class="brand-text">Autonomo<strong>Libre</strong></span>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="#" data-section="cuota" class="active">Cuota SS</a>
+      <a href="#" data-section="irpf">IRPF</a>
+      <a href="#" data-section="comparador">Comparador</a>
+      <a href="#" data-section="gastos">Gastos</a>
+      <a href="#" data-section="deducciones">Deducciones</a>
+      <a href="#" data-section="calendario">Calendario</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Tu fiscalidad, bajo control</h1>
+      <p>Calcula cuotas, IRPF, gastos deducibles y deducciones autonomicas. Compara entre comunidades. Paga lo justo, ni un euro mas.</p>
+      <p class="hero-sub">Datos actualizados a marzo de 2026 &middot; 17 Comunidades Autonomas + Ceuta y Melilla</p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- =============================== -->
+    <!-- SECCION 1: CUOTA AUTONOMO       -->
+    <!-- =============================== -->
+    <section id="sec-cuota" class="section active">
+      <div class="section-header">
+        <h2>Calculadora de Cuota de Autonomo</h2>
+        <p>Sistema de cotizacion por ingresos reales 2026 (15 tramos). Introduce tus ingresos netos anuales (facturacion - gastos).</p>
+      </div>
+
+      <form id="form-cuota" class="form-card">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ingresos-netos">Ingresos netos anuales (EUR)</label>
+            <input type="number" id="ingresos-netos" placeholder="Ej: 24000" min="0" step="100">
+          </div>
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" id="tarifa-plana">
+              Tarifa plana (nuevo autonomo, 80 EUR/mes)
+            </label>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Calcular cuota</button>
+          </div>
+        </div>
+      </form>
+
+      <div id="resultado-cuota" class="result-container">
+        <p class="hint">Introduce tus ingresos netos anuales para calcular tu cuota.</p>
+      </div>
+
+      <details class="expandable">
+        <summary>Ver tabla completa de 15 tramos 2026</summary>
+        <div id="tabla-tramos-cuota"></div>
+      </details>
+
+      <div class="info-box">
+        <h4>Como se calculan los ingresos netos</h4>
+        <p><strong>Rendimiento neto = Ingresos brutos - Gastos deducibles</strong></p>
+        <p>El rendimiento neto mensual determina tu tramo. Puedes cambiar de tramo hasta 6 veces al ano. Al final del ejercicio hay regularizacion: si cotizaste de menos, pagas; si de mas, te devuelven.</p>
+      </div>
+    </section>
+
+    <!-- =============================== -->
+    <!-- SECCION 2: CALCULADORA IRPF     -->
+    <!-- =============================== -->
+    <section id="sec-irpf" class="section">
+      <div class="section-header">
+        <h2>Calculadora de IRPF por Comunidad Autonoma</h2>
+        <p>El IRPF tiene dos partes: estatal (~50%) y autonomica (~50%). Cada comunidad pone sus propios tramos. Aqui ves exactamente cuanto pagas y por que.</p>
+      </div>
+
+      <form id="form-irpf" class="form-card">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="beneficio-neto">Beneficio neto anual (EUR)</label>
+            <input type="number" id="beneficio-neto" placeholder="Ej: 30000" min="0" step="100">
+            <small>Ingresos - gastos deducibles</small>
+          </div>
+          <div class="form-group">
+            <label for="ccaa-irpf">Comunidad Autonoma</label>
+            <select id="ccaa-irpf">
+              <option value="">-- Selecciona --</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cuota-ss-irpf">Cuota SS mensual (EUR)</label>
+            <input type="number" id="cuota-ss-irpf" placeholder="Ej: 294" min="0" step="1" value="294">
+            <small>Se resta del beneficio como gasto</small>
+          </div>
+          <div class="form-group">
+            <label for="retenciones-irpf">Retenciones anuales (EUR)</label>
+            <input type="number" id="retenciones-irpf" placeholder="Ej: 4500" min="0" step="100" value="0">
+            <small>Total retenido en facturas emitidas</small>
+          </div>
+          <div class="form-group">
+            <label for="hijos-irpf">Numero de hijos</label>
+            <input type="number" id="hijos-irpf" value="0" min="0" max="10">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group checkbox-group">
+            <label>
+              <input type="checkbox" id="nuevo-autonomo-irpf">
+              Nuevo autonomo (primeros 3 anos - retencion 7%)
+            </label>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Calcular IRPF</button>
+          </div>
+        </div>
+      </form>
+
+      <div id="resultado-irpf" class="result-container">
+        <p class="hint">Rellena los campos y selecciona tu comunidad para calcular el IRPF.</p>
+      </div>
+
+      <div class="info-box">
+        <h4>Retenciones en facturas</h4>
+        <table class="data-table compact inline-table">
+          <tr><td>Profesional general (seccion 2a/3a IAE)</td><td><strong>15%</strong></td></tr>
+          <tr><td>Nuevo autonomo (primeros 3 anos)</td><td><strong>7%</strong></td></tr>
+          <tr><td>Empresario (seccion 1a IAE)</td><td><strong>0%</strong> (no retiene)</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- =============================== -->
+    <!-- SECCION 3: COMPARADOR CCAA      -->
+    <!-- =============================== -->
+    <section id="sec-comparador" class="section">
+      <div class="section-header">
+        <h2>Comparador entre Comunidades Autonomas</h2>
+        <p>Mismos ingresos, distinto IRPF. Ve cuanto pagarias en cada comunidad y cuanto te ahorras (o pierdes) segun donde residas.</p>
+      </div>
+
+      <form id="form-comparador" class="form-card">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="beneficio-comparador">Beneficio neto anual (EUR)</label>
+            <input type="number" id="beneficio-comparador" placeholder="Ej: 40000" min="0" step="1000">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Comparar todas las CCAA</button>
+          </div>
+        </div>
+      </form>
+
+      <div id="resultado-comparador" class="result-container">
+        <p class="hint">Introduce tu beneficio neto para comparar las 17 comunidades + regimenes forales.</p>
+      </div>
+    </section>
+
+    <!-- =============================== -->
+    <!-- SECCION 4: GASTOS DEDUCIBLES    -->
+    <!-- =============================== -->
+    <section id="sec-gastos" class="section">
+      <div class="section-header">
+        <h2>Simulador de Gastos Deducibles</h2>
+        <p>Anade tus gastos y calcula cuanto te ahorras en impuestos. Cada gasto que justifiques correctamente reduce tu base imponible.</p>
+      </div>
+
+      <div class="form-card">
+        <h4>Datos generales</h4>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ingresos-gastos">Ingresos brutos anuales (EUR)</label>
+            <input type="number" id="ingresos-gastos" placeholder="Ej: 45000" min="0" step="100">
+          </div>
+          <div class="form-group">
+            <label for="ccaa-gastos">Comunidad Autonoma</label>
+            <select id="ccaa-gastos">
+              <option value="">-- Selecciona --</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="m2-total">m2 totales vivienda</label>
+            <input type="number" id="m2-total" value="80" min="1">
+          </div>
+          <div class="form-group">
+            <label for="m2-actividad">m2 destinados a actividad</label>
+            <input type="number" id="m2-actividad" value="12" min="0">
+          </div>
+        </div>
+
+        <h4>Anadir gasto</h4>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="gasto-categoria">Tipo de gasto</label>
+            <select id="gasto-categoria">
+              <option value="">-- Selecciona --</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="gasto-importe">Importe (EUR)</label>
+            <input type="number" id="gasto-importe" placeholder="Ej: 50" min="0" step="0.01">
+          </div>
+          <div class="form-group">
+            <label for="gasto-frecuencia">Frecuencia</label>
+            <select id="gasto-frecuencia">
+              <option value="anual">Anual</option>
+              <option value="mensual" selected>Mensual</option>
+              <option value="trimestral">Trimestral</option>
+              <option value="unico">Pago unico</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <button type="button" id="btn-add-gasto" class="btn btn-secondary">+ Anadir</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="gastos-lista" class="result-container">
+        <p class="hint">Anade gastos para ver el desglose.</p>
+      </div>
+
+      <button type="button" id="btn-calc-gastos" class="btn btn-primary" style="margin-top:1rem">Calcular ahorro fiscal</button>
+
+      <div id="resultado-gastos" class="result-container"></div>
+
+      <div class="info-box">
+        <h4>3 reglas de Hacienda para deducir gastos</h4>
+        <ol>
+          <li><strong>Vinculacion</strong>: el gasto debe estar directamente relacionado con tu actividad.</li>
+          <li><strong>Justificacion</strong>: debes tener factura a tu nombre.</li>
+          <li><strong>Imputacion temporal</strong>: debe corresponder al ano fiscal declarado.</li>
+        </ol>
+        <p><strong>Gastos de dificil justificacion</strong>: 5% del rendimiento neto, maximo 2.000 EUR (solo Estimacion Directa Simplificada). Sin necesidad de facturas.</p>
+      </div>
+    </section>
+
+    <!-- =============================== -->
+    <!-- SECCION 5: DEDUCCIONES AUTONOM. -->
+    <!-- =============================== -->
+    <section id="sec-deducciones" class="section">
+      <div class="section-header">
+        <h2>Deducciones Autonomicas</h2>
+        <p>Cada comunidad tiene sus propias deducciones que reducen directamente lo que pagas. Hacienda NO las aplica automaticamente en el borrador: tienes que reclamarlas tu.</p>
+      </div>
+
+      <div class="form-card">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="ccaa-deducciones">Selecciona tu Comunidad Autonoma</label>
+            <select id="ccaa-deducciones">
+              <option value="">-- Selecciona --</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="resultado-deducciones" class="result-container">
+        <p class="hint">Selecciona tu comunidad para ver todas las deducciones disponibles.</p>
+      </div>
+
+      <div class="tip-box warning-box">
+        <strong>IMPORTANTE:</strong> El borrador de la Renta de Hacienda frecuentemente NO incluye las deducciones autonomicas de forma automatica. Revisalo siempre y anadale las que te correspondan. La diferencia puede ser de 300 a 1.000 EUR o mas.
+      </div>
+    </section>
+
+    <!-- =============================== -->
+    <!-- SECCION 6: CALENDARIO FISCAL    -->
+    <!-- =============================== -->
+    <section id="sec-calendario" class="section">
+      <div class="section-header">
+        <h2>Calendario Fiscal 2026</h2>
+        <p>Todas las fechas clave para que no se te pase ningun plazo. Un retraso = recargo + sancion.</p>
+      </div>
+
+      <div id="calendario-contenido" class="result-container"></div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p><strong>AutonomoLibre</strong> &middot; Herramienta de informacion fiscal. No constituye asesoramiento profesional.</p>
+      <p>Datos actualizados a marzo 2026. Verifica siempre con la <a href="https://sede.agenciatributaria.gob.es" target="_blank" rel="noopener">Agencia Tributaria</a>.</p>
+      <p class="footer-motto">Porque el autonomo ya paga suficiente.</p>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+
+  <!-- Populate CCAA selector for gastos section -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const selectGastos = document.getElementById('ccaa-gastos');
+      if (selectGastos) {
+        for (const [id, c] of Object.entries(COMUNIDADES)) {
+          const opt = document.createElement('option');
+          opt.value = id;
+          opt.textContent = c.nombre;
+          selectGastos.appendChild(opt);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
