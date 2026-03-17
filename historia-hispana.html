@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia Hispana - Descubre el legado de la historia hispana</title>
+    <meta name="description" content="Historia Hispana te invita a descubrir el fascinante legado y los relatos que han dado forma a la historia hispana en formato cinematográfico.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C9A84C;
+            --gold-light: #E8D48B;
+            --gold-dark: #8B6914;
+            --burgundy: #6B1D2A;
+            --burgundy-dark: #4A0E1C;
+            --cream: #F5F0E8;
+            --dark: #1A1A1A;
+            --dark-soft: #2A2A2A;
+            --text-light: #E8E0D0;
+            --text-muted: #A09888;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lora', Georgia, serif;
+            background-color: var(--dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(26, 26, 26, 0.98);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .nav-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--burgundy-dark) 50%, var(--dark) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(107, 29, 42, 0.3) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(201, 168, 76, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(107, 29, 42, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            padding: 2rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 0.5rem 1.5rem;
+            margin-bottom: 2rem;
+            background: rgba(201, 168, 76, 0.05);
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            color: var(--cream);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: var(--gold);
+            font-size: 0.5em;
+            letter-spacing: 8px;
+            margin-top: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-family: 'Lora', serif;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 168, 76, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+        }
+
+        .btn-outline:hover {
+            background: rgba(201, 168, 76, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--gold);
+            opacity: 0.5;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* ===== SECTIONS COMMON ===== */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 1.5rem auto 0;
+        }
+
+        /* ===== ABOUT ===== */
+        #sobre-mi {
+            background: var(--dark-soft);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image-frame {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, var(--burgundy-dark), var(--burgundy));
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-image-frame::before {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 1px solid rgba(201, 168, 76, 0.3);
+        }
+
+        .about-image-frame .emblem {
+            font-family: 'Cinzel', serif;
+            font-size: 6rem;
+            font-weight: 900;
+            color: rgba(201, 168, 76, 0.15);
+            line-height: 1;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(201, 168, 76, 0.05);
+            border: 1px solid rgba(201, 168, 76, 0.1);
+        }
+
+        .stat-number {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .stat-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.3rem;
+        }
+
+        .about-text h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .about-text .highlight {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* ===== VIDEOS ===== */
+        #videos {
+            background: var(--dark);
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background: var(--dark-soft);
+            border: 1px solid rgba(201, 168, 76, 0.1);
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .video-card:hover {
+            border-color: rgba(201, 168, 76, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .video-thumbnail iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-category {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .video-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .video-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .videos-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        /* ===== PROJECTS ===== */
+        #proyectos {
+            background: var(--dark-soft);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            padding: 2.5rem;
+            background: var(--dark);
+            border: 1px solid rgba(201, 168, 76, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--burgundy));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            border-color: rgba(201, 168, 76, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tag {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: rgba(201, 168, 76, 0.1);
+            padding: 0.3rem 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== SOCIAL / REDES ===== */
+        #redes {
+            background: var(--dark);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .social-card {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem 2rem;
+            background: var(--dark-soft);
+            border: 1px solid rgba(201, 168, 76, 0.1);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-card:hover {
+            border-color: rgba(201, 168, 76, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .social-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .social-info h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--cream);
+            margin-bottom: 0.2rem;
+        }
+
+        .social-info p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== CONTACT / CTA ===== */
+        #contacto {
+            background: linear-gradient(135deg, var(--burgundy-dark) 0%, var(--dark) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #contacto::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--dark);
+            border-top: 1px solid rgba(201, 168, 76, 0.1);
+            padding: 3rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 2px;
+        }
+
+        .footer-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 26, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 0;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.05);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Historia Hispana</a>
+            <ul class="nav-links">
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#videos">Vídeos</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#redes">Redes</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#sobre-mi" onclick="closeMenu()">Sobre mí</a>
+        <a href="#videos" onclick="closeMenu()">Vídeos</a>
+        <a href="#proyectos" onclick="closeMenu()">Proyectos</a>
+        <a href="#redes" onclick="closeMenu()">Redes</a>
+        <a href="#contacto" onclick="closeMenu()">Contacto</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-pattern"></div>
+        <div class="hero-content">
+            <div class="hero-badge">Canal de divulgación histórica</div>
+            <h1>
+                Historia
+                <span>Hispana</span>
+            </h1>
+            <p class="hero-subtitle">
+                Descubre el fascinante legado y los relatos que han dado forma
+                a la historia hispana, narrados en formato cinematográfico.
+            </p>
+            <div class="hero-buttons">
+                <a href="https://www.youtube.com/@HistoriaHispana" target="_blank" rel="noopener" class="btn btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><path fill="#1A1A1A" d="M9.545 15.568V8.432L15.818 12z"/></svg>
+                    Ver Canal
+                </a>
+                <a href="#videos" class="btn btn-outline">
+                    Últimos vídeos
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="sobre-mi">
+        <div class="section-container">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <div class="about-image-frame">
+                        <div class="emblem">HH</div>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Vídeos</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2023</div>
+                            <div class="stat-label">Desde</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">IA</div>
+                            <div class="stat-label">Innovación</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-text reveal">
+                    <span class="section-label">Sobre el proyecto</span>
+                    <h3>Divulgando historia con pasión y tecnología</h3>
+                    <p>
+                        <span class="highlight">Historia Hispana</span> nace con la misión de acercar
+                        el fascinante legado del mundo hispano a todos los públicos. A través de vídeos
+                        con un cuidado formato cinematográfico, recorremos los grandes episodios,
+                        personajes y culturas que han forjado la historia de España e Hispanoamérica.
+                    </p>
+                    <p>
+                        Combinamos la rigurosidad histórica con las últimas tecnologías, incluyendo
+                        la inteligencia artificial, para crear contenido visual de alta calidad que
+                        transporte al espectador a otras épocas. Desde la Hispania romana hasta la
+                        España contemporánea, cada vídeo es una ventana al pasado.
+                    </p>
+                    <p>
+                        Además de la creación de contenido audiovisual, ofrecemos
+                        <span class="highlight">mentorías personalizadas</span> y productos exclusivos
+                        para los amantes de la historia.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="videos">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">Canal de YouTube</span>
+                <h2 class="section-title">Últimos Vídeos</h2>
+                <p class="section-subtitle">
+                    Explora nuestros documentales y relatos sobre la historia hispana,
+                    producidos con un estilo cinematográfico único.
+                </p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="videos-grid">
+                <div class="video-card reveal">
+                    <div class="video-thumbnail">
+                        <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=HistoriaHispana"
+                                title="Historia Hispana - Vídeo destacado"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-category">Destacado</div>
+                        <h3 class="video-title">Contenido destacado del canal</h3>
+                        <p class="video-desc">Descubre los vídeos más populares de Historia Hispana directamente desde nuestro canal de YouTube.</p>
+                    </div>
+                </div>
+
+                <div class="video-card reveal">
+                    <div class="video-thumbnail" style="background: linear-gradient(135deg, var(--burgundy-dark), var(--burgundy)); display: flex; align-items: center; justify-content: center; cursor: pointer;" onclick="window.open('https://www.youtube.com/@HistoriaHispana/videos', '_blank')">
+                        <div style="text-align: center; padding: 2rem;">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+                                <line x1="7" y1="2" x2="7" y2="22"/>
+                                <line x1="17" y1="2" x2="17" y2="22"/>
+                                <line x1="2" y1="12" x2="22" y2="12"/>
+                                <line x1="2" y1="7" x2="7" y2="7"/>
+                                <line x1="2" y1="17" x2="7" y2="17"/>
+                                <line x1="17" y1="7" x2="22" y2="7"/>
+                                <line x1="17" y1="17" x2="22" y2="17"/>
+                            </svg>
+                            <p style="color: var(--gold); font-family: 'Cinzel', serif; margin-top: 1rem; font-size: 1rem;">Ver todos los vídeos</p>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-category">Biblioteca completa</div>
+                        <h3 class="video-title">Todos nuestros vídeos</h3>
+                        <p class="video-desc">Accede a la colección completa de documentales y relatos históricos en nuestro canal de YouTube.</p>
+                    </div>
+                </div>
+
+                <div class="video-card reveal">
+                    <div class="video-thumbnail" style="background: linear-gradient(135deg, var(--dark), var(--burgundy-dark)); display: flex; align-items: center; justify-content: center; cursor: pointer;" onclick="window.open('https://www.youtube.com/@HistoriaHispana?sub_confirmation=1', '_blank')">
+                        <div style="text-align: center; padding: 2rem;">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                            </svg>
+                            <p style="color: var(--gold); font-family: 'Cinzel', serif; margin-top: 1rem; font-size: 1rem;">Suscribirse al canal</p>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-category">No te pierdas nada</div>
+                        <h3 class="video-title">Suscríbete a Historia Hispana</h3>
+                        <p class="video-desc">Activa la campanita para recibir notificaciones de cada nuevo vídeo que publiquemos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="videos-cta">
+                <a href="https://www.youtube.com/@HistoriaHispana" target="_blank" rel="noopener" class="btn btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><path fill="#1A1A1A" d="M9.545 15.568V8.432L15.818 12z"/></svg>
+                    Visitar canal completo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="proyectos">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">Trabajo y colaboraciones</span>
+                <h2 class="section-title">Proyectos</h2>
+                <p class="section-subtitle">
+                    Proyectos en los que participo y colaboraciones con otros creadores
+                    y entidades del mundo de la divulgación histórica.
+                </p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card reveal">
+                    <div class="project-icon">🎬</div>
+                    <h3>Documentales Cinematográficos</h3>
+                    <p>
+                        Producción de vídeos documentales con formato cinematográfico de alta calidad
+                        sobre los grandes episodios de la historia hispana, utilizando las últimas
+                        técnicas de edición e inteligencia artificial.
+                    </p>
+                    <span class="project-tag">YouTube</span>
+                    <span class="project-tag">Producción</span>
+                    <span class="project-tag">IA</span>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-icon">🎓</div>
+                    <h3>Mentorías Personalizadas</h3>
+                    <p>
+                        Sesiones de mentoría individual para creadores de contenido histórico,
+                        compartiendo estrategias de producción, narrativa audiovisual y crecimiento
+                        en plataformas digitales.
+                    </p>
+                    <span class="project-tag">Formación</span>
+                    <span class="project-tag">Mentoría</span>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-icon">🏛️</div>
+                    <h3>Divulgación Histórica</h3>
+                    <p>
+                        Colaboraciones con otros divulgadores, historiadores y entidades culturales
+                        para acercar la historia hispana al mayor público posible a través de
+                        múltiples plataformas y formatos.
+                    </p>
+                    <span class="project-tag">Colaboraciones</span>
+                    <span class="project-tag">Cultura</span>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-icon">📚</div>
+                    <h3>Productos Exclusivos</h3>
+                    <p>
+                        Línea de productos y contenido exclusivo para los seguidores más
+                        comprometidos con la historia hispana. Material adicional, recursos
+                        educativos y merchandise temático.
+                    </p>
+                    <span class="project-tag">Merchandising</span>
+                    <span class="project-tag">Contenido exclusivo</span>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-icon">🤖</div>
+                    <h3>Historia e Inteligencia Artificial</h3>
+                    <p>
+                        Exploración de las posibilidades de la IA aplicada a la recreación
+                        histórica y la generación de contenido visual. Pioneros en el uso de
+                        tecnología para revivir el pasado.
+                    </p>
+                    <span class="project-tag">Innovación</span>
+                    <span class="project-tag">IA</span>
+                    <span class="project-tag">Tecnología</span>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-icon">🌍</div>
+                    <h3>Hispanoamérica</h3>
+                    <p>
+                        Contenido dedicado a la historia compartida entre España e Hispanoamérica,
+                        explorando el legado cultural, los vínculos históricos y las figuras
+                        que conectan ambos mundos.
+                    </p>
+                    <span class="project-tag">Historia</span>
+                    <span class="project-tag">Cultura</span>
+                    <span class="project-tag">Iberoamérica</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL MEDIA -->
+    <section id="redes">
+        <div class="section-container">
+            <div class="section-header reveal">
+                <span class="section-label">Síguenos</span>
+                <h2 class="section-title">Redes Sociales</h2>
+                <p class="section-subtitle">
+                    Conéctate con Historia Hispana en todas nuestras plataformas
+                    y no te pierdas ninguna actualización.
+                </p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="social-grid">
+                <!-- YouTube -->
+                <a href="https://www.youtube.com/@HistoriaHispana" target="_blank" rel="noopener" class="social-card reveal">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><path fill="#fff" d="M9.545 15.568V8.432L15.818 12z"/></svg>
+                    </div>
+                    <div class="social-info">
+                        <h4>YouTube</h4>
+                        <p>@HistoriaHispana</p>
+                    </div>
+                </a>
+
+                <!-- X / Twitter -->
+                <a href="https://x.com/HistoriaconIA" target="_blank" rel="noopener" class="social-card reveal">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="var(--cream)"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </div>
+                    <div class="social-info">
+                        <h4>X (Twitter)</h4>
+                        <p>@HistoriaconIA</p>
+                    </div>
+                </a>
+
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/granadareformados/" target="_blank" rel="noopener" class="social-card reveal">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </div>
+                    <div class="social-info">
+                        <h4>Facebook</h4>
+                        <p>Historia Hispana</p>
+                    </div>
+                </a>
+
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@historiahispana" target="_blank" rel="noopener" class="social-card reveal">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="var(--cream)"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.8a8.24 8.24 0 0 0 4.85 1.56V6.89a4.84 4.84 0 0 1-1.09-.2z"/></svg>
+                    </div>
+                    <div class="social-info">
+                        <h4>TikTok</h4>
+                        <p>@historiahispana</p>
+                    </div>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/historiahispana/" target="_blank" rel="noopener" class="social-card reveal">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="url(#ig-gradient)">
+                            <defs>
+                                <linearGradient id="ig-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#FD5;"/>
+                                    <stop offset="50%" style="stop-color:#E1306C;"/>
+                                    <stop offset="100%" style="stop-color:#833AB4;"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                        </svg>
+                    </div>
+                    <div class="social-info">
+                        <h4>Instagram</h4>
+                        <p>@historiahispana</p>
+                    </div>
+                </a>
+
+                <!-- Web -->
+                <a href="https://historia-hispana.lovable.app/" target="_blank" rel="noopener" class="social-card reveal">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <div class="social-info">
+                        <h4>Tienda Web</h4>
+                        <p>Productos y mentorías</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / CONTACT -->
+    <section id="contacto">
+        <div class="section-container">
+            <div class="cta-content reveal">
+                <span class="section-label">Únete a la comunidad</span>
+                <h2>La historia cobra vida</h2>
+                <p>
+                    Suscríbete al canal, síguenos en redes sociales y forma parte
+                    de una comunidad apasionada por el legado hispano.
+                </p>
+                <div class="hero-buttons">
+                    <a href="https://www.youtube.com/@HistoriaHispana?sub_confirmation=1" target="_blank" rel="noopener" class="btn btn-primary">
+                        Suscribirse a YouTube
+                    </a>
+                    <a href="https://x.com/HistoriaconIA" target="_blank" rel="noopener" class="btn btn-outline">
+                        Seguir en X
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">Historia Hispana</div>
+            <div class="footer-text">&copy; 2025 Historia Hispana. Todos los derechos reservados.</div>
+            <div class="footer-links">
+                <a href="https://www.youtube.com/@HistoriaHispana" target="_blank" rel="noopener">YouTube</a>
+                <a href="https://x.com/HistoriaconIA" target="_blank" rel="noopener">X</a>
+                <a href="https://www.facebook.com/granadareformados/" target="_blank" rel="noopener">Facebook</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        function closeMenu() {
+            document.getElementById('mobileMenu').classList.remove('active');
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
