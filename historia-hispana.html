@@ -64,6 +64,20 @@
             opacity: 0;
             animation: loaderPulse 1.5s ease-in-out infinite;
         }
+        .loader-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: loaderPulse 1.5s ease-in-out infinite;
+        }
+        .loader-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         @keyframes loaderPulse {
             0%,100% { opacity: 0.3; }
             50% { opacity: 1; }
@@ -101,6 +115,15 @@
             color: var(--accent);
             text-decoration: none;
             letter-spacing: 0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .nav-brand img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
         }
         .nav-links {
             display: flex;
@@ -488,6 +511,16 @@
             color: var(--accent);
             opacity: 0.2;
             line-height: 1;
+        }
+        .about-emblem-img {
+            width: clamp(180px, 50%, 280px);
+            height: auto;
+            border-radius: 50%;
+            filter: drop-shadow(0 0 40px rgba(200,165,90,0.2));
+            transition: transform 0.5s ease;
+        }
+        .about-card-main:hover .about-emblem-img {
+            transform: scale(1.05);
         }
         .about-emblem-text {
             font-family: 'Space Grotesk', sans-serif;
@@ -936,13 +969,16 @@
 
 <!-- LOADER -->
 <div class="loader" id="loader">
-    <span class="loader-text">Historia Hispana</span>
+    <div class="loader-inner">
+        <img src="logo.png" alt="Historia Hispana" class="loader-logo">
+        <span class="loader-text">Historia Hispana</span>
+    </div>
 </div>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
     <div class="nav-inner">
-        <a href="#" class="nav-brand">Historia Hispana</a>
+        <a href="#" class="nav-brand"><img src="logo.png" alt="HH">Historia Hispana</a>
         <ul class="nav-links">
             <li><a href="#sobre-mi">Sobre mí</a></li>
             <li><a href="#videos">Vídeos</a></li>
@@ -974,6 +1010,7 @@
         <div class="hero-lines"></div>
     </div>
     <div class="hero-inner">
+        <img src="logo.png" alt="Historia Hispana" style="width:clamp(100px,15vw,160px);height:auto;border-radius:50%;margin-bottom:1.5rem;filter:drop-shadow(0 0 60px rgba(200,165,90,0.3));opacity:0;animation:fadeUp 0.8s ease forwards 0.3s;">
         <div class="hero-tag">
             <div class="hero-tag-dot"></div>
             Divulgación histórica cinematográfica
@@ -1003,7 +1040,7 @@
             <div class="about-visual reveal">
                 <div class="about-card-main">
                     <div class="about-emblem">
-                        <div class="about-emblem-icon">HH</div>
+                        <img src="logo.png" alt="Historia Hispana Logo" class="about-emblem-img">
                         <div class="about-emblem-text">Est. 2023 — Divulgación</div>
                     </div>
                 </div>
@@ -1342,6 +1379,7 @@
 <section class="cta-section">
     <div class="cta-wrapper">
         <div class="cta-card reveal">
+            <img src="logo.png" alt="Historia Hispana" style="width:80px;height:80px;border-radius:50%;margin-bottom:1.5rem;filter:drop-shadow(0 0 30px rgba(200,165,90,0.25));">
             <span class="section-tag">Únete a la comunidad</span>
             <h2>La historia cobra vida</h2>
             <p>Suscríbete al canal, síguenos en redes y forma parte de una comunidad apasionada por el legado hispano.</p>
@@ -1359,7 +1397,7 @@
 <!-- FOOTER -->
 <footer class="footer">
     <div class="footer-inner">
-        <div class="footer-brand">Historia Hispana</div>
+        <div class="footer-brand" style="display:flex;align-items:center;gap:0.5rem;"><img src="logo.png" alt="HH" style="width:28px;height:28px;border-radius:50%;object-fit:cover;">Historia Hispana</div>
         <div class="footer-copy">&copy; 2025 Historia Hispana. Todos los derechos reservados.</div>
         <div class="footer-socials">
             <a href="https://www.youtube.com/@HistoriaHispana" target="_blank" rel="noopener" class="footer-social-link" aria-label="YouTube">
