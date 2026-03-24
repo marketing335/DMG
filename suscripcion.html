@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suscripción al newsletter | Magar</title>
+  <meta name="description" content="Suscríbete al newsletter mensual de Magar. Artículos sobre escritura y corrección, recomendaciones de libros, realismo mágico y descuentos exclusivos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="magar.css" />
+  <style>
+    /* ── Page layout ── */
+    .suscripcion-main {
+      padding-top: 100px;
+      padding-bottom: 80px;
+      background: var(--cream, #faf8f4);
+      min-height: 100vh;
+    }
+
+    .suscripcion-container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Page title ── */
+    .suscripcion-title {
+      font-family: var(--font-sans, 'Inter', sans-serif);
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--navy, #1a1d2e);
+      text-align: center;
+      margin-bottom: 2.4rem;
+    }
+
+    /* ── Body text ── */
+    .suscripcion-intro {
+      font-family: var(--font-sans, 'Inter', sans-serif);
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #2e2e3a;
+      margin-bottom: 1.4rem;
+    }
+
+    .suscripcion-intro em {
+      font-style: italic;
+    }
+
+    .suscripcion-intro a {
+      color: var(--gold, #c8a45e);
+      text-decoration: underline;
+    }
+
+    .suscripcion-subtitle {
+      font-family: var(--font-sans, 'Inter', sans-serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2e2e3a;
+      margin-bottom: 0.8rem;
+      line-height: 1.6;
+    }
+
+    .suscripcion-list {
+      list-style: disc;
+      padding-left: 1.4rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .suscripcion-list li {
+      font-family: var(--font-sans, 'Inter', sans-serif);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--gold, #c8a45e);
+      margin-bottom: 0.25rem;
+    }
+
+    .suscripcion-list li span {
+      color: #2e2e3a;
+    }
+
+    /* ── GDPR info block ── */
+    .gdpr-block {
+      font-family: var(--font-sans, 'Inter', sans-serif);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: #2e2e3a;
+      margin-bottom: 2.4rem;
+    }
+
+    .gdpr-block p {
+      margin-bottom: 0.3rem;
+    }
+
+    .gdpr-block strong {
+      color: var(--gold, #c8a45e);
+      font-weight: 600;
+    }
+
+    .gdpr-block a {
+      color: var(--gold, #c8a45e);
+      text-decoration: underline;
+    }
+
+    /* ── Form section ── */
+    .suscripcion-form-section h2 {
+      font-family: var(--font-serif, 'Playfair Display', serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--navy, #1a1d2e);
+      margin-bottom: 0.3rem;
+    }
+
+    .form-required-note {
+      font-family: var(--font-sans, 'Inter', sans-serif);
+      font-size: 0.82rem;
+      color: #888;
+      margin-bottom: 1.4rem;
+    }
+
+    .form-field {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-field label {
+      display: block;
+      font-family: var(--font-sans, 'Inter', sans-serif);
+      font-size: 0.9rem;
+      color: #2e2e3a;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-field label .required-mark {
+      color: #c0392b;
+    }
+
+    .form-field input[type="text"],
+    .form-field input[type="email"] {
+      width: 100%;
+      border: 1px solid #c8c4bc;
+      border-radius: 2px;
+      padding: 0.55rem 0.75rem;
+      font-family: var(--font-sans, 'Inter', sans-serif);
+      font-size: 0.95rem;
+      color: #2e2e3a;
+      background: #fff;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-field input[type="text"]:focus,
+    .form-field input[type="email"]:focus {
+      border-color: var(--gold, #c8a45e);
+    }
+
+    /* ── Radio group ── */
+    .radio-group-title {
+      font-family: var(--font-sans, 'Inter', sans-serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: #2e2e3a;
+      margin-bottom: 0.9rem;
+    }
+
+    .radio-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 1.8rem;
+    }
+
+    .radio-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid #e8e4de;
+    }
+
+    .radio-list li:first-child {
+      border-top: 1px solid #e8e4de;
+    }
+
+    .radio-list li label {
+      font-family: var(--font-sans, 'Inter', sans-serif);
+      font-size: 0.92rem;
+      color: var(--gold, #c8a45e);
+      cursor: pointer;
+      flex: 1;
+      padding-left: 0.5rem;
+    }
+
+    .radio-list li input[type="radio"] {
+      accent-color: var(--navy, #1a1d2e);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* ── Privacy checkbox ── */
+    .privacy-section h3 {
+      font-family: var(--font-sans, 'Inter', sans-serif);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #2e2e3a;
+      margin-bottom: 0.7rem;
+    }
+
+    .privacy-check-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 2rem;
+    }
+
+    .privacy-check-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-top: 1px solid #e8e4de;
+      border-bottom: 1px solid #e8e4de;
+    }
+
+    .privacy-check-list li label {
+      font-family: var(--font-sans, 'Inter', sans-serif);
+      font-size: 0.92rem;
+      color: var(--gold, #c8a45e);
+      cursor: pointer;
+      flex: 1;
+      padding-left: 0.5rem;
+    }
+
+    .privacy-check-list li label a {
+      color: var(--gold, #c8a45e);
+      text-decoration: underline;
+    }
+
+    .privacy-check-list li input[type="checkbox"] {
+      accent-color: var(--navy, #1a1d2e);
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* ── Submit button ── */
+    .btn-subscribe {
+      display: inline-block;
+      background: var(--navy, #1a1d2e);
+      color: #fff;
+      font-family: var(--font-sans, 'Inter', sans-serif);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-subscribe:hover {
+      background: #2d3150;
+      transform: translateY(-1px);
+    }
+
+    /* ── Success message ── */
+    .form-success {
+      display: none;
+      background: #f0f9f4;
+      border: 1px solid #34a853;
+      border-radius: 8px;
+      padding: 1.2rem 1.4rem;
+      font-family: var(--font-sans, 'Inter', sans-serif);
+      font-size: 0.95rem;
+      color: #1e7e34;
+      margin-top: 1.2rem;
+    }
+
+    /* ── Divider ── */
+    .suscripcion-divider {
+      border: none;
+      border-top: 1px solid #ddd8d0;
+      margin: 2rem 0;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .suscripcion-title {
+        font-size: 1.4rem;
+        letter-spacing: 0.15em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======================== NAVBAR ======================== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="relatosmagar.html" class="nav-logo">
+        <span class="logo-mark">M</span>
+        <span class="logo-text">Magar</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="relatosmagar.html#servicios">Servicios</a>
+        <a href="relatosmagar.html#como-funciona">Cómo funciona</a>
+        <a href="relatosmagar.html#cursos">Cursos</a>
+        <a href="relatosmagar.html#novelas">Novelas</a>
+        <a href="relatosmagar.html#blog">Blog</a>
+        <a href="relatosmagar.html#contacto" class="nav-cta">Solicitar presupuesto</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- ======================== MAIN ======================== -->
+  <main class="suscripcion-main">
+    <div class="suscripcion-container">
+
+      <h1 class="suscripcion-title">Suscripción</h1>
+
+      <p class="suscripcion-intro">
+        Si quieres estar al tanto de todas las novedades de Magar, suscríbete al <em>newsletter</em> mensual a través de la caja de suscripción que aparece abajo. Es gratuito, sin nada de <em>spam</em>, pero con mucho amor por la literatura.
+      </p>
+
+      <p class="suscripcion-subtitle">En él podrás encontrar:</p>
+
+      <ul class="suscripcion-list">
+        <li><span>Recopilatorio de los artículos publicados.</span></li>
+        <li><span>Mis recomendaciones y reseñas de los libros que vaya leyendo.</span></li>
+        <li><span>Los <em>posts</em> más interesantes de la blogosfera sobre escritura, corrección y libros.</span></li>
+        <li><span>Alguna anécdota personal. Para que aprendas conmigo de mis errores y mis aciertos.</span></li>
+        <li><span>Descuentos exclusivos para mis cursos, publicaciones y servicios.</span></li>
+      </ul>
+
+      <p class="suscripcion-intro">
+        Los datos personales que me facilites estarán protegidos por la <a href="relatosmagar.html#aviso-legal">política de privacidad</a>.
+      </p>
+
+      <hr class="suscripcion-divider" />
+
+      <!-- GDPR info -->
+      <div class="gdpr-block">
+        <p><strong>Responsable:</strong> Esther Mateos.</p>
+        <p><strong>Finalidad:</strong> gestionar un correo electrónico con información.</p>
+        <p><strong>Legitimación:</strong> tu consentimiento.</p>
+        <p><strong>Destinatarios:</strong> los datos que me facilitas estarán ubicados en los servidores de Mailchimp (proveedor de <em>hosting</em> de magar.com) fuera de la UE. Ver <a href="https://mailchimp.com/legal/privacy/" target="_blank" rel="noopener noreferrer">política de privacidad de Mailchimp</a>.</p>
+        <p><strong>Derechos:</strong> podrás ejercer tus derechos, entre otros, a acceder, rectificar, limitar y suprimir tus datos.</p>
+      </div>
+
+      <!-- ===== FORM ===== -->
+      <div class="suscripcion-form-section">
+        <h2>Suscríbete</h2>
+        <p class="form-required-note">* requeridos</p>
+
+        <form id="suscripcionForm" novalidate>
+
+          <div class="form-field">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" autocomplete="given-name" />
+          </div>
+
+          <div class="form-field">
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" name="apellido" autocomplete="family-name" />
+          </div>
+
+          <div class="form-field">
+            <label for="email">Correo electrónico <span class="required-mark">*</span></label>
+            <input type="email" id="email" name="email" required autocomplete="email" />
+          </div>
+
+          <!-- Radio group -->
+          <p class="radio-group-title">¿Qué tema del blog te interesa más?</p>
+          <ul class="radio-list">
+            <li>
+              <label for="tema1">Artículos de escritura y corrección</label>
+              <input type="radio" id="tema1" name="tema" value="escritura_correccion" />
+            </li>
+            <li>
+              <label for="tema2">Recomendaciones de libros y curiosidades literarias</label>
+              <input type="radio" id="tema2" name="tema" value="libros_curiosidades" />
+            </li>
+            <li>
+              <label for="tema3">Artículos y recomendaciones de realismo mágico</label>
+              <input type="radio" id="tema3" name="tema" value="realismo_magico" />
+            </li>
+          </ul>
+
+          <!-- Privacy checkbox -->
+          <div class="privacy-section">
+            <h3>Política de privacidad*:</h3>
+            <ul class="privacy-check-list">
+              <li>
+                <label for="privacidad">Sí, he leído y acepto la <a href="relatosmagar.html#aviso-legal">política de privacidad</a> de este sitio web.</label>
+                <input type="checkbox" id="privacidad" name="privacidad" required />
+              </li>
+            </ul>
+          </div>
+
+          <button type="submit" class="btn-subscribe">Subscribe</button>
+
+          <div class="form-success" id="formSuccess">
+            ¡Gracias por suscribirte! En breve recibirás un correo de confirmación.
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+
+    // Form submit (frontend validation + success state)
+    document.getElementById('suscripcionForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById('email');
+      const privacidad = document.getElementById('privacidad');
+
+      if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+        email.focus();
+        email.style.borderColor = '#c0392b';
+        return;
+      } else {
+        email.style.borderColor = '';
+      }
+
+      if (!privacidad.checked) {
+        privacidad.closest('li').style.outline = '2px solid #c0392b';
+        return;
+      } else {
+        privacidad.closest('li').style.outline = '';
+      }
+
+      // Show success message (replace with real API call / Mailchimp embed when ready)
+      document.getElementById('formSuccess').style.display = 'block';
+      this.querySelector('.btn-subscribe').disabled = true;
+      this.querySelector('.btn-subscribe').style.opacity = '0.5';
+    });
+  </script>
+
+</body>
+</html>
