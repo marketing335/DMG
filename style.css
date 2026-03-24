@@ -121,7 +121,7 @@ body {
 /* === HERO === */
 
 .hero {
-  background: linear-gradient(135deg, #1a56db 0%, #7c3aed 100%);
+  background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://i.ibb.co/0gq8BGM/dame-estos-dos-202603241450.jpg') center/cover no-repeat;
   color: #fff;
   padding: 3rem 1.5rem 2.5rem;
   text-align: center;
