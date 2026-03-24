@@ -316,6 +316,11 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
   justify-content: center; color: var(--text-light); font-size: 14px;
   border: 2px dashed var(--border);
 }
+.about-img {
+  width: 100%; aspect-ratio: 3/4; object-fit: cover;
+  border-radius: var(--radius); display: block;
+  box-shadow: var(--shadow-lg);
+}
 .about-social { display: flex; gap: 10px; margin-top: 16px; justify-content: center; }
 .social-link {
   width: 40px; height: 40px; border-radius: 50%;
@@ -390,6 +395,13 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 .blog-img-placeholder.tall { height: 280px; }
 .blog-img-placeholder.short { height: 80px; min-width: 100px; border-radius: var(--radius-sm); }
 .blog-img-placeholder:not(.tall):not(.short) { height: 180px; }
+/* Real images */
+.blog-img {
+  width: 100%; object-fit: cover; display: block; border-radius: var(--radius-sm);
+}
+.blog-img.tall { height: 280px; }
+.blog-img.short { height: 100px; min-width: 110px; border-radius: var(--radius-sm); flex-shrink: 0; }
+.blog-img:not(.tall):not(.short) { height: 180px; }
 .blog-tag {
   display: inline-block; font-size: 11px; font-weight: 600;
   text-transform: uppercase; letter-spacing: 1px; color: var(--gold);
