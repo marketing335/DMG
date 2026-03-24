@@ -425,22 +425,36 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 }
 
 /* ======================== COURSES ======================== */
-.courses-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.courses-grid { display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 780px; margin: 0 auto; }
 .course-card {
-  background: var(--cream); border-radius: var(--radius); padding: 36px 28px;
+  background: var(--cream); border-radius: var(--radius); padding: 44px 48px;
   border: 1px solid var(--border); transition: var(--transition);
+  display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: start;
 }
+@media (max-width: 640px) { .course-card { grid-template-columns: 1fr; padding: 28px 20px; } }
 .course-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--gold); }
 .course-tag {
   font-size: 12px; font-weight: 600; color: var(--gold);
   text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;
 }
 .course-card h3 {
-  font-family: var(--font-serif); font-size: 20px; color: var(--navy);
-  margin-bottom: 12px; line-height: 1.3;
+  font-family: var(--font-serif); font-size: 26px; color: var(--navy);
+  margin-bottom: 14px; line-height: 1.3;
 }
-.course-card p { font-size: 14px; color: var(--text-light); line-height: 1.65; margin-bottom: 20px; }
-.course-meta { display: flex; gap: 8px; font-size: 13px; color: var(--text-light); margin-bottom: 24px; }
+.course-card p { font-size: 15px; color: var(--text-light); line-height: 1.7; margin-bottom: 20px; }
+.course-meta { display: flex; flex-wrap: wrap; gap: 8px; font-size: 13px; color: var(--text-light); margin-bottom: 28px; }
+.course-meta span { display: flex; align-items: center; gap: 4px; }
+.course-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.course-option {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 14px 16px;
+}
+.course-option-icon { color: var(--gold); font-size: 18px; line-height: 1; flex-shrink: 0; margin-top: 2px; }
+.course-option-name { font-size: 14px; font-weight: 600; color: var(--navy); }
+.course-option-desc { font-size: 13px; color: var(--text-light); margin-top: 2px; }
+.course-cta { display: flex; flex-direction: column; align-items: center; gap: 12px; padding-top: 8px; }
+.course-price-note { font-size: 12px; color: var(--text-light); text-align: center; max-width: 160px; line-height: 1.4; }
 
 /* ======================== NOVELS ======================== */
 .novels-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
@@ -1211,44 +1225,52 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
   <section class="section" id="cursos">
     <div class="container">
       <div class="section-label">Formación</div>
-      <h2 class="section-title">Aprende a escribir mejor</h2>
-      <p class="section-sub">Cursos prácticos para escritores, profesionales y amantes de la lengua que quieren dominar la escritura.</p>
+      <h2 class="section-title">Aprende a corregir tus propios textos</h2>
+      <p class="section-sub">Un curso online diseñado para escritores que quieren pulir sus manuscritos antes de presentarlos a concursos, editoriales o autopublicación.</p>
 
       <div class="courses-grid">
         <div class="course-card">
-          <div class="course-tag">Online · Autoestudio</div>
-          <h3>Corrección ortotipográfica desde cero</h3>
-          <p>Aprende las normas esenciales de la RAE y el Libro de estilo para corregir tus propios textos con seguridad.</p>
-          <div class="course-meta">
-            <span>8 módulos</span>
-            <span>·</span>
-            <span>Material descargable</span>
-          </div>
-          <a href="#contacto" class="btn btn-outline">Más información</a>
-        </div>
+          <div class="course-info">
+            <div class="course-tag">Online · A tu ritmo · Plazas limitadas</div>
+            <h3>Curso de Corrección de Textos para Escritores</h3>
+            <p>Aprende a detectar tus propios puntos débiles ortográficos y vicios de estilo, y conviértelos en fortalezas. Trabajarás sobre tus propios textos —la forma más eficaz de interiorizar los contenidos— con correcciones y comentarios personalizados de Esther en cada ejercicio.</p>
+            <div class="course-meta">
+              <span>📚 8 temas por curso</span>
+              <span>·</span>
+              <span>✍️ Ejercicios sobre tus textos</span>
+              <span>·</span>
+              <span>👤 Corrección personal de Esther</span>
+            </div>
 
-        <div class="course-card">
-          <div class="course-tag">Online · Con tutorías</div>
-          <h3>Escritura creativa: encuentra tu voz</h3>
-          <p>Desarrolla tu estilo propio, supera el bloqueo creativo y escribe con confianza. Ideal para escritores en cualquier etapa.</p>
-          <div class="course-meta">
-            <span>10 módulos</span>
-            <span>·</span>
-            <span>Tutorías individuales</span>
+            <div class="course-options">
+              <div class="course-option">
+                <div class="course-option-icon">✦</div>
+                <div>
+                  <div class="course-option-name">Corrección de Estilo para Escritores</div>
+                  <div class="course-option-desc">Fluidez, coherencia, estructura del discurso y vicios estilísticos. 8 temas prácticos.</div>
+                </div>
+              </div>
+              <div class="course-option">
+                <div class="course-option-icon">✦</div>
+                <div>
+                  <div class="course-option-name">Corrección Ortotipográfica para Escritores</div>
+                  <div class="course-option-desc">Normas ortográficas, puntuación y tipografía editorial. 8 temas prácticos.</div>
+                </div>
+              </div>
+              <div class="course-option" style="border-color: var(--gold); background: rgba(200,164,94,.06);">
+                <div class="course-option-icon">⭐</div>
+                <div>
+                  <div class="course-option-name">Curso Completo — Estilo + Ortotipografía</div>
+                  <div class="course-option-desc">Los dos cursos juntos a precio reducido. La opción más completa para escritores exigentes.</div>
+                </div>
+              </div>
+            </div>
           </div>
-          <a href="#contacto" class="btn btn-outline">Más información</a>
-        </div>
 
-        <div class="course-card">
-          <div class="course-tag">Intensivo · Grupos reducidos</div>
-          <h3>Taller de redacción profesional</h3>
-          <p>Para equipos y profesionales que necesitan comunicar mejor por escrito en su día a día laboral.</p>
-          <div class="course-meta">
-            <span>4 sesiones</span>
-            <span>·</span>
-            <span>Grupos de máx. 8</span>
+          <div class="course-cta">
+            <a href="curso-correccion-de-textos.html" class="btn btn-primary" target="_top">Ver el curso →</a>
+            <p class="course-price-note">Precio y disponibilidad a consultar. Plazas limitadas cada mes.</p>
           </div>
-          <a href="#contacto" class="btn btn-outline">Más información</a>
         </div>
       </div>
     </div>

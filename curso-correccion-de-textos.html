@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curso de Corrección de Textos para Escritores — Esther Magar</title>
+  <meta name="description" content="Aprende a corregir tus propios textos con el curso online de Esther Magar. Corrección de estilo y ortotipografía para escritores. Plazas limitadas, atención personalizada." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a2744;
+      --navy-light: #243158;
+      --gold: #c8a45e;
+      --gold-light: #d4b47a;
+      --cream: #faf8f4;
+      --white: #ffffff;
+      --text: #2d3748;
+      --text-light: #64748b;
+      --border: #e8e0d0;
+      --shadow: 0 4px 20px rgba(26,39,68,.08);
+      --shadow-lg: 0 12px 40px rgba(26,39,68,.14);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --transition: all .25s ease;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--white); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ---- NAV ---- */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: var(--font-serif); font-size: 20px; color: var(--navy); font-weight: 700; }
+    .nav-back {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 14px; color: var(--text-light); transition: var(--transition);
+    }
+    .nav-back:hover { color: var(--gold); }
+
+    /* ---- HERO ---- */
+    .hero {
+      background: var(--navy); color: var(--white);
+      padding: 80px 24px 72px;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+    .hero-label {
+      font-size: 12px; font-weight: 600; color: var(--gold);
+      text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 18px;
+    }
+    .hero h1 {
+      font-family: var(--font-serif); font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.15; margin-bottom: 22px; font-weight: 700;
+    }
+    .hero-desc {
+      font-size: 17px; color: rgba(255,255,255,.8); line-height: 1.75;
+      max-width: 640px; margin-bottom: 40px;
+    }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 44px; }
+    .badge {
+      background: rgba(200,164,94,.15); border: 1px solid rgba(200,164,94,.3);
+      color: var(--gold-light); border-radius: 100px;
+      padding: 7px 16px; font-size: 13px; font-weight: 500;
+    }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 14px 28px; border-radius: var(--radius-sm);
+      font-weight: 600; font-size: 15px; cursor: pointer;
+      transition: var(--transition); border: none; font-family: var(--font-sans);
+    }
+    .btn-gold { background: var(--gold); color: var(--navy); }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,164,94,.35); }
+    .btn-outline-white {
+      background: transparent; color: var(--white);
+      border: 1.5px solid rgba(255,255,255,.35);
+    }
+    .btn-outline-white:hover { border-color: var(--gold); color: var(--gold-light); }
+
+    /* ---- SECTIONS ---- */
+    .section { padding: 72px 24px; }
+    .section-cream { background: var(--cream); }
+    .section-label {
+      font-size: 12px; font-weight: 600; color: var(--gold);
+      text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--font-serif); font-size: clamp(24px, 3.5vw, 36px);
+      color: var(--navy); margin-bottom: 14px; line-height: 1.2;
+    }
+    .section-sub {
+      font-size: 16px; color: var(--text-light); line-height: 1.7;
+      max-width: 600px; margin-bottom: 44px;
+    }
+
+    /* ---- COURSES OPTIONS ---- */
+    .options-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 720px) { .options-grid { grid-template-columns: 1fr; } }
+    .option-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px 28px;
+      transition: var(--transition); display: flex; flex-direction: column;
+    }
+    .option-card:hover { border-color: var(--gold); box-shadow: var(--shadow); transform: translateY(-3px); }
+    .option-card.featured { border-color: var(--gold); background: #fffbf4; }
+    .option-badge {
+      display: inline-block; background: var(--gold); color: var(--navy);
+      font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+      padding: 4px 10px; border-radius: 4px; margin-bottom: 16px; align-self: flex-start;
+    }
+    .option-card h3 {
+      font-family: var(--font-serif); font-size: 20px; color: var(--navy);
+      margin-bottom: 10px; line-height: 1.3;
+    }
+    .option-card p { font-size: 14px; color: var(--text-light); line-height: 1.65; flex: 1; margin-bottom: 24px; }
+    .option-modules {
+      font-size: 13px; font-weight: 600; color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    /* ---- METHODOLOGY ---- */
+    .method-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    @media (max-width: 720px) { .method-steps { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .method-steps { grid-template-columns: 1fr; } }
+    .method-step { text-align: center; padding: 28px 20px; }
+    .method-step-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--navy); color: var(--gold);
+      font-family: var(--font-serif); font-size: 22px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .method-step h4 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+    .method-step p { font-size: 13px; color: var(--text-light); line-height: 1.6; }
+
+    /* ---- FOR WHOM ---- */
+    .for-whom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    @media (max-width: 640px) { .for-whom-grid { grid-template-columns: 1fr; } }
+    .for-whom-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .for-whom-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--text); line-height: 1.55; }
+    .for-whom-list li::before { content: "✓"; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .not-for li::before { content: "✗"; color: #e57373; }
+
+    /* ---- WHAT'S INCLUDED ---- */
+    .included-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 720px) { .included-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .included-grid { grid-template-columns: 1fr; } }
+    .included-item {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 22px 18px;
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .included-icon { font-size: 22px; flex-shrink: 0; }
+    .included-item h4 { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .included-item p { font-size: 13px; color: var(--text-light); line-height: 1.5; }
+
+    /* ---- INSTRUCTOR ---- */
+    .instructor { display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; }
+    @media (max-width: 600px) { .instructor { grid-template-columns: 1fr; text-align: center; } }
+    .instructor-photo {
+      width: 140px; height: 140px; border-radius: 50%;
+      background: var(--navy); overflow: hidden; flex-shrink: 0;
+      border: 3px solid var(--gold);
+    }
+    .instructor-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .instructor-photo-fallback {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-serif); font-size: 48px; color: var(--gold);
+    }
+    .instructor h3 { font-family: var(--font-serif); font-size: 24px; color: var(--navy); margin-bottom: 6px; }
+    .instructor-title { font-size: 14px; color: var(--gold); font-weight: 600; margin-bottom: 14px; }
+    .instructor p { font-size: 15px; color: var(--text-light); line-height: 1.7; }
+
+    /* ---- CTA FINAL ---- */
+    .cta-section {
+      background: var(--navy); color: var(--white);
+      padding: 80px 24px; text-align: center;
+    }
+    .cta-section h2 { font-family: var(--font-serif); font-size: clamp(26px, 4vw, 40px); margin-bottom: 16px; }
+    .cta-section p { font-size: 16px; color: rgba(255,255,255,.75); margin-bottom: 36px; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .cta-contact { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .cta-email {
+      font-size: 18px; font-weight: 600; color: var(--gold);
+      border-bottom: 1px solid rgba(200,164,94,.3); padding-bottom: 2px;
+    }
+    .cta-note { font-size: 13px; color: rgba(255,255,255,.5); }
+
+    /* ---- FOOTER ---- */
+    .footer { padding: 32px 24px; text-align: center; border-top: 1px solid var(--border); }
+    .footer p { font-size: 13px; color: var(--text-light); }
+    .footer a { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="relatosmagar-preview.html" class="nav-logo" target="_top">Esther Magar</a>
+    <a href="relatosmagar-preview.html#cursos" class="nav-back" target="_top">
+      ← Volver a la web
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-label">Formación para escritores</div>
+      <h1>Curso de Corrección<br/>de Textos</h1>
+      <p class="hero-desc">
+        Aprende a detectar tus debilidades ortográficas y vicios de estilo,
+        y dales la vuelta. Trabajarás sobre tus propios textos con correcciones
+        y comentarios personalizados de Esther en cada ejercicio.
+      </p>
+      <div class="hero-badges">
+        <span class="badge">📚 8 temas por módulo</span>
+        <span class="badge">✍️ Sobre tus propios textos</span>
+        <span class="badge">👤 Corrección personal de Esther</span>
+        <span class="badge">🕐 A tu ritmo</span>
+        <span class="badge">🔒 Plazas limitadas</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#precios" class="btn btn-gold">Ver modalidades y precios</a>
+        <a href="https://relatosmagar.com/curso-de-correccion-de-textos/" class="btn btn-outline-white" target="_top">Ver en la web oficial →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODALIDADES -->
+  <section class="section" id="precios">
+    <div class="container">
+      <div class="section-label">Modalidades</div>
+      <h2 class="section-title">Elige el curso que necesitas</h2>
+      <p class="section-sub">Tres opciones adaptadas a lo que quieres trabajar. El precio se consulta directamente con Esther —sin compromiso.</p>
+
+      <div class="options-grid">
+        <div class="option-card">
+          <h3>Corrección de Estilo para Escritores</h3>
+          <p>Trabaja la fluidez, coherencia, estructura del discurso y vicios estilísticos que restan impacto a tu escritura.</p>
+          <div class="option-modules">8 temas prácticos</div>
+          <a href="mailto:esthermagar@relatosmagar.com?subject=Consulta%20Curso%20Corrección%20de%20Estilo" class="btn btn-gold" style="width:100%; justify-content:center;">Consultar precio</a>
+        </div>
+
+        <div class="option-card">
+          <h3>Corrección Ortotipográfica para Escritores</h3>
+          <p>Domina las normas ortográficas, de puntuación y tipografía editorial para que ningún error distraiga al lector.</p>
+          <div class="option-modules">8 temas prácticos</div>
+          <a href="mailto:esthermagar@relatosmagar.com?subject=Consulta%20Curso%20Corrección%20Ortotipográfica" class="btn btn-gold" style="width:100%; justify-content:center;">Consultar precio</a>
+        </div>
+
+        <div class="option-card featured">
+          <span class="option-badge">Más completo</span>
+          <h3>Curso Completo<br/>Estilo + Ortotipografía</h3>
+          <p>Los dos cursos juntos a precio reducido. La opción más completa para escritores que quieren cubrir todos los frentes antes de presentar su obra.</p>
+          <div class="option-modules">16 temas prácticos</div>
+          <a href="mailto:esthermagar@relatosmagar.com?subject=Consulta%20Curso%20Completo%20Corrección" class="btn btn-gold" style="width:100%; justify-content:center;">Consultar precio</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METODOLOGÍA -->
+  <section class="section section-cream" id="metodologia">
+    <div class="container">
+      <div class="section-label">Metodología</div>
+      <h2 class="section-title">¿Cómo funciona el curso?</h2>
+      <p class="section-sub">Un método sencillo, flexible y con atención personalizada real —no automatizada.</p>
+
+      <div class="method-steps">
+        <div class="method-step">
+          <div class="method-step-num">1</div>
+          <h4>Te apuntas cuando quieras</h4>
+          <p>El curso no tiene fecha de inicio fija. Escribes a Esther, consultas disponibilidad y empiezas cuando te venga bien.</p>
+        </div>
+        <div class="method-step">
+          <div class="method-step-num">2</div>
+          <h4>Recibes el material por temas</h4>
+          <p>Cada tema incluye teoría clara y ejercicios prácticos diseñados para aplicarlos directamente a tu escritura.</p>
+        </div>
+        <div class="method-step">
+          <div class="method-step-num">3</div>
+          <h4>Trabajas a tu ritmo</h4>
+          <p>No hay plazos rígidos. Avanzas según tu tiempo y tus circunstancias, sin presión.</p>
+        </div>
+        <div class="method-step">
+          <div class="method-step-num">4</div>
+          <h4>Esther corrige personalmente</h4>
+          <p>Cada ejercicio es revisado y comentado por Esther —sin correcciones automáticas, sin asistentes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA QUIÉN -->
+  <section class="section" id="para-quien">
+    <div class="container">
+      <div class="section-label">Para quién es</div>
+      <h2 class="section-title">¿Este curso es para ti?</h2>
+
+      <div class="for-whom-grid">
+        <div>
+          <h3 style="font-family:var(--font-serif); font-size:18px; color:var(--navy); margin-bottom:20px;">Sí es para ti si…</h3>
+          <ul class="for-whom-list">
+            <li>Quieres presentar tu manuscrito a concursos literarios o editoriales</li>
+            <li>Estás pensando en autopublicar y quieres que el texto sea impecable</li>
+            <li>Sabes que cometes ciertos errores pero no consigues identificarlos</li>
+            <li>Quieres aprender a corregir tus propios textos de forma autónoma</li>
+            <li>Buscas un feedback real y personalizado, no genérico</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="font-family:var(--font-serif); font-size:18px; color:var(--navy); margin-bottom:20px;">No es para ti si…</h3>
+          <ul class="for-whom-list not-for">
+            <li>Buscas formarte como corrector profesional (para eso hay otros itinerarios)</li>
+            <li>Necesitas que alguien corrija tu texto por ti sin implicarte en el proceso</li>
+            <li>Quieres resultados sin dedicar tiempo a practicar y reflexionar</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUÉ INCLUYE -->
+  <section class="section section-cream" id="incluye">
+    <div class="container">
+      <div class="section-label">Qué incluye</div>
+      <h2 class="section-title">Todo lo que recibes</h2>
+
+      <div class="included-grid">
+        <div class="included-item">
+          <div class="included-icon">📖</div>
+          <div>
+            <h4>Material teórico por temas</h4>
+            <p>Contenidos claros y directos, sin relleno. Exactamente lo que necesitas saber.</p>
+          </div>
+        </div>
+        <div class="included-item">
+          <div class="included-icon">✍️</div>
+          <div>
+            <h4>Ejercicios sobre tus textos</h4>
+            <p>Practicas con tus propias palabras, no con ejemplos genéricos ajenos a tu escritura.</p>
+          </div>
+        </div>
+        <div class="included-item">
+          <div class="included-icon">💬</div>
+          <div>
+            <h4>Corrección personal de Esther</h4>
+            <p>Cada ejercicio viene devuelto con comentarios concretos y útiles, firmados por Esther.</p>
+          </div>
+        </div>
+        <div class="included-item">
+          <div class="included-icon">🕐</div>
+          <div>
+            <h4>Ritmo propio</h4>
+            <p>Sin fechas límite. Empiezas cuando puedes y avanzas según tu disponibilidad real.</p>
+          </div>
+        </div>
+        <div class="included-item">
+          <div class="included-icon">🔒</div>
+          <div>
+            <h4>Plazas limitadas</h4>
+            <p>Solo acepta un número reducido de alumnos al mes para garantizar atención de calidad.</p>
+          </div>
+        </div>
+        <div class="included-item">
+          <div class="included-icon">📧</div>
+          <div>
+            <h4>Acceso directo a Esther</h4>
+            <p>Puedes escribirle con tus dudas. Trato cercano y personalizado en todo momento.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTRUCTORA -->
+  <section class="section" id="instructora">
+    <div class="container">
+      <div class="section-label">La instructora</div>
+      <h2 class="section-title" style="margin-bottom:40px;">Esther Magar</h2>
+      <div class="instructor">
+        <div class="instructor-photo">
+          <img src="https://relatosmagar.com/wp-content/uploads/esther-magar-correctora.jpg"
+               alt="Esther Magar"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="instructor-photo-fallback" style="display:none;">E</div>
+        </div>
+        <div>
+          <h3>Esther Magar</h3>
+          <div class="instructor-title">Correctora profesional de textos · escritora</div>
+          <p>
+            Esther Magar lleva años dedicada a la corrección profesional de textos literarios y de no ficción.
+            Ha trabajado con escritores que han publicado en editoriales como Umbriel y con finalistas de importantes
+            premios literarios. Es también autora de novelas publicadas en Amazon.
+          </p>
+          <br/>
+          <p>
+            Su enfoque en el curso es el mismo que aplica en sus correcciones profesionales: atención al detalle,
+            respeto por la voz del autor y explicaciones que permiten aprender, no solo corregir.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section" id="contacto">
+    <div class="container">
+      <h2>¿Te interesa el curso?</h2>
+      <p>
+        Escribe a Esther para consultar disponibilidad, precio y cualquier duda que tengas.
+        Sin compromiso.
+      </p>
+      <div class="cta-contact">
+        <a href="mailto:esthermagar@relatosmagar.com?subject=Consulta%20Curso%20de%20Corrección" class="btn btn-gold" style="font-size:16px; padding:16px 36px;">
+          Escribir a Esther →
+        </a>
+        <a href="mailto:esthermagar@relatosmagar.com" class="cta-email">esthermagar@relatosmagar.com</a>
+        <p class="cta-note">Respuesta en 24–48 h. Plazas limitadas cada mes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>
+      © 2025 Esther Magar · Correctora profesional ·
+      <a href="relatosmagar-preview.html" target="_top">Volver a la web</a> ·
+      <a href="https://relatosmagar.com" target="_top">relatosmagar.com</a>
+    </p>
+  </footer>
+
+</body>
+</html>
