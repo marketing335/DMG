@@ -171,38 +171,77 @@
         <div class="matrices-icon">Aa</div>
         <h3>¿Qué son las matrices?</h3>
         <p>Las matrices son el número de <strong>caracteres con espacios incluidos</strong> de un documento. Es la métrica más precisa para calcular el volumen real de un texto.</p>
-        <div class="matrices-steps">
-          <div class="mstep">
-            <span class="mstep-num">1</span>
-            <span>Abre tu documento en <strong>Microsoft Word</strong></span>
-          </div>
-          <div class="mstep">
-            <span class="mstep-num">2</span>
-            <span>Mira la <strong>esquina inferior izquierda</strong> — verás el número de palabras</span>
-          </div>
-          <div class="mstep">
-            <span class="mstep-num">3</span>
-            <span>Haz clic sobre ese número → aparecerá el recuento de <strong>caracteres con espacios</strong></span>
-          </div>
-        </div>
-        <div class="matrices-visual">
-          <div class="word-mockup">
-            <div class="word-bar">
-              <span class="word-dot red"></span>
-              <span class="word-dot yellow"></span>
-              <span class="word-dot green"></span>
-              <span class="word-title">documento.docx</span>
+        <div class="matrices-steps-visual">
+
+          <!-- Paso 1 -->
+          <div class="mstep-card">
+            <div class="mstep-info">
+              <span class="mstep-num">1</span>
+              <span>Abre tu documento en <strong>Microsoft Word</strong></span>
             </div>
-            <div class="word-content">
-              <div class="word-line long"></div>
-              <div class="word-line medium"></div>
-              <div class="word-line long"></div>
-              <div class="word-line short"></div>
-            </div>
-            <div class="word-status">
-              <span class="word-counter pulse">1.243 palabras → <strong>7.482 caracteres con espacios</strong></span>
+            <div class="mstep-visual">
+              <div class="mv-window">
+                <div class="mv-bar">
+                  <span class="word-dot red"></span><span class="word-dot yellow"></span><span class="word-dot green"></span>
+                  <span class="mv-title">documento.docx</span>
+                </div>
+                <div class="mv-body">
+                  <div class="mv-line long"></div>
+                  <div class="mv-line medium"></div>
+                  <div class="mv-line long"></div>
+                  <div class="mv-line short"></div>
+                  <div class="mv-line medium"></div>
+                </div>
+                <div class="mv-status">
+                  <span>Página 1 de 1</span><span>1.243 palabras</span>
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- Paso 2 -->
+          <div class="mstep-card">
+            <div class="mstep-info">
+              <span class="mstep-num">2</span>
+              <span>Mira la <strong>esquina inferior izquierda</strong> — verás el número de palabras</span>
+            </div>
+            <div class="mstep-visual">
+              <div class="mv-window">
+                <div class="mv-bar">
+                  <span class="word-dot red"></span><span class="word-dot yellow"></span><span class="word-dot green"></span>
+                  <span class="mv-title">documento.docx</span>
+                </div>
+                <div class="mv-body">
+                  <div class="mv-line long"></div>
+                  <div class="mv-line medium"></div>
+                  <div class="mv-line short"></div>
+                </div>
+                <div class="mv-status mv-status-highlight">
+                  <span class="mv-highlight-badge">&#x2193; clic aquí</span>
+                  <span class="mv-status-pill">1.243 palabras</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paso 3 -->
+          <div class="mstep-card">
+            <div class="mstep-info">
+              <span class="mstep-num">3</span>
+              <span>Se abre el panel — copia el número de <strong>caracteres con espacios</strong></span>
+            </div>
+            <div class="mstep-visual">
+              <div class="mv-dialog">
+                <div class="mv-dialog-title">Contar palabras</div>
+                <div class="mv-dialog-row"><span>Páginas</span><span>1</span></div>
+                <div class="mv-dialog-row"><span>Palabras</span><span>1.243</span></div>
+                <div class="mv-dialog-row"><span>Caracteres (sin espacios)</span><span>5.891</span></div>
+                <div class="mv-dialog-row mv-dialog-row-hl"><span><strong>Caracteres (con espacios)</strong></span><span class="mv-dialog-val">7.482</span></div>
+                <div class="mv-dialog-row"><span>Párrafos</span><span>14</span></div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

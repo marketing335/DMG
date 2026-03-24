@@ -285,38 +285,67 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 }
 .matrices-box h3 { font-family: var(--font-serif); font-size: 22px; color: var(--white); margin-bottom: 12px; }
 .matrices-box > p { font-size: 15px; color: var(--text-inv); margin-bottom: 28px; }
-.matrices-steps { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
-.mstep {
-  display: flex; align-items: center; gap: 14px;
-  background: rgba(255,255,255,.05); padding: 14px 18px; border-radius: var(--radius-sm);
+/* Steps visuales matrices */
+.matrices-steps-visual { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+.mstep-card {
+  display: grid; grid-template-columns: 1fr 200px; gap: 16px; align-items: center;
+  background: rgba(255,255,255,.05); padding: 16px; border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,.08);
 }
+.mstep-info { display: flex; align-items: center; gap: 14px; }
 .mstep-num {
-  width: 28px; height: 28px; border-radius: 50%; background: var(--gold);
+  width: 30px; height: 30px; border-radius: 50%; background: var(--gold);
   color: var(--navy); display: flex; align-items: center; justify-content: center;
   font-size: 13px; font-weight: 700; flex-shrink: 0;
 }
-.mstep span { font-size: 14px; color: var(--text-inv); }
+.mstep-info span { font-size: 14px; color: var(--text-inv); line-height: 1.4; }
 
-/* Word mockup */
-.matrices-visual { max-width: 400px; }
-.word-mockup { background: #fff; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow); }
-.word-bar {
-  display: flex; align-items: center; gap: 6px;
-  padding: 10px 14px; background: #f5f5f5; border-bottom: 1px solid #e5e5e5;
+/* Mini ventana Word */
+.mstep-visual { width: 100%; }
+.mv-window { background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,.3); font-size: 10px; }
+.mv-bar {
+  display: flex; align-items: center; gap: 4px;
+  padding: 6px 10px; background: #f0f0f0; border-bottom: 1px solid #ddd;
 }
-.word-dot { width: 10px; height: 10px; border-radius: 50%; }
+.word-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 .word-dot.red { background: #ff5f57; }
 .word-dot.yellow { background: #ffbd2e; }
 .word-dot.green { background: #28c840; }
-.word-title { margin-left: 12px; font-size: 12px; color: #999; }
-.word-content { padding: 20px; }
-.word-line { height: 8px; border-radius: 4px; background: #eee; margin-bottom: 10px; }
-.word-line.long { width: 100%; }
-.word-line.medium { width: 75%; }
-.word-line.short { width: 50%; }
-.word-status { padding: 10px 14px; background: #f9f9f9; border-top: 1px solid #e5e5e5; }
-.word-counter { font-size: 12px; color: var(--text-light); }
-.word-counter.pulse { animation: pulse 2s ease-in-out infinite; }
+.mv-title { margin-left: 8px; font-size: 9px; color: #999; }
+.mv-body { padding: 10px 10px 6px; }
+.mv-line { height: 5px; border-radius: 3px; background: #e8e8e8; margin-bottom: 6px; }
+.mv-line.long { width: 100%; }
+.mv-line.medium { width: 72%; }
+.mv-line.short { width: 45%; }
+.mv-status {
+  padding: 5px 10px; background: #2b579a; color: #fff;
+  display: flex; align-items: center; gap: 8px; font-size: 9px;
+}
+.mv-status-highlight { position: relative; }
+.mv-status-pill {
+  background: #fff; color: #2b579a; padding: 2px 7px; border-radius: 20px;
+  font-weight: 700; font-size: 9px; animation: pulse 1.8s ease-in-out infinite;
+}
+.mv-highlight-badge {
+  font-size: 8px; color: var(--gold); font-weight: 600; white-space: nowrap;
+}
+
+/* Diálogo Word paso 3 */
+.mv-dialog {
+  background: #fff; border-radius: 6px; overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,.35); font-size: 10px;
+}
+.mv-dialog-title {
+  background: #2b579a; color: #fff; padding: 7px 12px; font-size: 10px; font-weight: 600;
+}
+.mv-dialog-row {
+  display: flex; justify-content: space-between; padding: 4px 12px;
+  border-bottom: 1px solid #f0f0f0; color: #444;
+}
+.mv-dialog-row:last-child { border: none; }
+.mv-dialog-row-hl { background: #fff8e7; }
+.mv-dialog-val { font-weight: 700; color: #2b579a; }
+
 @keyframes pulse { 0%,100%{ opacity: 1; } 50%{ opacity: .6; } }
 
 /* ======================== ABOUT ======================== */
@@ -609,7 +638,8 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
   .steps-grid { flex-direction: column; }
   .step { min-width: 100%; }
-  .matrices-steps { gap: 8px; }
+  .mstep-card { grid-template-columns: 1fr; }
+  .mstep-visual { display: none; }
 }
 
 @media (max-width: 480px) {
@@ -780,38 +810,77 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
         <div class="matrices-icon">Aa</div>
         <h3>¿Qué son las matrices?</h3>
         <p>Las matrices son el número de <strong>caracteres con espacios incluidos</strong> de un documento. Es la métrica más precisa para calcular el volumen real de un texto.</p>
-        <div class="matrices-steps">
-          <div class="mstep">
-            <span class="mstep-num">1</span>
-            <span>Abre tu documento en <strong>Microsoft Word</strong></span>
-          </div>
-          <div class="mstep">
-            <span class="mstep-num">2</span>
-            <span>Mira la <strong>esquina inferior izquierda</strong> — verás el número de palabras</span>
-          </div>
-          <div class="mstep">
-            <span class="mstep-num">3</span>
-            <span>Haz clic sobre ese número → aparecerá el recuento de <strong>caracteres con espacios</strong></span>
-          </div>
-        </div>
-        <div class="matrices-visual">
-          <div class="word-mockup">
-            <div class="word-bar">
-              <span class="word-dot red"></span>
-              <span class="word-dot yellow"></span>
-              <span class="word-dot green"></span>
-              <span class="word-title">documento.docx</span>
+        <div class="matrices-steps-visual">
+
+          <!-- Paso 1 -->
+          <div class="mstep-card">
+            <div class="mstep-info">
+              <span class="mstep-num">1</span>
+              <span>Abre tu documento en <strong>Microsoft Word</strong></span>
             </div>
-            <div class="word-content">
-              <div class="word-line long"></div>
-              <div class="word-line medium"></div>
-              <div class="word-line long"></div>
-              <div class="word-line short"></div>
-            </div>
-            <div class="word-status">
-              <span class="word-counter pulse">1.243 palabras → <strong>7.482 caracteres con espacios</strong></span>
+            <div class="mstep-visual">
+              <div class="mv-window">
+                <div class="mv-bar">
+                  <span class="word-dot red"></span><span class="word-dot yellow"></span><span class="word-dot green"></span>
+                  <span class="mv-title">documento.docx</span>
+                </div>
+                <div class="mv-body">
+                  <div class="mv-line long"></div>
+                  <div class="mv-line medium"></div>
+                  <div class="mv-line long"></div>
+                  <div class="mv-line short"></div>
+                  <div class="mv-line medium"></div>
+                </div>
+                <div class="mv-status">
+                  <span>Página 1 de 1</span><span>1.243 palabras</span>
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- Paso 2 -->
+          <div class="mstep-card">
+            <div class="mstep-info">
+              <span class="mstep-num">2</span>
+              <span>Mira la <strong>esquina inferior izquierda</strong> — verás el número de palabras</span>
+            </div>
+            <div class="mstep-visual">
+              <div class="mv-window">
+                <div class="mv-bar">
+                  <span class="word-dot red"></span><span class="word-dot yellow"></span><span class="word-dot green"></span>
+                  <span class="mv-title">documento.docx</span>
+                </div>
+                <div class="mv-body">
+                  <div class="mv-line long"></div>
+                  <div class="mv-line medium"></div>
+                  <div class="mv-line short"></div>
+                </div>
+                <div class="mv-status mv-status-highlight">
+                  <span class="mv-highlight-badge">&#x2193; clic aquí</span>
+                  <span class="mv-status-pill">1.243 palabras</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Paso 3 -->
+          <div class="mstep-card">
+            <div class="mstep-info">
+              <span class="mstep-num">3</span>
+              <span>Se abre el panel — copia el número de <strong>caracteres con espacios</strong></span>
+            </div>
+            <div class="mstep-visual">
+              <div class="mv-dialog">
+                <div class="mv-dialog-title">Contar palabras</div>
+                <div class="mv-dialog-row"><span>Páginas</span><span>1</span></div>
+                <div class="mv-dialog-row"><span>Palabras</span><span>1.243</span></div>
+                <div class="mv-dialog-row"><span>Caracteres (sin espacios)</span><span>5.891</span></div>
+                <div class="mv-dialog-row mv-dialog-row-hl"><span><strong>Caracteres (con espacios)</strong></span><span class="mv-dialog-val">7.482</span></div>
+                <div class="mv-dialog-row"><span>Párrafos</span><span>14</span></div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
