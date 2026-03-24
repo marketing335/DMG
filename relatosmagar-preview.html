@@ -110,14 +110,9 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
 /* ======================== HERO ======================== */
-.hero {
-  min-height: 100vh; display: flex; align-items: center;
-  padding: 120px 24px 80px; position: relative;
-  max-width: 1200px; margin: 0 auto;
-  display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: center;
-}
+.hero-wrap { position: relative; overflow: hidden; }
 .hero-bg {
-  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1;
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0;
   background-image:
     radial-gradient(ellipse at 20% 50%, rgba(200,164,94,.08) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 20%, rgba(26,29,46,.04) 0%, transparent 50%),
@@ -126,6 +121,12 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+.hero {
+  min-height: 100vh;
+  padding: 120px 24px 80px; position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: center;
 }
 .hero-eyebrow {
   font-size: 13px; font-weight: 600; text-transform: uppercase;
@@ -753,6 +754,7 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
   </header>
 
   <!-- ======================== HERO ======================== -->
+  <div class="hero-wrap">
   <section class="hero" id="inicio">
     <div class="hero-bg"></div>
     <div class="hero-content">
@@ -819,6 +821,7 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
       </div>
     </div>
   </section>
+  </div><!-- /hero-wrap -->
 
   <!-- ======================== TESTIMONIOS ======================== -->
   <section class="section section-cream" id="testimonios">
