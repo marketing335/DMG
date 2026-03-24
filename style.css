@@ -700,6 +700,56 @@ details.expandable[open] summary {
   opacity: 0.6;
 }
 
+/* === SERVICIOS DE CORRECCIÓN === */
+
+.servicios-intro { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin-bottom: 2rem; box-shadow: var(--shadow); }
+.servicios-intro p { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; max-width: 780px; }
+
+.servicios-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-bottom: 2rem; }
+
+.servicio-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 0.75rem; transition: box-shadow 0.2s, transform 0.2s; }
+.servicio-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.servicio-card.destacado { border-color: var(--primary); position: relative; }
+.servicio-badge { position: absolute; top: -10px; right: 1rem; background: var(--primary); color: #fff; font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.7rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+.servicio-icon { font-size: 2rem; line-height: 1; }
+.servicio-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--text); }
+.servicio-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; flex: 1; }
+.servicio-lista { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.35rem; }
+.servicio-lista li { font-size: 0.84rem; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 0.4rem; }
+.servicio-lista li::before { content: "✓"; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+.servicio-precio { font-size: 1.1rem; font-weight: 800; color: var(--primary); margin-top: 0.25rem; }
+.servicio-precio small { font-size: 0.8rem; font-weight: 400; color: var(--text-secondary); }
+
+.proceso-steps { display: flex; flex-direction: column; gap: 0; margin-bottom: 2rem; }
+.proceso-step { display: flex; gap: 1.25rem; align-items: flex-start; position: relative; padding-bottom: 1.5rem; }
+.proceso-step:last-child { padding-bottom: 0; }
+.proceso-step::before { content: ""; position: absolute; left: 19px; top: 40px; bottom: 0; width: 2px; background: var(--border); }
+.proceso-step:last-child::before { display: none; }
+.step-num { width: 40px; height: 40px; background: var(--primary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; flex-shrink: 0; z-index: 1; }
+.step-body h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+.step-body p { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.55; }
+
+.tarifas-tabla { width: 100%; border-collapse: collapse; margin-bottom: 2rem; background: var(--bg-card); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.tarifas-tabla th { background: var(--primary); color: #fff; padding: 0.75rem 1rem; text-align: left; font-size: 0.85rem; font-weight: 600; }
+.tarifas-tabla td { padding: 0.7rem 1rem; font-size: 0.875rem; border-bottom: 1px solid var(--border); color: var(--text); }
+.tarifas-tabla tr:last-child td { border-bottom: none; }
+.tarifas-tabla tr:nth-child(even) td { background: var(--bg); }
+.tarifa-precio { font-weight: 700; color: var(--primary); }
+
+.faq-list { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+.faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+.faq-item summary { padding: 1rem 1.25rem; font-weight: 600; font-size: 0.93rem; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--text); }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: "+"; font-size: 1.2rem; color: var(--primary); font-weight: 300; transition: transform 0.2s; }
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item p { padding: 0 1.25rem 1rem; font-size: 0.875rem; color: var(--text-secondary); line-height: 1.65; }
+
+.correccion-cta { background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%); color: #fff; border-radius: var(--radius); padding: 2rem; text-align: center; margin-bottom: 2rem; }
+.correccion-cta h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; }
+.correccion-cta p { opacity: 0.9; font-size: 0.95rem; margin-bottom: 1.25rem; }
+.correccion-cta .btn { background: #fff; color: var(--primary); font-weight: 700; padding: 0.7rem 1.75rem; font-size: 0.95rem; }
+.correccion-cta .btn:hover { background: #f0f5ff; }
+
 /* === RESPONSIVE === */
 
 @media (max-width: 768px) {

@@ -707,6 +707,296 @@ details.expandable[open] summary {
   opacity: 0.6;
 }
 
+/* === SERVICIOS DE CORRECCIÓN === */
+
+.servicios-intro {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.servicios-intro p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 780px;
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.servicio-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.servicio-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.servicio-card.destacado {
+  border-color: var(--primary);
+  position: relative;
+}
+
+.servicio-badge {
+  position: absolute;
+  top: -10px;
+  right: 1rem;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.7rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.servicio-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.servicio-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.servicio-card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.servicio-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.servicio-lista li {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.servicio-lista li::before {
+  content: "✓";
+  color: var(--accent);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.servicio-precio {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-top: 0.25rem;
+}
+
+.servicio-precio small {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+/* Proceso */
+.proceso-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 2rem;
+}
+
+.proceso-step {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.proceso-step:last-child { padding-bottom: 0; }
+
+.proceso-step::before {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 40px;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.proceso-step:last-child::before { display: none; }
+
+.step-num {
+  width: 40px;
+  height: 40px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.step-body h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
+
+.step-body p {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* Tarifas tabla */
+.tarifas-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.tarifas-tabla th {
+  background: var(--primary);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.tarifas-tabla td {
+  padding: 0.7rem 1rem;
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.tarifas-tabla tr:last-child td { border-bottom: none; }
+.tarifas-tabla tr:nth-child(even) td { background: var(--bg); }
+
+.tarifa-precio {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* FAQ corrección */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.faq-item summary {
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.93rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text);
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+  content: "+";
+  font-size: 1.2rem;
+  color: var(--primary);
+  font-weight: 300;
+  transition: transform 0.2s;
+}
+
+.faq-item[open] summary::after { transform: rotate(45deg); }
+
+.faq-item p {
+  padding: 0 1.25rem 1rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* CTA contacto */
+.correccion-cta {
+  background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 2rem 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.correccion-cta h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.correccion-cta p {
+  opacity: 0.9;
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+.correccion-cta .btn {
+  background: #fff;
+  color: var(--primary);
+  font-weight: 700;
+  padding: 0.7rem 1.75rem;
+  font-size: 0.95rem;
+}
+
+.correccion-cta .btn:hover {
+  background: #f0f5ff;
+}
+
 /* === RESPONSIVE === */
 
 @media (max-width: 768px) {
@@ -782,6 +1072,7 @@ details.expandable[open] summary {
       <a href="#" data-section="gastos">Gastos</a>
       <a href="#" data-section="deducciones">Deducciones</a>
       <a href="#" data-section="calendario">Calendario</a>
+      <a href="#" data-section="correccion">Corrección</a>
     </div>
   </nav>
 
@@ -1050,6 +1341,228 @@ details.expandable[open] summary {
       </div>
 
       <div id="calendario-contenido" class="result-container"></div>
+    </section>
+
+    <!-- =============================== -->
+    <!-- SECCION 7: SERVICIOS CORRECCIÓN -->
+    <!-- =============================== -->
+    <section id="sec-correccion" class="section">
+      <div class="section-header">
+        <h2>Servicios de Corrección de Textos</h2>
+        <p>Corrección profesional para relatos, novelas, artículos y cualquier texto que quieras publicar con la máxima calidad.</p>
+      </div>
+
+      <div class="servicios-intro">
+        <p>
+          Un texto bien escrito es solo el primer paso. La corrección profesional garantiza que tu obra llegue a los lectores
+          sin errores ortotipográficos, con una prosa fluida y coherente, y con la voz narrativa intacta.
+          Trabajo con un criterio editorial riguroso respetando siempre el estilo del autor: no reescribo, corrijo.
+        </p>
+      </div>
+
+      <!-- Tipos de servicio -->
+      <div class="section-header">
+        <h3 style="font-size:1.15rem;font-weight:700;color:var(--text);">Tipos de corrección</h3>
+      </div>
+
+      <div class="servicios-grid">
+
+        <div class="servicio-card">
+          <div class="servicio-icon">🔤</div>
+          <h3>Corrección ortotipográfica</h3>
+          <p>Revisión exhaustiva de ortografía, puntuación, uso de mayúsculas, cursivas, comillas y normas tipográficas según la RAE y el Libro de estilo de la lengua española.</p>
+          <ul class="servicio-lista">
+            <li>Faltas de ortografía y acentuación</li>
+            <li>Puntuación y uso de signos</li>
+            <li>Cursivas, negritas y comillas</li>
+            <li>Cifras, siglas y abreviaciones</li>
+            <li>Uso de mayúsculas</li>
+          </ul>
+          <div class="servicio-precio">desde 0,008 € <small>/ palabra</small></div>
+        </div>
+
+        <div class="servicio-card destacado">
+          <span class="servicio-badge">Más solicitado</span>
+          <div class="servicio-icon">✍️</div>
+          <h3>Corrección de estilo</h3>
+          <p>Análisis profundo de la coherencia narrativa, el ritmo, la claridad expositiva y la consistencia de voz y tono. Va más allá de la forma: cuida que el fondo funcione.</p>
+          <ul class="servicio-lista">
+            <li>Coherencia y cohesión textual</li>
+            <li>Ritmo y fluidez de la prosa</li>
+            <li>Repeticiones y cacofonías</li>
+            <li>Consistencia de personajes y tiempos</li>
+            <li>Claridad y precisión léxica</li>
+          </ul>
+          <div class="servicio-precio">desde 0,015 € <small>/ palabra</small></div>
+        </div>
+
+        <div class="servicio-card">
+          <div class="servicio-icon">📚</div>
+          <h3>Revisión integral</h3>
+          <p>Combinación de corrección ortotipográfica y de estilo en un único proceso. La opción más completa para quienes buscan llevar su manuscrito a un nivel editorial profesional.</p>
+          <ul class="servicio-lista">
+            <li>Todo lo de las dos modalidades anteriores</li>
+            <li>Informe detallado con observaciones</li>
+            <li>Una ronda de corrección incluida</li>
+            <li>Entrega con control de cambios (Word)</li>
+            <li>Resumen de puntos de atención</li>
+          </ul>
+          <div class="servicio-precio">desde 0,022 € <small>/ palabra</small></div>
+        </div>
+
+        <div class="servicio-card">
+          <div class="servicio-icon">🎓</div>
+          <h3>Textos académicos y profesionales</h3>
+          <p>Corrección de TFG, TFM, tesis doctorales, artículos científicos, informes de empresa y cualquier documento que requiera un registro formal e impecable.</p>
+          <ul class="servicio-lista">
+            <li>Adecuación al registro académico</li>
+            <li>Uniformidad de citación (APA, Chicago…)</li>
+            <li>Coherencia terminológica</li>
+            <li>Estructura y párrafos</li>
+          </ul>
+          <div class="servicio-precio">desde 0,012 € <small>/ palabra</small></div>
+        </div>
+
+      </div>
+
+      <!-- Tabla de tarifas orientativas -->
+      <div class="section-header" style="margin-top:1rem">
+        <h3 style="font-size:1.15rem;font-weight:700;color:var(--text);">Tarifas orientativas según extensión</h3>
+      </div>
+
+      <table class="tarifas-tabla">
+        <thead>
+          <tr>
+            <th>Tipo de texto</th>
+            <th>Extensión aprox.</th>
+            <th>Ortotipográfica</th>
+            <th>De estilo</th>
+            <th>Integral</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Relato corto</td>
+            <td>1.000 – 5.000 palabras</td>
+            <td class="tarifa-precio">8 – 40 €</td>
+            <td class="tarifa-precio">15 – 75 €</td>
+            <td class="tarifa-precio">22 – 110 €</td>
+          </tr>
+          <tr>
+            <td>Novela corta</td>
+            <td>20.000 – 40.000 palabras</td>
+            <td class="tarifa-precio">160 – 320 €</td>
+            <td class="tarifa-precio">300 – 600 €</td>
+            <td class="tarifa-precio">440 – 880 €</td>
+          </tr>
+          <tr>
+            <td>Novela</td>
+            <td>60.000 – 100.000 palabras</td>
+            <td class="tarifa-precio">480 – 800 €</td>
+            <td class="tarifa-precio">900 – 1.500 €</td>
+            <td class="tarifa-precio">1.320 – 2.200 €</td>
+          </tr>
+          <tr>
+            <td>TFG / TFM</td>
+            <td>15.000 – 30.000 palabras</td>
+            <td class="tarifa-precio">120 – 240 €</td>
+            <td class="tarifa-precio">180 – 360 €</td>
+            <td class="tarifa-precio">—</td>
+          </tr>
+          <tr>
+            <td>Artículo / Blog</td>
+            <td>500 – 3.000 palabras</td>
+            <td class="tarifa-precio">4 – 24 €</td>
+            <td class="tarifa-precio">8 – 45 €</td>
+            <td class="tarifa-precio">11 – 66 €</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="tip-box info-box">
+        <strong>¿No sabes cuántas palabras tiene tu texto?</strong> En Word: Revisar → Contar palabras. El presupuesto definitivo se facilita siempre tras revisar el manuscrito, ya que la densidad de errores y la complejidad estilística influyen en el precio final.
+      </div>
+
+      <!-- Cómo funciona el proceso -->
+      <div class="section-header" style="margin-top:2rem">
+        <h3 style="font-size:1.15rem;font-weight:700;color:var(--text);">¿Cómo funciona?</h3>
+      </div>
+
+      <div class="form-card" style="margin-bottom:2rem">
+        <div class="proceso-steps">
+          <div class="proceso-step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h4>Envía tu manuscrito</h4>
+              <p>Mándame el texto en formato .doc, .docx o .odt. Junto con él, cuéntame brevemente el proyecto: género, destinatario, plazo que necesitas y cualquier particularidad de estilo que quieras conservar.</p>
+            </div>
+          </div>
+          <div class="proceso-step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h4>Presupuesto sin compromiso</h4>
+              <p>En 24-48 h recibirás un presupuesto personalizado con el precio exacto, el plazo de entrega y las condiciones. Si lo aceptas, se abona el 50 % para comenzar el trabajo.</p>
+            </div>
+          </div>
+          <div class="proceso-step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h4>Corrección del texto</h4>
+              <p>Trabajo el texto con control de cambios activado (visible en Word). Así puedes ver exactamente qué he modificado, aceptar o rechazar cada cambio y entender el porqué de cada decisión.</p>
+            </div>
+          </div>
+          <div class="proceso-step">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <h4>Entrega e informe</h4>
+              <p>Recibirás el documento corregido más un informe de observaciones con los puntos de atención más relevantes. En la corrección integral se incluye una ronda de revisión gratuita.</p>
+            </div>
+          </div>
+          <div class="proceso-step">
+            <div class="step-num">5</div>
+            <div class="step-body">
+              <h4>Pago final</h4>
+              <p>Una vez entregado el trabajo y satisfecho con el resultado, se abona el 50 % restante. Acepto transferencia bancaria y PayPal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="section-header">
+        <h3 style="font-size:1.15rem;font-weight:700;color:var(--text);">Preguntas frecuentes</h3>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿Cuánto tarda la corrección de una novela?</summary>
+          <p>El plazo depende de la extensión y la modalidad elegida. Como orientación: una novela de 80.000 palabras con corrección ortotipográfica suele requerir entre 2 y 3 semanas; la corrección de estilo, entre 4 y 6 semanas. Siempre se confirma el plazo exacto en el presupuesto.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Modificarás mi estilo personal?</summary>
+          <p>No. Mi trabajo es corregir, no reescribir. Respeto los rasgos de estilo propios de cada autor, sus recursos expresivos y sus decisiones narrativas deliberadas. Solo intervengo cuando algo dificulta la comprensión o incumple normas gramaticales básicas, y siempre con una nota explicativa.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿En qué formato entrego el texto y en qué formato lo recibo?</summary>
+          <p>Lo ideal es enviar el texto en Word (.docx) con un formato limpio (fuente estándar, sin columnas ni cuadros de texto). Lo devuelvo en el mismo formato con el control de cambios activado y, si lo deseas, también en versión limpia con todos los cambios aceptados.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Haces corrección de textos en inglés o catalán?</summary>
+          <p>Mi especialidad es el español. Para textos en catalán puedo hacer una revisión ortotipográfica básica. Para inglés, consulta disponibilidad: trabajo con textos de nivel intermedio-avanzado, pero textos muy técnicos o literarios en inglés los derivo a colaboradores especializados.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Trabajas con autopublicación y autoedición?</summary>
+          <p>Sí, es una parte importante de mis clientes. Tanto si publicas en Amazon KDP, en Lulu, en una editorial independiente o en cualquier otra plataforma, la corrección profesional marca la diferencia entre una obra que genera reseñas positivas y una que las lectoras abandonan por los errores.</p>
+        </details>
+      </div>
+
+      <!-- CTA -->
+      <div class="correccion-cta">
+        <h3>¿Lista para llevar tu texto al siguiente nivel?</h3>
+        <p>Solicita un presupuesto sin compromiso. Primera muestra de corrección (500 palabras) totalmente gratis.</p>
+        <a href="mailto:correcciones@dmg.es" class="btn">Solicitar presupuesto</a>
+      </div>
+
     </section>
 
   </main>
