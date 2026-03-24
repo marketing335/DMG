@@ -348,6 +348,29 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 
 @keyframes pulse { 0%,100%{ opacity: 1; } 50%{ opacity: .6; } }
 
+/* ======================== TESTIMONIOS ======================== */
+.testi-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;
+}
+.testi-card {
+  background: var(--white); border-radius: var(--radius); padding: 28px;
+  box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 16px;
+  border: 1px solid var(--border); transition: var(--transition);
+}
+.testi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.testi-stars { color: #f5a623; font-size: 16px; letter-spacing: 2px; }
+.testi-text {
+  font-size: 15px; line-height: 1.7; color: var(--text); font-style: italic;
+  flex: 1;
+}
+.testi-author { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
+.testi-avatar {
+  width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
+  border: 2px solid var(--cream-dark); flex-shrink: 0;
+}
+.testi-author strong { display: block; font-size: 14px; color: var(--navy); }
+.testi-author span { font-size: 12px; color: var(--text-light); }
+
 /* ======================== ABOUT ======================== */
 .about-grid { display: grid; grid-template-columns: .4fr .6fr; gap: 60px; align-items: center; }
 .about-img-placeholder {
@@ -623,6 +646,7 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
   .hero-actions { justify-content: center; }
   .hero-trust { justify-content: center; flex-wrap: wrap; }
   .services-grid { grid-template-columns: 1fr; }
+  .testi-grid { grid-template-columns: 1fr; }
   .about-grid { grid-template-columns: 1fr; text-align: center; }
   .about-img-placeholder { max-width: 300px; margin: 0 auto; }
   .about-tags { justify-content: center; }
@@ -663,6 +687,7 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
         <a href="#servicios">Servicios</a>
         <a href="#como-funciona">Cómo funciona</a>
         <a href="#cursos">Cursos</a>
+        <a href="#testimonios">Opiniones</a>
         <a href="#novelas">Novelas</a>
         <a href="#blog">Blog</a>
         <a href="#contacto" class="nav-cta">Solicitar presupuesto</a>
@@ -924,6 +949,91 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
           </div>
           <a href="#contacto" class="btn btn-dark">Trabaja conmigo</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== TESTIMONIOS ======================== -->
+  <section class="section section-cream" id="testimonios">
+    <div class="container">
+      <div class="section-label">Opiniones reales</div>
+      <h2 class="section-title">Lo que dicen quienes<br/>ya han trabajado conmigo</h2>
+      <p class="section-sub">Autores, bloggers y empresas que confiaron en mí para dar el salto de calidad a sus textos.</p>
+
+      <div class="testi-grid">
+
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Entregué mi novela con miedo a que me destrozara el manuscrito y resultó todo lo contrario. Señaló lo que no funcionaba con una delicadeza y una claridad que me permitió mejorar sin perder mi voz. Repetiré sin duda."</p>
+          <div class="testi-author">
+            <img src="https://i.pravatar.cc/80?img=47" alt="Laura G." class="testi-avatar" />
+            <div>
+              <strong>Laura G.</strong>
+              <span>Autora de ficción · Madrid</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Llevo años escribiendo artículos para mi blog y nunca había pasado por una corrección profesional. La diferencia es brutal. Mis lectores me han preguntado si cambié de redactor. Muy recomendable."</p>
+          <div class="testi-author">
+            <img src="https://i.pravatar.cc/80?img=12" alt="Carlos M." class="testi-avatar" />
+            <div>
+              <strong>Carlos M.</strong>
+              <span>Blogger · Valencia</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Necesitaba que los textos de mi web sonasen profesionales sin perder el tono cercano de mi marca. Magar lo entendió a la primera y el resultado superó mis expectativas. Rápida, precisa y muy comunicativa."</p>
+          <div class="testi-author">
+            <img src="https://i.pravatar.cc/80?img=32" alt="Sofía R." class="testi-avatar" />
+            <div>
+              <strong>Sofía R.</strong>
+              <span>Emprendedora · Barcelona</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Me corrigió el TFM en tiempo récord antes de la entrega. No solo eliminó faltas: reestructuró párrafos que yo no veía cómo mejorar. Subí nota gracias a esa corrección. Totalmente recomendada."</p>
+          <div class="testi-author">
+            <img src="https://i.pravatar.cc/80?img=25" alt="Alejandro V." class="testi-avatar" />
+            <div>
+              <strong>Alejandro V.</strong>
+              <span>Estudiante de máster · Sevilla</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Publiqué mi primer libro autopublicado con su corrección y la experiencia fue increíble. Me explicaba cada cambio y por qué lo hacía. Aprendí más sobre escritura en esas semanas que en años de cursos."</p>
+          <div class="testi-author">
+            <img src="https://i.pravatar.cc/80?img=56" alt="Marta P." class="testi-avatar" />
+            <div>
+              <strong>Marta P.</strong>
+              <span>Autora autopublicada · Bilbao</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Tengo disortografía y siempre he sufrido al escribir. Gracias a Magar por primera vez entregué un informe sin vergüenza. Es profesional, empática y trabaja con una rapidez impresionante."</p>
+          <div class="testi-author">
+            <img src="https://i.pravatar.cc/80?img=39" alt="Irene S." class="testi-avatar" />
+            <div>
+              <strong>Irene S.</strong>
+              <span>Consultora · Zaragoza</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
