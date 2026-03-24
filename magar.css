@@ -362,10 +362,15 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
   background: linear-gradient(145deg, var(--navy) 0%, var(--navy-light) 100%);
   display: flex; align-items: center; justify-content: center;
   box-shadow: var(--shadow-lg); transition: var(--transition);
+  overflow: hidden; position: relative; text-decoration: none;
 }
 .novel-cover:hover { transform: scale(1.03); }
 .novel-cover-2 { background: linear-gradient(145deg, #3a2a1a 0%, #5a3d2a 100%); }
-.novel-cover-inner { text-align: center; color: var(--white); padding: 20px; }
+.novel-cover-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
+/* Fallback text shown only when image fails */
+.novel-cover-fallback-inner { display: none; }
+.novel-cover-fallback .novel-cover-fallback-inner { display: block; }
+.novel-cover-inner { text-align: center; color: var(--white); padding: 20px; position: relative; z-index: 1; }
 .novel-cover-title { font-family: var(--font-serif); font-size: 18px; display: block; margin-bottom: 12px; }
 .novel-cover-author { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
 .novel-genre {
