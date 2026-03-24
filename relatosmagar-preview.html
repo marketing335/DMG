@@ -110,9 +110,8 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
 /* ======================== HERO ======================== */
-.hero-wrap { position: relative; overflow: hidden; }
 .hero-bg {
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0;
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: -1;
   background-image:
     radial-gradient(ellipse at 20% 50%, rgba(200,164,94,.08) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 20%, rgba(26,29,46,.04) 0%, transparent 50%),
@@ -124,7 +123,7 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 }
 .hero {
   min-height: 100vh;
-  padding: 120px 24px 80px; position: relative; z-index: 1;
+  padding: 120px 24px 80px;
   max-width: 1200px; margin: 0 auto;
   display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: center;
 }
@@ -217,7 +216,7 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 .btn-full { width: 100%; }
 
 /* ======================== SECTIONS ======================== */
-.section { padding: 100px 0; }
+.section { padding: 100px 0; background: var(--white); }
 .section-dark { background: var(--navy); }
 .section-cream { background: var(--cream); }
 .section-label {
@@ -755,9 +754,8 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
   </header>
 
   <!-- ======================== HERO ======================== -->
-  <div class="hero-wrap">
-    <div class="hero-bg"></div>
   <section class="hero" id="inicio">
+    <div class="hero-bg"></div>
     <div class="hero-content">
       <p class="hero-eyebrow">Corrección y edición profesional</p>
       <h1 class="hero-title">Tus palabras merecen<br /><em>brillar sin errores</em></h1>
@@ -822,7 +820,6 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
       </div>
     </div>
   </section>
-  </div><!-- /hero-wrap -->
 
   <!-- ======================== TESTIMONIOS ======================== -->
   <section class="section section-cream" id="testimonios">
