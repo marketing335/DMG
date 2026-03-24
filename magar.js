@@ -4,6 +4,22 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  /* --- Hero testimonial carousel --- */
+  const heroTestis = document.querySelectorAll('.hero-testi');
+  const htDots = document.querySelectorAll('.htdot');
+  let htCurrent = 0;
+  if (heroTestis.length) {
+    const showTesti = (i) => {
+      heroTestis[htCurrent].classList.remove('active');
+      htDots[htCurrent].classList.remove('active');
+      htCurrent = i % heroTestis.length;
+      heroTestis[htCurrent].classList.add('active');
+      htDots[htCurrent].classList.add('active');
+    };
+    htDots.forEach((dot, i) => dot.addEventListener('click', () => showTesti(i)));
+    setInterval(() => showTesti(htCurrent + 1), 4000);
+  }
+
   /* --- Navbar scroll --- */
   const navbar = document.getElementById('navbar');
   const onScroll = () => {

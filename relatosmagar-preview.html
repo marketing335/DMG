@@ -144,7 +144,27 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 .trust-divider { width: 1px; height: 40px; background: var(--border); }
 
 /* Hero visual card */
-.hero-visual { display: flex; justify-content: center; }
+.hero-visual { display: flex; justify-content: center; align-items: center; }
+
+/* Hero testimonial carousel */
+.hero-testi-stack { width: 100%; max-width: 420px; position: relative; }
+.hero-testi {
+  display: none; background: var(--white); border-radius: var(--radius);
+  padding: 28px; box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border); animation: fadeIn .4s ease;
+}
+.hero-testi.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.hero-testi-top { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.hero-testi-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--cream-dark); flex-shrink: 0; }
+.hero-testi-top strong { display: block; font-size: 15px; color: var(--navy); }
+.hero-testi-top span { font-size: 12px; color: var(--text-light); }
+.hero-testi-stars { color: #f5a623; font-size: 13px; margin-top: 3px; }
+.hero-testi p { font-size: 15px; line-height: 1.7; color: var(--text); font-style: italic; }
+.hero-testi-dots { display: flex; gap: 8px; justify-content: center; margin-top: 20px; }
+.htdot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: var(--transition); }
+.htdot.active { background: var(--gold); width: 20px; border-radius: 4px; }
+
 .hero-card {
   background: var(--white); border-radius: 16px; padding: 32px;
   box-shadow: var(--shadow-lg); border: 1px solid var(--border);
@@ -719,16 +739,50 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
       </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-card">
-        <div class="hcard-tag">Corrección finalizada</div>
-        <div class="hcard-title">Manuscrito — Cap. 12</div>
-        <div class="hcard-stats">
-          <div><span>Matrices</span><strong>48.320</strong></div>
-          <div><span>Errores corregidos</span><strong>73</strong></div>
-          <div><span>Plazo</span><strong>4 días</strong></div>
+      <div class="hero-testi-stack">
+
+        <div class="hero-testi active">
+          <div class="hero-testi-top">
+            <img src="https://i.pravatar.cc/80?img=47" alt="Laura G." class="hero-testi-avatar" />
+            <div>
+              <strong>Laura G.</strong>
+              <span>Autora de ficción · Madrid</span>
+              <div class="hero-testi-stars">★★★★★</div>
+            </div>
+          </div>
+          <p>"Señaló lo que no funcionaba con una delicadeza y claridad que me permitió mejorar sin perder mi voz. Repetiré sin duda."</p>
         </div>
-        <div class="hcard-bar"><div class="hcard-progress"></div></div>
-        <p class="hcard-note">"El texto ha ganado claridad y fluidez. Excelente trabajo."</p>
+
+        <div class="hero-testi">
+          <div class="hero-testi-top">
+            <img src="https://i.pravatar.cc/80?img=32" alt="Sofía R." class="hero-testi-avatar" />
+            <div>
+              <strong>Sofía R.</strong>
+              <span>Emprendedora · Barcelona</span>
+              <div class="hero-testi-stars">★★★★★</div>
+            </div>
+          </div>
+          <p>"Magar lo entendió a la primera y el resultado superó mis expectativas. Rápida, precisa y muy comunicativa."</p>
+        </div>
+
+        <div class="hero-testi">
+          <div class="hero-testi-top">
+            <img src="https://i.pravatar.cc/80?img=56" alt="Marta P." class="hero-testi-avatar" />
+            <div>
+              <strong>Marta P.</strong>
+              <span>Autora autopublicada · Bilbao</span>
+              <div class="hero-testi-stars">★★★★★</div>
+            </div>
+          </div>
+          <p>"Aprendí más sobre escritura en esas semanas que en años de cursos. Una experiencia increíble."</p>
+        </div>
+
+        <div class="hero-testi-dots">
+          <span class="htdot active"></span>
+          <span class="htdot"></span>
+          <span class="htdot"></span>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1421,6 +1475,22 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  /* --- Hero testimonial carousel --- */
+  const heroTestis = document.querySelectorAll('.hero-testi');
+  const htDots = document.querySelectorAll('.htdot');
+  let htCurrent = 0;
+  if (heroTestis.length) {
+    const showTesti = (i) => {
+      heroTestis[htCurrent].classList.remove('active');
+      htDots[htCurrent].classList.remove('active');
+      htCurrent = i % heroTestis.length;
+      heroTestis[htCurrent].classList.add('active');
+      htDots[htCurrent].classList.add('active');
+    };
+    htDots.forEach((dot, i) => dot.addEventListener('click', () => showTesti(i)));
+    setInterval(() => showTesti(htCurrent + 1), 4000);
+  }
 
   /* --- Navbar scroll --- */
   const navbar = document.getElementById('navbar');
