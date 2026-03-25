@@ -264,12 +264,12 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 }
 .step-num {
   font-family: var(--font-serif); font-size: 36px; font-weight: 700;
-  color: var(--gold); margin-bottom: 16px; line-height: 1;
+  color: var(--white); margin-bottom: 16px; line-height: 1;
 }
 .step h3 { font-family: var(--font-serif); font-size: 18px; color: var(--white); margin-bottom: 10px; }
 .step p { font-size: 14px; color: var(--text-inv); line-height: 1.65; }
 .step-arrow {
-  color: var(--gold); font-size: 24px; padding-top: 60px; flex-shrink: 0;
+  color: var(--white); font-size: 24px; padding-top: 60px; flex-shrink: 0;
 }
 
 /* Matrices box */
