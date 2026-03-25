@@ -186,7 +186,7 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
   font-weight: 500; font-size: 15px; cursor: pointer;
   transition: var(--transition); border: none; text-align: center;
 }
-.btn-primary { background: var(--gold); color: var(--navy); }
+.btn-primary { background: var(--gold); color: var(--white); }
 .btn-primary:hover { background: #152e72; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26,58,143,.35); }
 .btn-ghost {
   background: transparent; color: var(--navy);
