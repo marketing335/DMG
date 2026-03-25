@@ -593,6 +593,38 @@
     </div>
   </section>
 
+  <!-- ======================== PORTADAS CLIENTES ======================== -->
+  <section class="section" id="clientes">
+    <div class="container">
+      <div class="section-label">Libros corregidos</div>
+      <h2 class="section-title">Manuscritos que han pasado por mis manos</h2>
+      <p class="section-sub">Portadas de algunos de los libros cuyos autores confiaron en mí para corregir su texto.</p>
+
+      <div class="fan-carousel">
+        <div class="fan-stage-wrap">
+        <div class="fan-stage">
+          <div class="fan-card" data-index="0"><img src="https://i.ibb.co/LhsVKPFp/Nada-m-s-que-la-verdad.jpg" alt="Nada más que la verdad" /></div>
+          <div class="fan-card" data-index="1"><img src="https://i.ibb.co/mr7VBw3z/La-daga-sin-nombre.jpg" alt="La daga sin nombre" /></div>
+          <div class="fan-card" data-index="2"><img src="https://i.ibb.co/93wxbfSj/Hoy-en-este-hemiciclo-Espa-a-y-el-mundo-despertar-n.jpg" alt="Hoy en este hemiciclo" /></div>
+          <div class="fan-card" data-index="3"><img src="https://i.ibb.co/6R2D6g2W/Eco-de-dos-mundos.jpg" alt="Eco de dos mundos" /></div>
+          <div class="fan-card" data-index="4"><img src="https://i.ibb.co/5WRfx9nc/Las-chicas-De-las-estrellas.jpg" alt="Las chicas de las estrellas" /></div>
+          <div class="fan-card" data-index="5"><img src="https://i.ibb.co/LhZZJ8hb/la-locomotora-del-tiempo.jpg" alt="La locomotora del tiempo" /></div>
+          <div class="fan-card" data-index="6"><img src="https://i.ibb.co/CKg3YRLq/El-cerro-De-los-vientos-1.jpg" alt="El cerro de los vientos" /></div>
+          <div class="fan-card" data-index="7"><img src="https://i.ibb.co/ynVDZ6Wn/Cubierta-Un-monstruo-en-apuros.jpg" alt="Un monstruo en apuros" /></div>
+          <div class="fan-card" data-index="8"><img src="https://i.ibb.co/zHbrnxjq/Cubierta-Lockdust-II.jpg" alt="Lockdust II" /></div>
+          <div class="fan-card" data-index="9"><img src="https://i.ibb.co/3YzXNpsq/Cuando-venga-el-rey.jpg" alt="Cuando venga el rey" /></div>
+        </div>
+        </div><!-- /fan-stage-wrap -->
+
+        <div class="fan-controls">
+          <button class="fan-btn fan-prev" aria-label="Anterior">&#8592;</button>
+          <div class="fan-dots"></div>
+          <button class="fan-btn fan-next" aria-label="Siguiente">&#8594;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ======================== BLOG ======================== -->
   <section class="section" id="blog">
     <div class="container">
@@ -869,5 +901,74 @@
   </div>
 
   <script src="magar.js"></script>
+  <script>
+  /* --- Fan Carousel --- */
+  (function() {
+    const stage = document.querySelector('.fan-stage');
+    if (!stage) return;
+    const cards = Array.from(stage.querySelectorAll('.fan-card'));
+    const dotsContainer = document.querySelector('.fan-dots');
+    const total = cards.length;
+    let current = 0;
+    let autoTimer;
+
+    cards.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'fan-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Ir a portada ' + (i+1));
+      d.addEventListener('click', () => { goTo(i); resetAuto(); });
+      dotsContainer.appendChild(d);
+    });
+
+    function goTo(idx) {
+      current = (idx + total) % total;
+      cards.forEach((card, i) => {
+        const diff = ((i - current) + total) % total;
+        let pos;
+        if      (diff === 0)         pos = 'active';
+        else if (diff === 1)         pos = 'next1';
+        else if (diff === 2)         pos = 'next2';
+        else if (diff === 3)         pos = 'next3';
+        else if (diff === total - 1) pos = 'prev1';
+        else if (diff === total - 2) pos = 'prev2';
+        else if (diff === total - 3) pos = 'prev3';
+        else                         pos = 'hidden';
+        card.dataset.pos = pos;
+      });
+      document.querySelectorAll('.fan-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+      });
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    document.querySelector('.fan-next').addEventListener('click', () => { next(); resetAuto(); });
+    document.querySelector('.fan-prev').addEventListener('click', () => { prev(); resetAuto(); });
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const pos = card.dataset.pos;
+        if (pos && pos.startsWith('next')) { next(); resetAuto(); }
+        else if (pos && pos.startsWith('prev')) { prev(); resetAuto(); }
+      });
+    });
+
+    let touchStartX = 0;
+    stage.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    stage.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); resetAuto(); }
+    }, { passive: true });
+
+    function resetAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(next, 3500);
+    }
+
+    goTo(0);
+    resetAuto();
+  })();
+  </script>
 </body>
 </html>
