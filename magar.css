@@ -603,7 +603,7 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 .form-group select { cursor: pointer; }
 .form-group select option { background: var(--navy); color: var(--white); }
 .form-group small { font-size: 12px; color: rgba(255,255,255,.4); margin-top: 4px; display: block; }
-.inline-link { background: none; border: none; color: var(--gold); cursor: pointer; font-size: 12px; text-decoration: underline; }
+.inline-link { background: none; border: none; color: var(--white); cursor: pointer; font-size: 12px; text-decoration: underline; }
 
 /* File upload */
 .file-input { display: none; }
