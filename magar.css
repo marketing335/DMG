@@ -280,7 +280,7 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
   margin-top: 8px; transition: var(--transition);
 }
 .matrices-btn:hover { text-decoration: underline; }
-.matrices-btn.light { color: var(--gold-light); }
+.matrices-btn.light { color: #d4a96a; }
 .matrices-box {
   display: none; background: var(--navy-light); border: 1px solid rgba(26,58,143,.25);
   border-radius: var(--radius); padding: 40px; margin-top: 48px; position: relative;
@@ -565,17 +565,17 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 .contact-item { display: flex; gap: 16px; margin-bottom: 24px; }
 .contact-icon {
   width: 44px; height: 44px; border-radius: 12px;
-  background: rgba(26,58,143,.12); color: var(--gold);
+  background: rgba(212,169,106,.15); color: #d4a96a;
   display: flex; align-items: center; justify-content: center; font-size: 18px;
   flex-shrink: 0;
 }
 .contact-item strong { font-size: 14px; color: var(--white); display: block; margin-bottom: 2px; }
 .contact-item p { font-size: 14px; color: var(--text-inv); }
 .contact-note {
-  background: var(--navy-light); border: 1px solid rgba(26,58,143,.2);
+  background: rgba(212,169,106,.07); border: 1px solid rgba(212,169,106,.25);
   border-radius: var(--radius-sm); padding: 20px; margin-top: 12px;
 }
-.contact-note strong { font-size: 13px; color: var(--gold); display: block; margin-bottom: 6px; }
+.contact-note strong { font-size: 13px; color: #d4a96a; display: block; margin-bottom: 6px; }
 .contact-note p { font-size: 13px; color: var(--text-inv); line-height: 1.6; }
 
 /* Form */
