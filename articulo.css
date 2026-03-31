@@ -257,12 +257,18 @@
 
 /* Responsive */
 @media (max-width: 900px) {
-  .article-layout {
-    grid-template-columns: 1fr;
-  }
+  .article-layout { grid-template-columns: 1fr; }
   .article-sidebar { position: static; }
 }
 @media (max-width: 600px) {
-  .article-hero-img img { height: 240px; }
-  .article-title { font-size: 1.8rem; }
+  .article-main { padding-top: 80px; }
+  .article-container { padding: 0 16px 56px; }
+  .article-hero-img img { height: 200px; }
+  .article-title { font-size: 1.7rem; }
+  .article-subtitle { font-size: 16px; }
+  .article-lead { font-size: 16px; }
+  .article-body h2 { font-size: 1.3rem; }
+  .article-cta-box { padding: 24px 18px; }
+  .breadcrumb { padding: 16px 0 20px; }
+  .more-articles .blog-grid { grid-template-columns: 1fr; }
 }

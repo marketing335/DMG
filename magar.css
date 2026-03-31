@@ -889,6 +889,55 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 }
 
 @media (max-width: 480px) {
-  .section { padding: 64px 0; }
+  /* General */
+  .section { padding: 56px 0; }
+  .container { padding: 0 16px; }
+  .section-title { font-size: 1.65rem !important; }
+
+  /* Navbar */
+  .nav-inner { padding: 0 16px; }
+
+  /* Hero */
+  .hero { padding: 96px 16px 56px; gap: 32px; }
+  .hero-title { font-size: 2rem; }
+  .hero-subtitle { font-size: 15px; }
+  .hero-actions { flex-direction: column; gap: 12px; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+  .hero-trust { gap: 10px; flex-wrap: wrap; }
+  .trust-num { font-size: 22px; }
+  .trust-label { font-size: 12px; }
+  .hero-testi { padding: 18px; }
+  .hero-testi p { font-size: 14px; }
+
+  /* Fan carousel: reducir transforms para que no desborde */
+  .fan-stage-wrap { overflow: hidden; padding: 28px 0 8px; }
+  .fan-card[data-pos="prev1"] { transform: translateX(-95px)  rotate(-11deg) scale(.82); }
+  .fan-card[data-pos="prev2"] { transform: translateX(-170px) rotate(-20deg) scale(.66); opacity: .45; }
+  .fan-card[data-pos="prev3"] { opacity: 0; pointer-events: none; }
+  .fan-card[data-pos="next1"] { transform: translateX(95px)   rotate(11deg)  scale(.82); }
+  .fan-card[data-pos="next2"] { transform: translateX(170px)  rotate(20deg)  scale(.66); opacity: .45; }
+  .fan-card[data-pos="next3"] { opacity: 0; pointer-events: none; }
+
+  /* Servicios */
+  .services-grid { grid-template-columns: 1fr; }
+
+  /* Precios: una columna */
+  .tarifas-grid { grid-template-columns: 1fr; }
+
+  /* Blog destacado */
+  .blog-img.tall { height: 200px !important; }
+  .blog-featured-small .blog-img { height: 120px; }
+
+  /* Newsletter form */
+  .newsletter-form { flex-direction: column !important; align-items: stretch !important; }
+  .newsletter-form input { min-width: unset !important; max-width: 100% !important; width: 100% !important; }
+  .newsletter-form .btn { width: 100% !important; }
+
+  /* Footer */
   .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+
+  /* Contacto */
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-icons { gap: 12px; }
 }
