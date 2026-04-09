@@ -1,2572 +1,565 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AutonomoLibre - Fiscalidad para Autonomos 2026</title>
-<style>
-/* ============================================================
-   AUTONOMOLIBRE - Styles
-   ============================================================ */
-
-:root {
-  --primary: #1a56db;
-  --primary-dark: #1240a8;
-  --primary-light: #e8eefb;
-  --accent: #059669;
-  --accent-light: #d1fae5;
-  --danger: #dc2626;
-  --danger-light: #fee2e2;
-  --warning: #d97706;
-  --warning-light: #fef3c7;
-  --bg: #f3f4f6;
-  --bg-card: #ffffff;
-  --text: #1f2937;
-  --text-secondary: #6b7280;
-  --text-light: #9ca3af;
-  --border: #e5e7eb;
-  --radius: 10px;
-  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
-  --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
-  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-  --mono: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  min-height: 100vh;
-}
-
-/* === NAV === */
-
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #fff;
-  border-bottom: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  display: flex;
-  align-items: center;
-  padding: 0 1.5rem;
-  height: 60px;
-  gap: 1.5rem;
-}
-
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-shrink: 0;
-}
-
-.logo {
-  background: var(--primary);
-  color: #fff;
-  font-weight: 800;
-  font-size: 1rem;
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.brand-text {
-  font-size: 1.1rem;
-  color: var(--text);
-  letter-spacing: -0.5px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 0.25rem;
-  flex-wrap: wrap;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--text-secondary);
-  font-size: 0.875rem;
-  font-weight: 500;
-  padding: 0.5rem 0.85rem;
-  border-radius: 6px;
-  transition: all 0.15s;
-  white-space: nowrap;
-}
-
-.nav-links a:hover { background: var(--bg); color: var(--text); }
-.nav-links a.active { background: var(--primary-light); color: var(--primary); font-weight: 600; }
-
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 4px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
-  margin-left: auto;
-}
-
-.hamburger span {
-  width: 22px;
-  height: 2px;
-  background: var(--text);
-  border-radius: 2px;
-}
-
-/* === HERO === */
-
-.hero {
-  background: linear-gradient(135deg, #1a56db 0%, #7c3aed 100%);
-  color: #fff;
-  padding: 3rem 1.5rem 2.5rem;
-  text-align: center;
-}
-
-.hero h1 {
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: -1px;
-  margin-bottom: 0.5rem;
-}
-
-.hero p {
-  font-size: 1.05rem;
-  opacity: 0.92;
-  max-width: 650px;
-  margin: 0 auto;
-}
-
-.hero-sub {
-  font-size: 0.85rem !important;
-  opacity: 0.7 !important;
-  margin-top: 0.75rem !important;
-}
-
-/* === CONTAINER === */
-
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-/* === SECTIONS === */
-
-.section {
-  display: none;
-  padding: 2rem 0 3rem;
-  animation: fadeIn 0.25s ease;
-}
-
-.section.active { display: block; }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.section-header {
-  margin-bottom: 1.5rem;
-}
-
-.section-header h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 0.35rem;
-  color: var(--text);
-}
-
-.section-header p {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-}
-
-/* === FORMS === */
-
-.form-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  box-shadow: var(--shadow);
-  margin-bottom: 1.5rem;
-}
-
-.form-row {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  margin-bottom: 0.75rem;
-}
-
-.form-group {
-  flex: 1;
-  min-width: 180px;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 0.3rem;
-}
-
-.form-group small {
-  font-size: 0.75rem;
-  color: var(--text-light);
-}
-
-.form-group input[type="number"],
-.form-group select {
-  width: 100%;
-  padding: 0.6rem 0.75rem;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  font-size: 0.95rem;
-  font-family: var(--font);
-  background: #fff;
-  transition: border-color 0.15s;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.15);
-}
-
-.checkbox-group {
-  display: flex;
-  align-items: center;
-  padding-bottom: 0.5rem;
-}
-
-.checkbox-group label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.checkbox-group input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  accent-color: var(--primary);
-}
-
-/* === BUTTONS === */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.6rem 1.25rem;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  font-family: var(--font);
-  cursor: pointer;
-  transition: all 0.15s;
-  white-space: nowrap;
-}
-
-.btn-primary {
-  background: var(--primary);
-  color: #fff;
-}
-.btn-primary:hover { background: var(--primary-dark); }
-
-.btn-secondary {
-  background: var(--bg);
-  color: var(--text);
-  border: 1px solid var(--border);
-}
-.btn-secondary:hover { background: var(--border); }
-
-.btn-small {
-  padding: 0.25rem 0.6rem;
-  font-size: 0.75rem;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.btn-danger { background: var(--danger-light); color: var(--danger); }
-.btn-danger:hover { background: var(--danger); color: #fff; }
-
-/* === RESULT CONTAINERS === */
-
-.result-container {
-  margin-top: 1.5rem;
-}
-
-.hint {
-  color: var(--text-light);
-  font-style: italic;
-  text-align: center;
-  padding: 2rem;
-}
-
-.result-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.result-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.25rem;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.result-card.highlight {
-  border-color: var(--primary);
-  background: var(--primary-light);
-}
-
-.result-card.save {
-  border-color: var(--accent);
-  background: var(--accent-light);
-}
-
-.result-card.warning {
-  border-color: var(--danger);
-  background: var(--danger-light);
-}
-
-.result-label {
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  color: var(--text-secondary);
-}
-
-.result-value {
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.result-detail {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-}
-
-/* === TABLES === */
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.875rem;
-  background: var(--bg-card);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-
-.data-table th {
-  background: var(--bg);
-  color: var(--text-secondary);
-  font-weight: 600;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  padding: 0.75rem 1rem;
-  text-align: left;
-  border-bottom: 2px solid var(--border);
-}
-
-.data-table td {
-  padding: 0.6rem 1rem;
-  border-bottom: 1px solid var(--border);
-  vertical-align: middle;
-}
-
-.data-table tr:last-child td { border-bottom: none; }
-
-.data-table tr:hover { background: rgba(26, 86, 219, 0.03); }
-
-.data-table tr.total {
-  background: var(--bg);
-  font-weight: 600;
-}
-
-.data-table tr.total.save { background: var(--accent-light); }
-.data-table tr.total.warning { background: var(--danger-light); }
-
-.data-table .right { text-align: right; font-family: var(--mono); font-size: 0.85rem; }
-
-.data-table.compact { font-size: 0.825rem; }
-.data-table.compact td, .data-table.compact th { padding: 0.45rem 0.75rem; }
-
-.inline-table {
-  max-width: 500px;
-}
-
-.text-danger { color: var(--danger); font-weight: 600; }
-.text-success { color: var(--accent); font-weight: 600; }
-
-/* Bar chart in table cell */
-.bar-cell {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.bar-cell .bar {
-  height: 8px;
-  background: var(--primary);
-  border-radius: 4px;
-  min-width: 4px;
-  transition: width 0.3s ease;
-}
-
-.bar-cell span {
-  font-family: var(--mono);
-  font-size: 0.825rem;
-  white-space: nowrap;
-}
-
-.row-best { background: var(--accent-light) !important; }
-.row-worst { background: var(--danger-light) !important; }
-
-/* === EXPANDABLE === */
-
-details.expandable {
-  margin: 1.5rem 0;
-}
-
-details.expandable summary {
-  cursor: pointer;
-  font-weight: 600;
-  color: var(--primary);
-  padding: 0.75rem;
-  border-radius: 6px;
-  background: var(--primary-light);
-  user-select: none;
-}
-
-details.expandable summary:hover { background: #dbe4f8; }
-
-details.expandable[open] summary {
-  margin-bottom: 1rem;
-  border-radius: 6px 6px 0 0;
-}
-
-/* === INFO / TIP BOXES === */
-
-.info-box {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--primary);
-  border-radius: var(--radius);
-  padding: 1.25rem;
-  margin-top: 1.5rem;
-}
-
-.info-box h4 {
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
-}
-
-.info-box p, .info-box li {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-}
-
-.info-box ol {
-  padding-left: 1.25rem;
-  margin-top: 0.5rem;
-}
-
-.info-box ol li { margin-bottom: 0.3rem; }
-
-.tip-box {
-  background: var(--accent-light);
-  border: 1px solid var(--accent);
-  border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  font-size: 0.9rem;
-  margin-top: 1.5rem;
-}
-
-.warning-box {
-  background: var(--warning-light) !important;
-  border-color: var(--warning) !important;
-}
-
-/* === DEDUCCIONES === */
-
-.ccaa-header {
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 2px solid var(--border);
-}
-
-.ccaa-header h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-}
-
-.ccaa-notas {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  margin-top: 0.25rem;
-}
-
-.deducciones-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
-}
-
-.deduccion-category {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.25rem;
-  box-shadow: var(--shadow);
-}
-
-.deduccion-category h4 {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--primary-light);
-}
-
-.deduccion-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.deduccion-item {
-  padding: 0.6rem;
-  border-radius: 6px;
-  background: var(--bg);
-  border: 1px solid transparent;
-  transition: border-color 0.15s;
-}
-
-.deduccion-item:hover { border-color: var(--border); }
-
-.deduccion-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.deduccion-nombre {
-  font-weight: 600;
-  font-size: 0.875rem;
-}
-
-.deduccion-importe {
-  font-family: var(--mono);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--accent);
-  white-space: nowrap;
-}
-
-.deduccion-detalle {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  margin-top: 0.2rem;
-}
-
-/* === CALENDARIO === */
-
-.calendario-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.calendario-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  box-shadow: var(--shadow);
-  transition: all 0.15s;
-}
-
-.calendario-item.past {
-  opacity: 0.5;
-}
-
-.calendario-item.near {
-  border-color: var(--warning);
-  background: var(--warning-light);
-}
-
-.cal-fecha {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 50px;
-}
-
-.cal-dia {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--text);
-  line-height: 1;
-}
-
-.cal-mes {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--text-secondary);
-  letter-spacing: 1px;
-}
-
-.cal-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.cal-modelo {
-  font-weight: 700;
-  font-size: 0.85rem;
-  color: var(--primary);
-  font-family: var(--mono);
-}
-
-.cal-desc {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
-
-.cal-badge {
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  padding: 0.2rem 0.6rem;
-  border-radius: 20px;
-  white-space: nowrap;
-}
-
-.cal-badge.trimestral { background: var(--primary-light); color: var(--primary); }
-.cal-badge.domiciliacion { background: var(--warning-light); color: var(--warning); }
-.cal-badge.anual { background: #ede9fe; color: #7c3aed; }
-.cal-badge.renta { background: var(--accent-light); color: var(--accent); }
-
-/* === FOOTER === */
-
-.footer {
-  background: var(--text);
-  color: rgba(255,255,255,0.7);
-  padding: 2rem 1.5rem;
-  margin-top: 3rem;
-  text-align: center;
-}
-
-.footer p { font-size: 0.85rem; margin-bottom: 0.3rem; }
-.footer a { color: rgba(255,255,255,0.9); }
-.footer strong { color: #fff; }
-
-.footer-motto {
-  margin-top: 0.75rem !important;
-  font-style: italic;
-  opacity: 0.6;
-}
-
-/* === RESPONSIVE === */
-
-@media (max-width: 768px) {
-  .hamburger { display: flex; }
-
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background: #fff;
-    flex-direction: column;
-    padding: 0.5rem;
-    border-bottom: 1px solid var(--border);
-    box-shadow: var(--shadow-md);
-  }
-
-  .nav-links.open { display: flex; }
-
-  .nav-links a {
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-  }
-
-  .hero h1 { font-size: 1.5rem; }
-  .hero p { font-size: 0.9rem; }
-  .hero { padding: 2rem 1rem 1.5rem; }
-
-  .form-row { flex-direction: column; }
-  .form-group { min-width: 100%; }
-
-  .result-cards {
-    grid-template-columns: 1fr;
-  }
-
-  .deducciones-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .calendario-item {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .data-table { font-size: 0.8rem; }
-  .data-table th, .data-table td { padding: 0.45rem 0.5rem; }
-
-  .bar-cell { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
-}
-
-@media (max-width: 480px) {
-  .brand-text { display: none; }
-  .result-value { font-size: 1.15rem; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olevm — Aceite de Oliva Virgen Extra Premium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --verde:    #2a3d1e;
+      --oro:      #b8924a;
+      --crema:    #f7f3ec;
+      --blanco:   #ffffff;
+      --texto:    #1c1c1c;
+      --gris:     #6b6b6b;
+      --borde:    #e2ddd5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--crema);
+      color: var(--texto);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(247,243,236,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--borde);
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 700;
+      color: var(--verde); letter-spacing: 2px;
+      text-decoration: none;
+    }
+    .logo span { color: var(--oro); }
+    nav ul { list-style: none; display: flex; gap: 2.2rem; }
+    nav ul a {
+      text-decoration: none; font-size: .88rem;
+      font-weight: 500; letter-spacing: .5px;
+      color: var(--texto); transition: color .2s;
+    }
+    nav ul a:hover { color: var(--oro); }
+    .btn-nav {
+      background: var(--verde); color: var(--blanco) !important;
+      padding: .5rem 1.3rem; border-radius: 2px;
+      transition: background .2s !important;
+    }
+    .btn-nav:hover { background: var(--oro) !important; color: var(--blanco) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      background: linear-gradient(135deg, #2a3d1e 0%, #3d5a28 55%, #4a6b30 100%);
+      position: relative; overflow: hidden;
+      padding: 7rem 5% 4rem;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='600' height='600' viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cellipse cx='420' cy='300' rx='280' ry='280' fill='rgba(184,146,74,0.08)'/%3E%3Cellipse cx='500' cy='200' rx='160' ry='160' fill='rgba(184,146,74,0.06)'/%3E%3C/svg%3E") right center/cover no-repeat;
+    }
+    .hero-content { position: relative; max-width: 600px; }
+    .hero-badge {
+      display: inline-block; margin-bottom: 1.5rem;
+      background: rgba(184,146,74,.2); color: #d4aa6a;
+      border: 1px solid rgba(184,146,74,.4);
+      padding: .35rem 1rem; border-radius: 2px;
+      font-size: .78rem; letter-spacing: 2px; text-transform: uppercase;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 700; color: var(--blanco);
+      line-height: 1.2; margin-bottom: 1.2rem;
+    }
+    .hero h1 em { color: #d4aa6a; font-style: normal; }
+    .hero p {
+      color: rgba(255,255,255,.75); font-size: 1.05rem;
+      font-weight: 300; max-width: 480px; margin-bottom: 2.2rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--oro); color: var(--blanco);
+      padding: .85rem 2.2rem; border: none; border-radius: 2px;
+      font-family: 'Inter', sans-serif; font-size: .92rem;
+      font-weight: 500; letter-spacing: .5px;
+      cursor: pointer; text-decoration: none;
+      transition: background .2s, transform .15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: #a07838; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--blanco);
+      padding: .85rem 2.2rem; border: 1px solid rgba(255,255,255,.4);
+      border-radius: 2px; font-family: 'Inter', sans-serif;
+      font-size: .92rem; font-weight: 400; cursor: pointer;
+      text-decoration: none; display: inline-block;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-outline:hover { border-color: var(--blanco); background: rgba(255,255,255,.08); }
+
+    /* ── STATS ── */
+    .stats {
+      background: var(--verde);
+      display: grid; grid-template-columns: repeat(3, 1fr);
+    }
+    .stat {
+      padding: 2rem; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+    .stat:last-child { border-right: none; }
+    .stat strong {
+      display: block; font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; color: var(--oro);
+    }
+    .stat span { font-size: .82rem; color: rgba(255,255,255,.6); letter-spacing: .5px; text-transform: uppercase; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 5rem 5%; }
+    .section-label {
+      font-size: .75rem; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--oro);
+      margin-bottom: .8rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 600; color: var(--verde);
+      line-height: 1.25; margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--gris); font-size: .97rem;
+      font-weight: 300; max-width: 520px;
+    }
+
+    /* ── PRODUCTOS ── */
+    #productos { background: var(--blanco); }
+    .productos-header { text-align: center; margin-bottom: 3rem; }
+    .productos-header .section-sub { margin: 0 auto; }
+    .grid-productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: var(--crema); border: 1px solid var(--borde);
+      border-radius: 4px; overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.1); }
+    .card-img {
+      height: 260px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6rem;
+      position: relative; overflow: hidden;
+    }
+    .card-img.verde  { background: linear-gradient(160deg, #3d5a28, #2a3d1e); }
+    .card-img.dorado { background: linear-gradient(160deg, #7a5c2a, #5c3d18); }
+    .card-img.claro  { background: linear-gradient(160deg, #6b8c4e, #4a6b30); }
+    .card-img.oscuro { background: linear-gradient(160deg, #1e2d14, #2a3d1e); }
+    .badge-new {
+      position: absolute; top: 1rem; right: 1rem;
+      background: var(--oro); color: var(--blanco);
+      font-size: .7rem; letter-spacing: 1px; text-transform: uppercase;
+      padding: .25rem .7rem; border-radius: 2px;
+    }
+    .card-body { padding: 1.4rem 1.5rem 1.8rem; }
+    .card-variedad {
+      font-size: .72rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--oro); margin-bottom: .4rem;
+    }
+    .card-nombre {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; color: var(--verde);
+      margin-bottom: .6rem;
+    }
+    .card-desc { font-size: .86rem; color: var(--gris); margin-bottom: 1.2rem; line-height: 1.55; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; }
+    .precio { font-size: 1.25rem; font-weight: 600; color: var(--texto); }
+    .precio sup { font-size: .75rem; font-weight: 400; }
+    .btn-add {
+      background: var(--verde); color: var(--blanco);
+      border: none; padding: .55rem 1.2rem; border-radius: 2px;
+      font-size: .85rem; font-weight: 500; cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-add:hover { background: var(--oro); }
+
+    /* ── NOSOTROS ── */
+    #nosotros {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    .nosotros-visual {
+      background: linear-gradient(135deg, #3d5a28, #2a3d1e);
+      border-radius: 4px; min-height: 420px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8rem; position: relative; overflow: hidden;
+    }
+    .nosotros-visual::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom right, rgba(184,146,74,.15), transparent);
+    }
+    .nosotros-text .section-sub { max-width: 100%; margin-bottom: 1.8rem; }
+    .features { list-style: none; display: flex; flex-direction: column; gap: .9rem; }
+    .features li {
+      display: flex; align-items: flex-start; gap: .8rem;
+      font-size: .92rem; color: var(--gris);
+    }
+    .features li::before {
+      content: '✦'; color: var(--oro); font-size: .7rem;
+      flex-shrink: 0; margin-top: .3rem;
+    }
+
+    /* ── PROCESO ── */
+    #proceso { background: var(--verde); text-align: center; }
+    #proceso .section-label { color: #d4aa6a; }
+    #proceso .section-title { color: var(--blanco); margin: 0 auto 3rem; max-width: 500px; }
+    .pasos {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem; max-width: 900px; margin: 0 auto;
+    }
+    .paso { color: rgba(255,255,255,.85); }
+    .paso-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; color: var(--oro); margin-bottom: .5rem;
+    }
+    .paso h3 {
+      font-size: 1rem; font-weight: 500;
+      color: var(--blanco); margin-bottom: .5rem;
+    }
+    .paso p { font-size: .85rem; color: rgba(255,255,255,.6); line-height: 1.6; }
+
+    /* ── TESTIMONIOS ── */
+    #testimonios { background: var(--blanco); text-align: center; }
+    #testimonios .section-title { margin: 0 auto 3rem; }
+    .testimonios-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; max-width: 1000px; margin: 0 auto;
+    }
+    .testimonio {
+      background: var(--crema); border: 1px solid var(--borde);
+      border-radius: 4px; padding: 2rem;
+      text-align: left;
+    }
+    .estrellas { color: var(--oro); font-size: 1rem; margin-bottom: 1rem; }
+    .testimonio p { font-size: .92rem; color: var(--gris); line-height: 1.65; margin-bottom: 1.2rem; font-style: italic; }
+    .autor { font-size: .82rem; font-weight: 600; color: var(--verde); }
+
+    /* ── NEWSLETTER ── */
+    #newsletter {
+      background: linear-gradient(135deg, #2a3d1e, #4a6b30);
+      text-align: center; color: var(--blanco);
+    }
+    #newsletter .section-title { color: var(--blanco); margin: 0 auto .8rem; }
+    #newsletter p { color: rgba(255,255,255,.7); margin-bottom: 2rem; }
+    .newsletter-form { display: flex; gap: .8rem; max-width: 440px; margin: 0 auto; }
+    .newsletter-form input {
+      flex: 1; padding: .85rem 1.2rem; border: 1px solid rgba(255,255,255,.2);
+      background: rgba(255,255,255,.08); color: var(--blanco);
+      border-radius: 2px; font-size: .92rem; outline: none;
+      font-family: 'Inter', sans-serif;
+    }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,.4); }
+    .newsletter-form input:focus { border-color: var(--oro); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #111; color: rgba(255,255,255,.55);
+      padding: 3rem 5% 2rem;
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem;
+    }
+    .footer-brand .logo { display: block; margin-bottom: 1rem; }
+    .footer-brand p { font-size: .86rem; line-height: 1.6; }
+    footer h4 {
+      font-size: .8rem; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,.8); margin-bottom: 1rem;
+    }
+    footer ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+    footer ul li a {
+      text-decoration: none; color: rgba(255,255,255,.5);
+      font-size: .86rem; transition: color .2s;
+    }
+    footer ul li a:hover { color: var(--oro); }
+    .footer-bottom {
+      background: #0a0a0a; text-align: center;
+      padding: 1.2rem 5%; font-size: .8rem;
+      color: rgba(255,255,255,.3);
+    }
+
+    /* ── CARRITO TOAST ── */
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem;
+      background: var(--verde); color: var(--blanco);
+      padding: .9rem 1.5rem; border-radius: 4px;
+      font-size: .88rem; font-weight: 500;
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+      transform: translateY(100px); opacity: 0;
+      transition: transform .3s, opacity .3s;
+      z-index: 999;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); }
+      #nosotros { grid-template-columns: 1fr; }
+      .nosotros-visual { min-height: 220px; font-size: 5rem; }
+      footer { grid-template-columns: 1fr; gap: 2rem; }
+      .newsletter-form { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav class="navbar">
-    <div class="nav-brand">
-      <span class="logo">AL</span>
-      <span class="brand-text">Autonomo<strong>Libre</strong></span>
-    </div>
-    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="nav-links">
-      <a href="#" data-section="cuota" class="active">Cuota SS</a>
-      <a href="#" data-section="irpf">IRPF</a>
-      <a href="#" data-section="comparador">Comparador</a>
-      <a href="#" data-section="gastos">Gastos</a>
-      <a href="#" data-section="deducciones">Deducciones</a>
-      <a href="#" data-section="calendario">Calendario</a>
-    </div>
+  <nav>
+    <a href="#" class="logo">OLE<span>VM</span></a>
+    <ul>
+      <li><a href="#productos">Tienda</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#testimonios">Opiniones</a></li>
+      <li><a href="#newsletter" class="btn-nav">Contacto</a></li>
+    </ul>
   </nav>
 
   <!-- HERO -->
-  <header class="hero">
+  <section class="hero">
     <div class="hero-content">
-      <h1>Tu fiscalidad, bajo control</h1>
-      <p>Calcula cuotas, IRPF, gastos deducibles y deducciones autonomicas. Compara entre comunidades. Paga lo justo, ni un euro mas.</p>
-      <p class="hero-sub">Datos actualizados a marzo de 2026 &middot; 17 Comunidades Autonomas + Ceuta y Melilla</p>
+      <span class="hero-badge">Cosecha 2024 · Jaén, España</span>
+      <h1>El aceite de oliva<br>de <em>máxima calidad</em></h1>
+      <p>Elaborado a partir de aceitunas seleccionadas a mano en fincas centenarias del sur de España. Extracción en frío, sin compromiso.</p>
+      <div class="hero-btns">
+        <a href="#productos" class="btn-primary">Ver productos</a>
+        <a href="#nosotros" class="btn-outline">Nuestra historia</a>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <main class="container">
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <strong>100%</strong>
+      <span>Extracción en frío</span>
+    </div>
+    <div class="stat">
+      <strong>3ª gen.</strong>
+      <span>Familia olivarera</span>
+    </div>
+    <div class="stat">
+      <strong>+12 países</strong>
+      <span>Exportación</span>
+    </div>
+  </div>
 
-    <!-- =============================== -->
-    <!-- SECCION 1: CUOTA AUTONOMO       -->
-    <!-- =============================== -->
-    <section id="sec-cuota" class="section active">
-      <div class="section-header">
-        <h2>Calculadora de Cuota de Autonomo</h2>
-        <p>Sistema de cotizacion por ingresos reales 2026 (15 tramos). Introduce tus ingresos netos anuales (facturacion - gastos).</p>
-      </div>
+  <!-- PRODUCTOS -->
+  <section id="productos">
+    <div class="productos-header">
+      <p class="section-label">Nuestra selección</p>
+      <h2 class="section-title">Aceites de Autor</h2>
+      <p class="section-sub">Cada botella cuenta la historia de un territorio, una variedad y una cosecha única.</p>
+    </div>
+    <div class="grid-productos">
 
-      <form id="form-cuota" class="form-card">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="ingresos-netos">Ingresos netos anuales (EUR)</label>
-            <input type="number" id="ingresos-netos" placeholder="Ej: 24000" min="0" step="100">
-          </div>
-          <div class="form-group checkbox-group">
-            <label>
-              <input type="checkbox" id="tarifa-plana">
-              Tarifa plana (nuevo autonomo, 80 EUR/mes)
-            </label>
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary">Calcular cuota</button>
-          </div>
-        </div>
-      </form>
-
-      <div id="resultado-cuota" class="result-container">
-        <p class="hint">Introduce tus ingresos netos anuales para calcular tu cuota.</p>
-      </div>
-
-      <details class="expandable">
-        <summary>Ver tabla completa de 15 tramos 2026</summary>
-        <div id="tabla-tramos-cuota"></div>
-      </details>
-
-      <div class="info-box">
-        <h4>Como se calculan los ingresos netos</h4>
-        <p><strong>Rendimiento neto = Ingresos brutos - Gastos deducibles</strong></p>
-        <p>El rendimiento neto mensual determina tu tramo. Puedes cambiar de tramo hasta 6 veces al ano. Al final del ejercicio hay regularizacion: si cotizaste de menos, pagas; si de mas, te devuelven.</p>
-      </div>
-    </section>
-
-    <!-- =============================== -->
-    <!-- SECCION 2: CALCULADORA IRPF     -->
-    <!-- =============================== -->
-    <section id="sec-irpf" class="section">
-      <div class="section-header">
-        <h2>Calculadora de IRPF por Comunidad Autonoma</h2>
-        <p>El IRPF tiene dos partes: estatal (~50%) y autonomica (~50%). Cada comunidad pone sus propios tramos. Aqui ves exactamente cuanto pagas y por que.</p>
-      </div>
-
-      <form id="form-irpf" class="form-card">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="beneficio-neto">Beneficio neto anual (EUR)</label>
-            <input type="number" id="beneficio-neto" placeholder="Ej: 30000" min="0" step="100">
-            <small>Ingresos - gastos deducibles</small>
-          </div>
-          <div class="form-group">
-            <label for="ccaa-irpf">Comunidad Autonoma</label>
-            <select id="ccaa-irpf">
-              <option value="">-- Selecciona --</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="cuota-ss-irpf">Cuota SS mensual (EUR)</label>
-            <input type="number" id="cuota-ss-irpf" placeholder="Ej: 294" min="0" step="1" value="294">
-            <small>Se resta del beneficio como gasto</small>
-          </div>
-          <div class="form-group">
-            <label for="retenciones-irpf">Retenciones anuales (EUR)</label>
-            <input type="number" id="retenciones-irpf" placeholder="Ej: 4500" min="0" step="100" value="0">
-            <small>Total retenido en facturas emitidas</small>
-          </div>
-          <div class="form-group">
-            <label for="hijos-irpf">Numero de hijos</label>
-            <input type="number" id="hijos-irpf" value="0" min="0" max="10">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group checkbox-group">
-            <label>
-              <input type="checkbox" id="nuevo-autonomo-irpf">
-              Nuevo autonomo (primeros 3 anos - retencion 7%)
-            </label>
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary">Calcular IRPF</button>
-          </div>
-        </div>
-      </form>
-
-      <div id="resultado-irpf" class="result-container">
-        <p class="hint">Rellena los campos y selecciona tu comunidad para calcular el IRPF.</p>
-      </div>
-
-      <div class="info-box">
-        <h4>Retenciones en facturas</h4>
-        <table class="data-table compact inline-table">
-          <tr><td>Profesional general (seccion 2a/3a IAE)</td><td><strong>15%</strong></td></tr>
-          <tr><td>Nuevo autonomo (primeros 3 anos)</td><td><strong>7%</strong></td></tr>
-          <tr><td>Empresario (seccion 1a IAE)</td><td><strong>0%</strong> (no retiene)</td></tr>
-        </table>
-      </div>
-    </section>
-
-    <!-- =============================== -->
-    <!-- SECCION 3: COMPARADOR CCAA      -->
-    <!-- =============================== -->
-    <section id="sec-comparador" class="section">
-      <div class="section-header">
-        <h2>Comparador entre Comunidades Autonomas</h2>
-        <p>Mismos ingresos, distinto IRPF. Ve cuanto pagarias en cada comunidad y cuanto te ahorras (o pierdes) segun donde residas.</p>
-      </div>
-
-      <form id="form-comparador" class="form-card">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="beneficio-comparador">Beneficio neto anual (EUR)</label>
-            <input type="number" id="beneficio-comparador" placeholder="Ej: 40000" min="0" step="1000">
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary">Comparar todas las CCAA</button>
-          </div>
-        </div>
-      </form>
-
-      <div id="resultado-comparador" class="result-container">
-        <p class="hint">Introduce tu beneficio neto para comparar las 17 comunidades + regimenes forales.</p>
-      </div>
-    </section>
-
-    <!-- =============================== -->
-    <!-- SECCION 4: GASTOS DEDUCIBLES    -->
-    <!-- =============================== -->
-    <section id="sec-gastos" class="section">
-      <div class="section-header">
-        <h2>Simulador de Gastos Deducibles</h2>
-        <p>Anade tus gastos y calcula cuanto te ahorras en impuestos. Cada gasto que justifiques correctamente reduce tu base imponible.</p>
-      </div>
-
-      <div class="form-card">
-        <h4>Datos generales</h4>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="ingresos-gastos">Ingresos brutos anuales (EUR)</label>
-            <input type="number" id="ingresos-gastos" placeholder="Ej: 45000" min="0" step="100">
-          </div>
-          <div class="form-group">
-            <label for="ccaa-gastos">Comunidad Autonoma</label>
-            <select id="ccaa-gastos">
-              <option value="">-- Selecciona --</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="m2-total">m2 totales vivienda</label>
-            <input type="number" id="m2-total" value="80" min="1">
-          </div>
-          <div class="form-group">
-            <label for="m2-actividad">m2 destinados a actividad</label>
-            <input type="number" id="m2-actividad" value="12" min="0">
-          </div>
-        </div>
-
-        <h4>Anadir gasto</h4>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="gasto-categoria">Tipo de gasto</label>
-            <select id="gasto-categoria">
-              <option value="">-- Selecciona --</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="gasto-importe">Importe (EUR)</label>
-            <input type="number" id="gasto-importe" placeholder="Ej: 50" min="0" step="0.01">
-          </div>
-          <div class="form-group">
-            <label for="gasto-frecuencia">Frecuencia</label>
-            <select id="gasto-frecuencia">
-              <option value="anual">Anual</option>
-              <option value="mensual" selected>Mensual</option>
-              <option value="trimestral">Trimestral</option>
-              <option value="unico">Pago unico</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <button type="button" id="btn-add-gasto" class="btn btn-secondary">+ Anadir</button>
+      <div class="card">
+        <div class="card-img verde">🫒<span class="badge-new">Nuevo</span></div>
+        <div class="card-body">
+          <p class="card-variedad">Arbequina · Cosecha Temprana</p>
+          <h3 class="card-nombre">Reserva Verde</h3>
+          <p class="card-desc">Frutado intenso con notas de hierba fresca, almendra y un toque picante. Acidez &lt;0,1%.</p>
+          <div class="card-footer">
+            <span class="precio"><sup>€</sup>18,90 <small style="font-size:.72rem;color:#999;">/ 500ml</small></span>
+            <button class="btn-add" onclick="addCart('Reserva Verde')">Añadir</button>
           </div>
         </div>
       </div>
 
-      <div id="gastos-lista" class="result-container">
-        <p class="hint">Anade gastos para ver el desglose.</p>
-      </div>
-
-      <button type="button" id="btn-calc-gastos" class="btn btn-primary" style="margin-top:1rem">Calcular ahorro fiscal</button>
-
-      <div id="resultado-gastos" class="result-container"></div>
-
-      <div class="info-box">
-        <h4>3 reglas de Hacienda para deducir gastos</h4>
-        <ol>
-          <li><strong>Vinculacion</strong>: el gasto debe estar directamente relacionado con tu actividad.</li>
-          <li><strong>Justificacion</strong>: debes tener factura a tu nombre.</li>
-          <li><strong>Imputacion temporal</strong>: debe corresponder al ano fiscal declarado.</li>
-        </ol>
-        <p><strong>Gastos de dificil justificacion</strong>: 5% del rendimiento neto, maximo 2.000 EUR (solo Estimacion Directa Simplificada). Sin necesidad de facturas.</p>
-      </div>
-    </section>
-
-    <!-- =============================== -->
-    <!-- SECCION 5: DEDUCCIONES AUTONOM. -->
-    <!-- =============================== -->
-    <section id="sec-deducciones" class="section">
-      <div class="section-header">
-        <h2>Deducciones Autonomicas</h2>
-        <p>Cada comunidad tiene sus propias deducciones que reducen directamente lo que pagas. Hacienda NO las aplica automaticamente en el borrador: tienes que reclamarlas tu.</p>
-      </div>
-
-      <div class="form-card">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="ccaa-deducciones">Selecciona tu Comunidad Autonoma</label>
-            <select id="ccaa-deducciones">
-              <option value="">-- Selecciona --</option>
-            </select>
+      <div class="card">
+        <div class="card-img dorado">🫙</div>
+        <div class="card-body">
+          <p class="card-variedad">Picual · Gran Reserva</p>
+          <h3 class="card-nombre">Oro Antiguo</h3>
+          <p class="card-desc">Profundo y equilibrado. Notas de tomate verde, higuera y regaliz. Perfecto para crudos.</p>
+          <div class="card-footer">
+            <span class="precio"><sup>€</sup>22,50 <small style="font-size:.72rem;color:#999;">/ 500ml</small></span>
+            <button class="btn-add" onclick="addCart('Oro Antiguo')">Añadir</button>
           </div>
         </div>
       </div>
 
-      <div id="resultado-deducciones" class="result-container">
-        <p class="hint">Selecciona tu comunidad para ver todas las deducciones disponibles.</p>
+      <div class="card">
+        <div class="card-img claro">🌿</div>
+        <div class="card-body">
+          <p class="card-variedad">Hojiblanca · Edición Limitada</p>
+          <h3 class="card-nombre">Sierra Blanca</h3>
+          <p class="card-desc">Suave y elegante con matices florales, manzana madura y un final dulce y persistente.</p>
+          <div class="card-footer">
+            <span class="precio"><sup>€</sup>19,90 <small style="font-size:.72rem;color:#999;">/ 500ml</small></span>
+            <button class="btn-add" onclick="addCart('Sierra Blanca')">Añadir</button>
+          </div>
+        </div>
       </div>
 
-      <div class="tip-box warning-box">
-        <strong>IMPORTANTE:</strong> El borrador de la Renta de Hacienda frecuentemente NO incluye las deducciones autonomicas de forma automatica. Revisalo siempre y anadale las que te correspondan. La diferencia puede ser de 300 a 1.000 EUR o mas.
+      <div class="card">
+        <div class="card-img oscuro">🎁</div>
+        <div class="card-body">
+          <p class="card-variedad">Estuche · 3 variedades</p>
+          <h3 class="card-nombre">Pack Maestro</h3>
+          <p class="card-desc">Los tres aceites más premiados en un elegante estuche de madera. El regalo perfecto.</p>
+          <div class="card-footer">
+            <span class="precio"><sup>€</sup>54,00 <small style="font-size:.72rem;color:#999;">/ estuche</small></span>
+            <button class="btn-add" onclick="addCart('Pack Maestro')">Añadir</button>
+          </div>
+        </div>
       </div>
-    </section>
 
-    <!-- =============================== -->
-    <!-- SECCION 6: CALENDARIO FISCAL    -->
-    <!-- =============================== -->
-    <section id="sec-calendario" class="section">
-      <div class="section-header">
-        <h2>Calendario Fiscal 2026</h2>
-        <p>Todas las fechas clave para que no se te pase ningun plazo. Un retraso = recargo + sancion.</p>
+    </div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros">
+    <div class="nosotros-visual">🌳</div>
+    <div class="nosotros-text">
+      <p class="section-label">Nuestra historia</p>
+      <h2 class="section-title">Tres generaciones<br>de pasión olivarera</h2>
+      <p class="section-sub">Desde 1952, la familia Ruiz cuida los mismos olivos centenarios en la campiña de Jaén. Un oficio transmitido de manos a manos, con el único objetivo de ofrecer el mejor aceite virgen extra del mundo.</p>
+      <ul class="features">
+        <li>Recolección manual en el momento óptimo de maduración</li>
+        <li>Molturación en las primeras 4 horas tras la cosecha</li>
+        <li>Extracción en frío a menos de 27 °C para preservar aromas y polifenoles</li>
+        <li>Certificación ecológica y de comercio justo desde 2009</li>
+        <li>Embotellado en vidrio oscuro para proteger del calor y la luz</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section id="proceso">
+    <p class="section-label">Del olivo a la mesa</p>
+    <h2 class="section-title">Un proceso sin atajos</h2>
+    <div class="pasos">
+      <div class="paso">
+        <div class="paso-num">01</div>
+        <h3>Selección del fruto</h3>
+        <p>Solo aceitunas sanas, recogidas a mano antes de su maduración completa para máximo frutado.</p>
       </div>
+      <div class="paso">
+        <div class="paso-num">02</div>
+        <h3>Molienda inmediata</h3>
+        <p>El fruto llega a la almazara en menos de 4 horas para evitar la oxidación y preservar sus cualidades.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">03</div>
+        <h3>Extracción en frío</h3>
+        <p>Sin calor ni aditivos. Solo mecánica y tiempo para extraer el aceite más puro de la aceituna.</p>
+      </div>
+      <div class="paso">
+        <div class="paso-num">04</div>
+        <h3>Análisis y embotellado</h3>
+        <p>Cada lote es analizado en laboratorio antes de embotellarse en vidrio oscuro numerado.</p>
+      </div>
+    </div>
+  </section>
 
-      <div id="calendario-contenido" class="result-container"></div>
-    </section>
+  <!-- TESTIMONIOS -->
+  <section id="testimonios">
+    <p class="section-label">Lo que dicen</p>
+    <h2 class="section-title">Clientes que confían en Olevm</h2>
+    <div class="testimonios-grid">
+      <div class="testimonio">
+        <div class="estrellas">★★★★★</div>
+        <p>"El Oro Antiguo es el mejor aceite que he probado en mi vida. Cambia completamente una buena tostada o una ensalada. No compraré otro."</p>
+        <span class="autor">— María G., Madrid</span>
+      </div>
+      <div class="testimonio">
+        <div class="estrellas">★★★★★</div>
+        <p>"Llevo dos años pidiendo el Pack Maestro para regalar en Navidad. Todo el mundo me pregunta dónde lo compro. La presentación es preciosa."</p>
+        <span class="autor">— Javier M., Barcelona</span>
+      </div>
+      <div class="testimonio">
+        <div class="estrellas">★★★★★</div>
+        <p>"Soy chef y uso el Reserva Verde en todos mis platos crudos. El color, el aroma, la textura... es otro nivel. Envío rápido y trato excelente."</p>
+        <span class="autor">— Laura P., Sevilla</span>
+      </div>
+    </div>
+  </section>
 
-  </main>
+  <!-- NEWSLETTER -->
+  <section id="newsletter">
+    <p class="section-label">Mantente al día</p>
+    <h2 class="section-title">Nueva cosecha, primero tú</h2>
+    <p>Suscríbete y recibe un 10% de descuento en tu primer pedido además de acceso anticipado a ediciones limitadas.</p>
+    <form class="newsletter-form" onsubmit="subscribe(event)">
+      <input type="email" placeholder="tu@email.com" required>
+      <button type="submit" class="btn-primary">Suscribirme</button>
+    </form>
+  </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-content">
-      <p><strong>AutonomoLibre</strong> &middot; Herramienta de informacion fiscal. No constituye asesoramiento profesional.</p>
-      <p>Datos actualizados a marzo 2026. Verifica siempre con la <a href="https://sede.agenciatributaria.gob.es" target="_blank" rel="noopener">Agencia Tributaria</a>.</p>
-      <p class="footer-motto">Porque el autonomo ya paga suficiente.</p>
+  <footer>
+    <div class="footer-brand">
+      <a href="#" class="logo">OLE<span>VM</span></a>
+      <p>Aceite de oliva virgen extra de cosecha temprana elaborado con dedicación en las sierras de Jaén desde 1952.</p>
+    </div>
+    <div>
+      <h4>Tienda</h4>
+      <ul>
+        <li><a href="#productos">Todos los aceites</a></li>
+        <li><a href="#productos">Arbequina</a></li>
+        <li><a href="#productos">Picual</a></li>
+        <li><a href="#productos">Hojiblanca</a></li>
+        <li><a href="#productos">Estuches regalo</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Información</h4>
+      <ul>
+        <li><a href="#nosotros">Quiénes somos</a></li>
+        <li><a href="#proceso">Nuestro proceso</a></li>
+        <li><a href="#">Política de envíos</a></li>
+        <li><a href="#">Aviso legal</a></li>
+        <li><a href="#newsletter">Contacto</a></li>
+      </ul>
     </div>
   </footer>
+  <div class="footer-bottom">© 2024 Olevm · Todos los derechos reservados · Jaén, España</div>
 
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
 
-  <!-- Populate CCAA selector for gastos section -->
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const selectGastos = document.getElementById('ccaa-gastos');
-      if (selectGastos) {
-        for (const [id, c] of Object.entries(COMUNIDADES)) {
-          const opt = document.createElement('option');
-          opt.value = id;
-          opt.textContent = c.nombre;
-          selectGastos.appendChild(opt);
-        }
-      }
-    });
-  </script>
-<script>
-// ============================================================
-// DATOS FISCALES AUTONOMOS ESPANA 2026
-// ============================================================
-
-const CUOTAS_AUTONOMO = [
-  { min: 0,    max: 670,     cuota: 200, baseMin: 653.59,  baseMax: 950.98 },
-  { min: 670,  max: 900,     cuota: 220, baseMin: 718.95,  baseMax: 950.98 },
-  { min: 900,  max: 1166.70, cuota: 260, baseMin: 849.67,  baseMax: 950.98 },
-  { min: 1166.70, max: 1300, cuota: 291, baseMin: 950.98,  baseMax: 950.98 },
-  { min: 1300, max: 1500,    cuota: 294, baseMin: 960.78,  baseMax: 960.78 },
-  { min: 1500, max: 1700,    cuota: 294, baseMin: 960.78,  baseMax: 960.78 },
-  { min: 1700, max: 1850,    cuota: 350, baseMin: 1143.79, baseMax: 1143.79 },
-  { min: 1850, max: 2030,    cuota: 350, baseMin: 1143.79, baseMax: 1209.15 },
-  { min: 2030, max: 2330,    cuota: 350, baseMin: 1143.79, baseMax: 1274.51 },
-  { min: 2330, max: 2760,    cuota: 390, baseMin: 1274.51, baseMax: 1372.55 },
-  { min: 2760, max: 3190,    cuota: 390, baseMin: 1274.51, baseMax: 1468.36 },
-  { min: 3190, max: 3620,    cuota: 390, baseMin: 1274.51, baseMax: 1633.99 },
-  { min: 3620, max: 4050,    cuota: 420, baseMin: 1372.55, baseMax: 1732.03 },
-  { min: 4050, max: 6000,    cuota: 500, baseMin: 1633.99, baseMax: 4720.50 },
-  { min: 6000, max: Infinity,cuota: 590, baseMin: 1928.10, baseMax: 4720.50 },
-];
-
-const TIPO_COTIZACION = 31.20; // %
-const TARIFA_PLANA = 80; // EUR/mes
-const MEI_2026 = 0.9; // %
-
-// ============================================================
-// TRAMOS IRPF ESTATAL (parte estatal ~50%)
-// ============================================================
-
-const TRAMOS_ESTATALES = [
-  { hasta: 12450,    tipo: 9.50 },
-  { hasta: 20200,    tipo: 12.00 },
-  { hasta: 35200,    tipo: 15.00 },
-  { hasta: 60000,    tipo: 18.50 },
-  { hasta: 300000,   tipo: 22.50 },
-  { hasta: Infinity, tipo: 24.50 },
-];
-
-// ============================================================
-// TRAMOS IRPF AUTONOMICOS POR CCAA
-// ============================================================
-
-const COMUNIDADES = {
-  madrid: {
-    nombre: "Comunidad de Madrid",
-    tramos: [
-      { hasta: 12960,    tipo: 8.50 },
-      { hasta: 19500,    tipo: 10.70 },
-      { hasta: 35500,    tipo: 12.80 },
-      { hasta: 60000,    tipo: 17.40 },
-      { hasta: Infinity, tipo: 20.50 },
-    ],
-    tipoMaxAgregado: 45.00,
-    notas: "Deflactacion aplicada. Menor presion fiscal de Espana. Rebaja de 0,5 puntos prevista para 2027.",
-  },
-  cataluna: {
-    nombre: "Cataluna",
-    tramos: [
-      { hasta: 12450,    tipo: 10.50 },
-      { hasta: 17707,    tipo: 12.00 },
-      { hasta: 21000,    tipo: 14.00 },
-      { hasta: 33007,    tipo: 15.00 },
-      { hasta: 53407,    tipo: 18.80 },
-      { hasta: 90000,    tipo: 21.50 },
-      { hasta: 120000,   tipo: 23.50 },
-      { hasta: Infinity, tipo: 25.50 },
-    ],
-    tipoMaxAgregado: 50.00,
-    notas: "8 tramos desde 2025 (Decreto ley 5/2025). Tipos altos en rentas elevadas.",
-  },
-  andalucia: {
-    nombre: "Andalucia",
-    tramos: [
-      { hasta: 12450,    tipo: 9.50 },
-      { hasta: 20200,    tipo: 12.00 },
-      { hasta: 35200,    tipo: 15.00 },
-      { hasta: 60000,    tipo: 18.50 },
-      { hasta: Infinity, tipo: 22.50 },
-    ],
-    tipoMaxAgregado: 47.00,
-    notas: "Escala similar a la estatal de referencia. Posicion intermedia.",
-  },
-  valencia: {
-    nombre: "Comunitat Valenciana",
-    tramos: [
-      { hasta: 12450,    tipo: 9.50 },
-      { hasta: 17707,    tipo: 11.90 },
-      { hasta: 20200,    tipo: 13.90 },
-      { hasta: 33007,    tipo: 18.00 },
-      { hasta: 53407,    tipo: 22.50 },
-      { hasta: 65000,    tipo: 24.50 },
-      { hasta: 80000,    tipo: 25.50 },
-      { hasta: 120000,   tipo: 27.50 },
-      { hasta: 175000,   tipo: 28.50 },
-      { hasta: Infinity, tipo: 29.50 },
-    ],
-    tipoMaxAgregado: 54.00,
-    notas: "Mayor presion fiscal de Espana. Tipo maximo agregado del 54%. Amplio catalogo de deducciones para compensar.",
-  },
-  galicia: {
-    nombre: "Galicia",
-    tramos: [
-      { hasta: 12450,    tipo: 9.00 },
-      { hasta: 20200,    tipo: 11.50 },
-      { hasta: 35200,    tipo: 14.50 },
-      { hasta: 60000,    tipo: 18.50 },
-      { hasta: Infinity, tipo: 22.50 },
-    ],
-    tipoMaxAgregado: 47.00,
-    notas: "Deflacto los 3 primeros tramos en 2022. Tipo minimo del 9%.",
-  },
-  aragon: {
-    nombre: "Aragon",
-    tramos: [
-      { hasta: 12450,    tipo: 9.50 },
-      { hasta: 14000,    tipo: 11.00 },
-      { hasta: 20200,    tipo: 13.00 },
-      { hasta: 25000,    tipo: 15.20 },
-      { hasta: 35200,    tipo: 16.50 },
-      { hasta: 50000,    tipo: 19.00 },
-      { hasta: 60000,    tipo: 21.00 },
-      { hasta: 70000,    tipo: 22.50 },
-      { hasta: Infinity, tipo: 25.50 },
-    ],
-    tipoMaxAgregado: 50.00,
-    notas: "9 tramos, busca mayor progresividad. Deflactacion aplicada en 2025.",
-  },
-  castilla_leon: {
-    nombre: "Castilla y Leon",
-    tramos: [
-      { hasta: 12450,    tipo: 9.00 },
-      { hasta: 20200,    tipo: 12.00 },
-      { hasta: 35200,    tipo: 14.00 },
-      { hasta: 53407,    tipo: 18.50 },
-      { hasta: Infinity, tipo: 21.50 },
-    ],
-    tipoMaxAgregado: 46.00,
-    notas: "5 tramos. Tipo maximo relativamente moderado (21,5%).",
-  },
-  castilla_mancha: {
-    nombre: "Castilla-La Mancha",
-    tramos: [
-      { hasta: 12450,    tipo: 9.50 },
-      { hasta: 20200,    tipo: 12.00 },
-      { hasta: 35200,    tipo: 15.00 },
-      { hasta: 60000,    tipo: 18.50 },
-      { hasta: Infinity, tipo: 22.50 },
-    ],
-    tipoMaxAgregado: 47.00,
-    notas: "Deducciones significativas por despoblacion (hasta 25% del IRPF).",
-  },
-  extremadura: {
-    nombre: "Extremadura",
-    tramos: [
-      { hasta: 12450,    tipo: 8.00 },
-      { hasta: 15000,    tipo: 10.50 },
-      { hasta: 20200,    tipo: 13.00 },
-      { hasta: 25000,    tipo: 15.50 },
-      { hasta: 35200,    tipo: 17.00 },
-      { hasta: 45000,    tipo: 19.00 },
-      { hasta: 60000,    tipo: 21.00 },
-      { hasta: 80000,    tipo: 23.00 },
-      { hasta: Infinity, tipo: 25.00 },
-    ],
-    tipoMaxAgregado: 49.50,
-    notas: "9 tramos. Tipo minimo bajo (8%) pero maximo elevado (25%).",
-  },
-  baleares: {
-    nombre: "Illes Balears",
-    tramos: [
-      { hasta: 10000,    tipo: 9.00 },
-      { hasta: 12450,    tipo: 9.00 },
-      { hasta: 18000,    tipo: 11.25 },
-      { hasta: 20200,    tipo: 13.25 },
-      { hasta: 30000,    tipo: 14.75 },
-      { hasta: 40000,    tipo: 17.25 },
-      { hasta: 50000,    tipo: 19.25 },
-      { hasta: 70000,    tipo: 21.50 },
-      { hasta: Infinity, tipo: 24.75 },
-    ],
-    tipoMaxAgregado: 49.25,
-    notas: "9 tramos. Reduccion de 0,5 puntos en bases <= 30.000 EUR (desde 2024).",
-  },
-  canarias: {
-    nombre: "Canarias",
-    tramos: [
-      { hasta: 12450,    tipo: 9.00 },
-      { hasta: 17707,    tipo: 11.50 },
-      { hasta: 20200,    tipo: 14.00 },
-      { hasta: 33007,    tipo: 15.00 },
-      { hasta: 53407,    tipo: 19.50 },
-      { hasta: 90000,    tipo: 23.50 },
-      { hasta: Infinity, tipo: 26.00 },
-    ],
-    tipoMaxAgregado: 50.00,
-    notas: "IGIC en lugar de IVA (7%). Reserva para Inversiones en Canarias (RIC). ZEC con IS al 4%.",
-  },
-  murcia: {
-    nombre: "Region de Murcia",
-    tramos: [
-      { hasta: 12450,    tipo: 9.50 },
-      { hasta: 20200,    tipo: 12.00 },
-      { hasta: 35200,    tipo: 15.00 },
-      { hasta: 60000,    tipo: 18.50 },
-      { hasta: Infinity, tipo: 22.50 },
-    ],
-    tipoMaxAgregado: 47.00,
-    notas: "Deflactacion automatica si IPC >3% (Ley 9/2025).",
-  },
-  asturias: {
-    nombre: "Principado de Asturias",
-    tramos: [
-      { hasta: 12450,    tipo: 9.00 },
-      { hasta: 17707,    tipo: 12.00 },
-      { hasta: 20200,    tipo: 14.00 },
-      { hasta: 33007,    tipo: 15.00 },
-      { hasta: 53407,    tipo: 19.50 },
-      { hasta: 70000,    tipo: 22.50 },
-      { hasta: 90000,    tipo: 24.50 },
-      { hasta: Infinity, tipo: 26.00 },
-    ],
-    tipoMaxAgregado: 50.00,
-    notas: "Tipo minimo reducido al 9% desde 2025. 8 tramos.",
-  },
-  cantabria: {
-    nombre: "Cantabria",
-    tramos: [
-      { hasta: 12450,    tipo: 8.50 },
-      { hasta: 20200,    tipo: 11.50 },
-      { hasta: 35200,    tipo: 15.00 },
-      { hasta: 46000,    tipo: 18.50 },
-      { hasta: 65000,    tipo: 22.00 },
-      { hasta: Infinity, tipo: 24.50 },
-    ],
-    tipoMaxAgregado: 49.00,
-    notas: "6 tramos. Tipo minimo bajo (8,5%).",
-  },
-  la_rioja: {
-    nombre: "La Rioja",
-    tramos: [
-      { hasta: 12450,    tipo: 8.00 },
-      { hasta: 15000,    tipo: 10.60 },
-      { hasta: 20200,    tipo: 14.00 },
-      { hasta: 25000,    tipo: 16.50 },
-      { hasta: 35200,    tipo: 18.00 },
-      { hasta: 60000,    tipo: 19.50 },
-      { hasta: Infinity, tipo: 27.00 },
-    ],
-    tipoMaxAgregado: 51.50,
-    notas: "7 tramos. Tipo maximo autonómico elevado (27%), solo para >60.000 EUR.",
-  },
-  navarra: {
-    nombre: "Navarra (Regimen Foral)",
-    tramos: [
-      { hasta: 4484,     tipo: 13.00 },
-      { hasta: 8968,     tipo: 22.00 },
-      { hasta: 17452,    tipo: 25.00 },
-      { hasta: 29889,    tipo: 28.00 },
-      { hasta: 45427,    tipo: 35.50 },
-      { hasta: 77658,    tipo: 40.00 },
-      { hasta: 116487,   tipo: 45.00 },
-      { hasta: 311023,   tipo: 49.00 },
-      { hasta: Infinity, tipo: 52.00 },
-    ],
-    tipoMaxAgregado: 52.00,
-    esForal: true,
-    notas: "IRPF foral propio (no se suma estatal + autonomico). Tipo unico foral.",
-  },
-  pais_vasco: {
-    nombre: "Pais Vasco (Regimen Foral)",
-    tramos: [
-      { hasta: 17360,    tipo: 23.00 },
-      { hasta: 34720,    tipo: 28.00 },
-      { hasta: 52080,    tipo: 35.00 },
-      { hasta: 69440,    tipo: 40.00 },
-      { hasta: 86800,    tipo: 45.00 },
-      { hasta: 173600,   tipo: 49.00 },
-      { hasta: Infinity, tipo: 49.00 },
-    ],
-    tipoMaxAgregado: 49.00,
-    esForal: true,
-    notas: "IRPF foral propio (Bizkaia). Cada Territorio Historico tiene su escala. Deflactacion del 2% en 2025.",
-  },
-};
-
-// ============================================================
-// TRAMOS BASE DEL AHORRO (comun a toda Espana)
-// ============================================================
-
-const TRAMOS_AHORRO = [
-  { hasta: 6000,     tipo: 19 },
-  { hasta: 50000,    tipo: 21 },
-  { hasta: 200000,   tipo: 23 },
-  { hasta: 300000,   tipo: 27 },
-  { hasta: Infinity, tipo: 28 },
-];
-
-// ============================================================
-// RETENCIONES
-// ============================================================
-
-const RETENCIONES = {
-  profesionalGeneral: 15,
-  nuevoAutonomo: 7,     // primeros 3 años
-  empresario: 0,         // seccion 1a IAE
-  alquilerLocal: 19,
-  modulosAgricola: 2,
-};
-
-// ============================================================
-// GASTOS DEDUCIBLES - LIMITES Y PORCENTAJES
-// ============================================================
-
-const GASTOS_DEDUCIBLES = {
-  cuotaAutonomos: { porcentaje: 100, descripcion: "Cuota mensual Seguridad Social" },
-  suministrosHogar: {
-    porcentaje: 30,
-    descripcion: "Luz, agua, internet, gas (proporcion m2 afectos x 30%)",
-    formula: "(m2_actividad / m2_totales) * 0.30 * factura"
-  },
-  telefonoMixto: { porcentaje: 50, descripcion: "Movil uso personal + profesional" },
-  telefonoExclusivo: { porcentaje: 100, descripcion: "Linea exclusivamente profesional" },
-  dietaSinPernocta: { limiteEspana: 26.67, limiteExtranjero: 48.05 },
-  dietaConPernocta: { limiteEspana: 53.34, limiteExtranjero: 91.35 },
-  kmVehiculo: 0.26, // EUR/km sin IVA
-  seguroMedico: { limitePorPersona: 500, limiteDiscapacidad: 1500 },
-  gastosDificilJustificacion: { porcentaje: 5, limite: 2000 },
-  amortizaciones: {
-    equiposInformaticos: { coeficiente: 25, anos: 4 },
-    mobiliario: { coeficiente: 10, anos: 10 },
-    software: { coeficiente: 33, anos: 3 },
-    vehiculo: { coeficiente: 16, anos: 6.25 },
-    maquinaria: { coeficiente: 12, anos: 8 },
-    utillaje: { coeficiente: 30, anos: 3.33 },
-  },
-  cuotasColegiosProfesionales: { limite: 500 },
-};
-
-// ============================================================
-// MINIMOS PERSONALES Y FAMILIARES 2026
-// ============================================================
-
-const MINIMOS = {
-  personal: 5550,
-  mayor65: 6700,       // +1150
-  mayor75: 8100,       // +1400 adicional
-  discapacidad33_65: 3000,
-  discapacidadMas65: 12000,
-  primerHijo: 2400,
-  segundoHijo: 2700,
-  tercerHijo: 4000,
-  cuartoYSiguientes: 4500,
-  hijoMenor3: 2800,    // adicional
-  ascendienteMayor65: 1150,
-  ascendienteMayor75: 2550, // 1150 + 1400
-};
-
-// ============================================================
-// DEDUCCIONES AUTONOMICAS POR CCAA
-// ============================================================
-
-const DEDUCCIONES_AUTONOMICAS = {
-  madrid: {
-    nombre: "Comunidad de Madrid",
-    deducciones: [
-      { id: "mad_nacimiento", nombre: "Nacimiento o adopcion de hijo", importe: 721.70, tipo: "fija", categoria: "familia", detalle: "Por cada hijo. Incrementos en partos multiples." },
-      { id: "mad_adopcion_int", nombre: "Adopcion internacional", importe: 721.70, tipo: "fija", categoria: "familia", detalle: "Por cada hijo adoptado internacionalmente." },
-      { id: "mad_acogimiento", nombre: "Acogimiento de menores", importeMin: 618.60, importeMax: 927.90, tipo: "variable", categoria: "familia", detalle: "Segun orden del menor acogido." },
-      { id: "mad_acogimiento_mayores", nombre: "Acogimiento mayores 65+ o discapacidad", importe: 1546.50, tipo: "fija", categoria: "familia", detalle: "Por cada persona acogida no remuneradamente." },
-      { id: "mad_alquiler_joven", nombre: "Alquiler vivienda jovenes (<35)", importeMax: 1000, tipo: "hasta", categoria: "vivienda", detalle: "Deduccion por alquiler de vivienda habitual." },
-      { id: "mad_gastos_educativos", nombre: "Gastos educativos", porcentaje: 15, tipo: "porcentaje", categoria: "educacion", detalle: "Uniformes, ensenanza de idiomas, guarderias." },
-      { id: "mad_business_angel", nombre: "Inversion empresas nueva creacion", porcentaje: 50, tipo: "porcentaje", categoria: "emprendimiento", detalle: "50% sobre base max 100.000 EUR/ano.", baseMax: 100000 },
-      { id: "mad_partidos", nombre: "Cuotas partidos politicos", porcentaje: 20, tipo: "porcentaje", categoria: "otros", detalle: "20% sobre max 600 EUR.", baseMax: 600 },
-    ]
-  },
-  cataluna: {
-    nombre: "Cataluna",
-    deducciones: [
-      { id: "cat_nacimiento", nombre: "Nacimiento o adopcion", importe: 150, tipo: "fija", categoria: "familia", detalle: "Por cada hijo nacido o adoptado." },
-      { id: "cat_alquiler", nombre: "Alquiler vivienda habitual", porcentaje: 10, tipo: "porcentaje", categoria: "vivienda", detalle: "Hasta 300 EUR (600 EUR si discapacidad). Limite renta.", baseMax: 3000 },
-      { id: "cat_donativos", nombre: "Donativos entidades catalanas", porcentaje: 15, tipo: "porcentaje", categoria: "donativos", detalle: "Donativos a entidades de fomento lengua catalana." },
-      { id: "cat_rehabilitacion", nombre: "Rehabilitacion vivienda habitual", porcentaje: 1.5, tipo: "porcentaje", categoria: "vivienda", detalle: "1,5% de las cantidades invertidas." },
-      { id: "cat_interes_estudios", nombre: "Intereses prestamos master/doctorado", importe: 3000, tipo: "hasta", categoria: "educacion", detalle: "Intereses de prestamos para estudios de master y doctorado." },
-    ]
-  },
-  andalucia: {
-    nombre: "Andalucia",
-    deducciones: [
-      { id: "and_empleada_hogar", nombre: "Empleados del hogar", porcentaje: 15, tipo: "porcentaje", categoria: "familia", detalle: "Para padres con derecho a minimo por descendientes.", baseMax: 500 },
-      { id: "and_discapacidad_conyuge", nombre: "Discapacidad conyugue >=65%", importe: 100, tipo: "fija", categoria: "discapacidad", detalle: "Limite BI: 25.000 ind. / 30.000 conjunta." },
-      { id: "and_libros_texto", nombre: "Libros de texto y material escolar", importeMax: 150, tipo: "hasta", categoria: "educacion", detalle: "Por hijo en edad escolar. Segun renta." },
-      { id: "and_guarderia", nombre: "Gastos de guarderia", porcentaje: 15, tipo: "porcentaje", categoria: "familia", detalle: "Custodia menores de 3 anos." },
-      { id: "and_eficiencia", nombre: "Eficiencia energetica vivienda", porcentaje: 15, tipo: "porcentaje", categoria: "vivienda", detalle: "Obras de mejora energetica." },
-      { id: "and_donativos_medioamb", nombre: "Donativos medioambientales", porcentaje: 10, tipo: "porcentaje", categoria: "donativos", detalle: "A entidades publicas andaluzas." },
-      { id: "and_vivienda_joven", nombre: "Vivienda habitual jovenes (<35)", porcentaje: 5, tipo: "porcentaje", categoria: "vivienda", detalle: "Adquisicion primera vivienda." },
-    ]
-  },
-  valencia: {
-    nombre: "Comunitat Valenciana",
-    deducciones: [
-      { id: "val_nacimiento", nombre: "Nacimiento/adopcion/acogimiento", importe: 270, tipo: "fija", categoria: "familia", detalle: "Por cada hijo. Incrementos multiples." },
-      { id: "val_familia_numerosa", nombre: "Familia numerosa", importe: 300, tipo: "fija", categoria: "familia", detalle: "Categoria general. 600 EUR especial." },
-      { id: "val_monoparental", nombre: "Familia monoparental", importe: 300, tipo: "fija", categoria: "familia", detalle: "300 EUR por contribuyente." },
-      { id: "val_discapacidad", nombre: "Discapacidad", importe: 179, tipo: "fija", categoria: "discapacidad", detalle: ">=33%. Incrementos segun grado." },
-      { id: "val_alquiler", nombre: "Alquiler vivienda habitual", porcentaje: 15, tipo: "porcentaje", categoria: "vivienda", detalle: "Hasta 550 EUR. Requisitos de renta." },
-      { id: "val_guarderia", nombre: "Guarderias 0-3 anos", porcentaje: 15, tipo: "porcentaje", categoria: "familia", detalle: "Gastos de custodia en centros autorizados." },
-      { id: "val_eficiencia", nombre: "Eficiencia energetica", porcentaje: 20, tipo: "porcentaje", categoria: "vivienda", detalle: "Instalaciones autoconsumo, placas solares, etc." },
-      { id: "val_sanitarios", nombre: "Gastos sanitarios (nueva 2026)", porcentaje: 100, tipo: "porcentaje", categoria: "salud", detalle: "DL 1/2026. Gastos sanitarios no cubiertos." },
-      { id: "val_deporte", nombre: "Actividades deportivas (nueva 2026)", porcentaje: 100, tipo: "porcentaje", categoria: "salud", detalle: "DL 1/2026. Practica deportiva y habitos saludables." },
-      { id: "val_dana", nombre: "Deducciones especiales DANA", importe: 0, tipo: "variable", categoria: "otros", detalle: "Deducciones extraordinarias por afectados DANA." },
-    ]
-  },
-  galicia: {
-    nombre: "Galicia",
-    deducciones: [
-      { id: "gal_nacimiento", nombre: "Nacimiento/adopcion", importe: 360, tipo: "fija", categoria: "familia", detalle: "Por cada hijo." },
-      { id: "gal_libros", nombre: "Libros de texto", importeMax: 150, tipo: "hasta", categoria: "educacion", detalle: "Por hijo en edad escolar." },
-      { id: "gal_empleada_hogar", nombre: "Empleados del hogar", porcentaje: 30, tipo: "porcentaje", categoria: "familia", detalle: "Cuidado hijos." },
-      { id: "gal_guarderia", nombre: "Guarderia", porcentaje: 30, tipo: "porcentaje", categoria: "familia", detalle: "Gastos de guarderia." },
-      { id: "gal_eficiencia", nombre: "Eficiencia energetica", porcentaje: 15, tipo: "porcentaje", categoria: "vivienda", detalle: "Obras de mejora." },
-      { id: "gal_viudedad", nombre: "Viudedad", importe: 300, tipo: "fija", categoria: "familia", detalle: "Contribuyentes viudos." },
-      { id: "gal_alquiler", nombre: "Alquiler vivienda habitual", porcentaje: 10, tipo: "porcentaje", categoria: "vivienda", detalle: "Hasta 300 EUR. Menores de 35 anos." },
-    ]
-  },
-  aragon: {
-    nombre: "Aragon",
-    deducciones: [
-      { id: "ara_nacimiento_1", nombre: "Nacimiento 1er hijo", importe: 100, tipo: "fija", categoria: "familia", detalle: "200 EUR si BI <23.000 ind. Hasta 720 EUR en zona despoblacion." },
-      { id: "ara_nacimiento_2", nombre: "Nacimiento 2o hijo", importe: 150, tipo: "fija", categoria: "familia", detalle: "300 EUR si BI <23.000 ind." },
-      { id: "ara_discapacidad_hijo", nombre: "Hijo con discapacidad >=33%", importe: 200, tipo: "fija", categoria: "discapacidad", detalle: "+20% si zona de despoblacion." },
-      { id: "ara_libros", nombre: "Libros de texto y material escolar", importeMax: 75, tipo: "hasta", categoria: "educacion", detalle: "Por hijo. Segun nivel de renta." },
-      { id: "ara_guarderia", nombre: "Guarderia menores de 3 anos", porcentaje: 15, tipo: "porcentaje", categoria: "familia", detalle: "Gastos de custodia." },
-      { id: "ara_alquiler", nombre: "Alquiler vivienda habitual", porcentaje: 10, tipo: "porcentaje", categoria: "vivienda", detalle: "Para menores de 35 anos o con discapacidad." },
-      { id: "ara_despoblacion", nombre: "Residencia en zona despoblacion", importe: 600, tipo: "fija", categoria: "territorio", detalle: "Hasta 720 EUR en riesgo extremo." },
-    ]
-  },
-  castilla_leon: {
-    nombre: "Castilla y Leon",
-    deducciones: [
-      { id: "cyl_familia_numerosa", nombre: "Familia numerosa", importe: 500, tipo: "fija", categoria: "familia", detalle: "Categoria general. Incrementos." },
-      { id: "cyl_nacimiento", nombre: "Nacimiento/adopcion", importe: 710, tipo: "fija", categoria: "familia", detalle: "Por cada hijo." },
-      { id: "cyl_vivienda", nombre: "Adquisicion vivienda habitual", porcentaje: 7.5, tipo: "porcentaje", categoria: "vivienda", detalle: "Jovenes <36 anos en municipios rurales." },
-      { id: "cyl_alquiler", nombre: "Alquiler vivienda", porcentaje: 15, tipo: "porcentaje", categoria: "vivienda", detalle: "Jovenes menores de 36 anos." },
-      { id: "cyl_cuidado_hijos", nombre: "Cuidado hijos <4 anos", importeMax: 1320, tipo: "hasta", categoria: "familia", detalle: "Por gastos de cuidado infantil." },
-      { id: "cyl_empresa", nombre: "Inversion empresas nueva creacion", porcentaje: 20, tipo: "porcentaje", categoria: "emprendimiento", detalle: "Hasta 10.000 EUR de base." },
-    ]
-  },
-  castilla_mancha: {
-    nombre: "Castilla-La Mancha",
-    deducciones: [
-      { id: "clm_nacimiento", nombre: "Nacimiento/adopcion", importe: 100, tipo: "fija", categoria: "familia", detalle: "1er hijo. 500 EUR si 2 hijos en el ano." },
-      { id: "clm_libros", nombre: "Libros de texto e idiomas", importeMax: 150, tipo: "hasta", categoria: "educacion", detalle: "Gastos educativos." },
-      { id: "clm_idi", nombre: "Donaciones I+D+i", porcentaje: 15, tipo: "porcentaje", categoria: "donativos", detalle: "Investigacion y desarrollo." },
-      { id: "clm_cooperacion", nombre: "Cooperacion internacional", porcentaje: 15, tipo: "porcentaje", categoria: "donativos", detalle: "Donativos a ONG cooperacion." },
-      { id: "clm_alquiler_joven", nombre: "Alquiler vivienda <36 anos", porcentaje: 15, tipo: "porcentaje", categoria: "vivienda", detalle: "BI max 12.500 ind. / 25.000 conjunta." },
-      { id: "clm_despoblacion", nombre: "Residencia zona despoblada", porcentaje: 25, tipo: "porcentaje", categoria: "territorio", detalle: "Hasta 25% del IRPF por residencia efectiva." },
-      { id: "clm_inversion_social", nombre: "Inversion en economia social", porcentaje: 20, tipo: "porcentaje", categoria: "emprendimiento", detalle: "Participaciones en cooperativas, etc." },
-      { id: "clm_vivienda_rural", nombre: "Vivienda en zona rural", porcentaje: 15, tipo: "porcentaje", categoria: "vivienda", detalle: "Adquisicion o rehabilitacion." },
-    ]
-  },
-  extremadura: {
-    nombre: "Extremadura",
-    deducciones: [
-      { id: "ext_nacimiento", nombre: "Nacimiento/adopcion", importe: 300, tipo: "fija", categoria: "familia", detalle: "Por hijo." },
-      { id: "ext_alquiler", nombre: "Alquiler vivienda habitual", porcentaje: 5, tipo: "porcentaje", categoria: "vivienda", detalle: "Hasta 300 EUR." },
-      { id: "ext_renovables", nombre: "Energias renovables", porcentaje: 15, tipo: "porcentaje", categoria: "vivienda", detalle: "Inversion en nuevas tecnologias y renovables." },
-      { id: "ext_historicos", nombre: "Rehabilitacion inmuebles historicos", porcentaje: 5, tipo: "porcentaje", categoria: "vivienda", detalle: "Patrimonio historico." },
-      { id: "ext_agraria", nombre: "Inversion empresa agraria", porcentaje: 20, tipo: "porcentaje", categoria: "emprendimiento", detalle: "Empresas agrarias extremenas." },
-      { id: "ext_aldea_modelo", nombre: "Proyectos aldeas modelo", porcentaje: 15, tipo: "porcentaje", categoria: "territorio", detalle: "Inversion en aldeas modelo." },
-      { id: "ext_municipio_pequeno", nombre: "Residencia municipio <3.000 hab.", importe: 300, tipo: "fija", categoria: "territorio", detalle: "Residencia habitual en pequenos municipios." },
-    ]
-  },
-  baleares: {
-    nombre: "Illes Balears",
-    deducciones: [
-      { id: "bal_nacimiento_1", nombre: "Nacimiento 1er hijo", importe: 800, tipo: "fija", categoria: "familia", detalle: "BI max 52.800 ind. / 84.480 conjunta." },
-      { id: "bal_nacimiento_2", nombre: "Nacimiento 2o hijo", importe: 1000, tipo: "fija", categoria: "familia", detalle: "" },
-      { id: "bal_nacimiento_3", nombre: "Nacimiento 3er hijo", importe: 1200, tipo: "fija", categoria: "familia", detalle: "" },
-      { id: "bal_nacimiento_4", nombre: "Nacimiento 4o+ hijo", importe: 1400, tipo: "fija", categoria: "familia", detalle: "" },
-      { id: "bal_sostenibilidad", nombre: "Sostenibilidad vivienda", porcentaje: 15, tipo: "porcentaje", categoria: "vivienda", detalle: "Mejoras sostenibilidad." },
-      { id: "bal_investigacion", nombre: "Donativos investigacion", porcentaje: 25, tipo: "porcentaje", categoria: "donativos", detalle: "Entidades de investigacion." },
-      { id: "bal_catalan", nombre: "Fomento lengua catalana", porcentaje: 15, tipo: "porcentaje", categoria: "donativos", detalle: "Donativos a entidades." },
-      { id: "bal_material_escolar", nombre: "Material escolar", importeMax: 200, tipo: "hasta", categoria: "educacion", detalle: "Libros y material." },
-      { id: "bal_alquiler", nombre: "Alquiler vivienda", porcentaje: 15, tipo: "porcentaje", categoria: "vivienda", detalle: "Hasta 530 EUR." },
-    ]
-  },
-  canarias: {
-    nombre: "Canarias",
-    deducciones: [
-      { id: "can_nacimiento", nombre: "Nacimiento/adopcion", importe: 200, tipo: "fija", categoria: "familia", detalle: "Por hijo." },
-      { id: "can_enfermedad", nombre: "Gastos de enfermedad", porcentaje: 10, tipo: "porcentaje", categoria: "salud", detalle: "Gastos medicos no cubiertos." },
-      { id: "can_familia_numerosa", nombre: "Familia numerosa", importe: 500, tipo: "fija", categoria: "familia", detalle: "Categoria general." },
-      { id: "can_discapacidad", nombre: "Discapacidad", importe: 300, tipo: "fija", categoria: "discapacidad", detalle: ">=33%." },
-      { id: "can_alquiler", nombre: "Alquiler vivienda", porcentaje: 15, tipo: "porcentaje", categoria: "vivienda", detalle: "Hasta 500 EUR." },
-      { id: "can_guarderia", nombre: "Gastos guarderia", porcentaje: 15, tipo: "porcentaje", categoria: "familia", detalle: "Menores de 3 anos." },
-      { id: "can_ric", nombre: "Reserva Inversiones Canarias (RIC)", porcentaje: 100, tipo: "porcentaje", categoria: "emprendimiento", detalle: "Beneficios no distribuidos para inversion." },
-    ]
-  },
-  murcia: {
-    nombre: "Region de Murcia",
-    deducciones: [
-      { id: "mur_agua", nombre: "Dispositivos ahorro de agua", porcentaje: 20, tipo: "porcentaje", categoria: "vivienda", detalle: "Dispositivos domesticos." },
-      { id: "mur_internet", nombre: "Gastos acceso a Internet", porcentaje: 10, tipo: "porcentaje", categoria: "otros", detalle: "Linea de internet en vivienda." },
-      { id: "mur_libros", nombre: "Libros texto, idiomas, educacion", importeMax: 120, tipo: "hasta", categoria: "educacion", detalle: "Material educativo." },
-      { id: "mur_hijos_3", nombre: "Cuidado hijos <3 anos", porcentaje: 15, tipo: "porcentaje", categoria: "familia", detalle: "Gastos guarderia/cuidadores." },
-      { id: "mur_dependientes", nombre: "Mayores dependientes", importe: 100, tipo: "fija", categoria: "familia", detalle: "Ascendientes dependientes." },
-      { id: "mur_discapacidad", nombre: "Personas con discapacidad", importe: 120, tipo: "fija", categoria: "discapacidad", detalle: "A cargo del contribuyente." },
-    ]
-  },
-  asturias: {
-    nombre: "Principado de Asturias",
-    deducciones: [
-      { id: "ast_alquiler", nombre: "Arrendamiento vivienda habitual", porcentaje: 10, tipo: "porcentaje", categoria: "vivienda", detalle: "Hasta 500 EUR." },
-      { id: "ast_vivienda_joven", nombre: "Vivienda habitual jovenes", porcentaje: 5, tipo: "porcentaje", categoria: "vivienda", detalle: "Adquisicion/rehabilitacion." },
-      { id: "ast_discapacidad_viv", nombre: "Vivienda discapacitados", porcentaje: 3, tipo: "porcentaje", categoria: "discapacidad", detalle: "Adquisicion/adecuacion." },
-      { id: "ast_forestal", nombre: "Gestion forestal sostenible", porcentaje: 30, tipo: "porcentaje", categoria: "territorio", detalle: "Certificacion forestal." },
-      { id: "ast_despoblacion", nombre: "Residencia concejos despoblacion", importe: 500, tipo: "fija", categoria: "territorio", detalle: "Concejos con riesgo." },
-      { id: "ast_formacion", nombre: "Formacion laboral", porcentaje: 30, tipo: "porcentaje", categoria: "educacion", detalle: "Incorporacion al mercado laboral." },
-      { id: "ast_electrico", nombre: "Vehiculo electrico", porcentaje: 15, tipo: "porcentaje", categoria: "otros", detalle: "Compra de vehiculo electrico." },
-      { id: "ast_transporte", nombre: "Transporte publico (despoblacion)", porcentaje: 15, tipo: "porcentaje", categoria: "territorio", detalle: "Residentes en zonas despoblacion." },
-      { id: "ast_ela", nombre: "Subvenciones/ayudas ELA", porcentaje: 100, tipo: "porcentaje", categoria: "salud", detalle: "Enfermos de ELA." },
-    ]
-  },
-  cantabria: {
-    nombre: "Cantabria",
-    deducciones: [
-      { id: "cnt_nacimiento", nombre: "Nacimiento/adopcion", importe: 300, tipo: "fija", categoria: "familia", detalle: "Por hijo." },
-      { id: "cnt_educativos", nombre: "Gastos educativos y guarderia", porcentaje: 15, tipo: "porcentaje", categoria: "educacion", detalle: "Incluye guarderia." },
-      { id: "cnt_familia_numerosa", nombre: "Familia numerosa", importe: 300, tipo: "fija", categoria: "familia", detalle: "Categoria general." },
-      { id: "cnt_monoparental", nombre: "Familia monoparental", importe: 200, tipo: "fija", categoria: "familia", detalle: "Familia monoparental." },
-      { id: "cnt_donativos", nombre: "Donativos fundaciones / Cantabria Coopera", porcentaje: 15, tipo: "porcentaje", categoria: "donativos", detalle: "Donativos a fundaciones cantabras." },
-      { id: "cnt_traslado_rural", nombre: "Traslado estudios zona rural", importeMax: 1000, tipo: "hasta", categoria: "territorio", detalle: "Municipios con reto demografico." },
-      { id: "cnt_alquiler_rural", nombre: "Alquiler vivienda zona rural", porcentaje: 10, tipo: "porcentaje", categoria: "territorio", detalle: "Zonas con reto demografico." },
-    ]
-  },
-  la_rioja: {
-    nombre: "La Rioja",
-    deducciones: [
-      { id: "rio_hijos_3", nombre: "Hijos menores de 3 anos", importe: 150, tipo: "fija", categoria: "familia", detalle: "Por cada hijo <3." },
-      { id: "rio_vivienda_rural", nombre: "Vivienda en pequenos municipios", porcentaje: 5, tipo: "porcentaje", categoria: "vivienda", detalle: "Adquisicion/construccion/rehabilitacion." },
-      { id: "rio_escuela_infantil", nombre: "Escuela infantil", porcentaje: 30, tipo: "porcentaje", categoria: "familia", detalle: "Gastos en escuelas infantiles autorizadas." },
-      { id: "rio_acogimiento", nombre: "Acogimiento familiar", importe: 300, tipo: "fija", categoria: "familia", detalle: "Por acogimiento de menores." },
-      { id: "rio_internet_joven", nombre: "Internet jovenes emancipados", porcentaje: 30, tipo: "porcentaje", categoria: "otros", detalle: "Gastos de acceso a Internet." },
-      { id: "rio_suministros_joven", nombre: "Luz y gas jovenes emancipados", porcentaje: 15, tipo: "porcentaje", categoria: "otros", detalle: "Suministros domesticos." },
-      { id: "rio_bicicleta", nombre: "Bicicleta pedaleo no asistido", porcentaje: 15, tipo: "porcentaje", categoria: "otros", detalle: "Compra de bicicleta no electrica." },
-      { id: "rio_electrico", nombre: "Vehiculo electrico", porcentaje: 15, tipo: "porcentaje", categoria: "otros", detalle: "Compra de vehiculo electrico." },
-    ]
-  },
-  navarra: {
-    nombre: "Navarra (Regimen Foral)",
-    deducciones: [
-      { id: "nav_info", nombre: "Normativa foral propia", importe: 0, tipo: "info", categoria: "otros", detalle: "Navarra tiene su propia Hacienda Foral con deducciones especificas. Consultar Hacienda Foral de Navarra." },
-    ]
-  },
-  pais_vasco: {
-    nombre: "Pais Vasco (Regimen Foral)",
-    deducciones: [
-      { id: "pv_info", nombre: "Normativa foral propia", importe: 0, tipo: "info", categoria: "otros", detalle: "Cada Territorio Historico (Alava, Bizkaia, Gipuzkoa) tiene sus propias deducciones. Consultar Diputaciones Forales." },
-    ]
-  },
-};
-
-// ============================================================
-// CALENDARIO FISCAL 2026
-// ============================================================
-
-const CALENDARIO_FISCAL = [
-  { fecha: "2026-01-27", modelo: "Varios", descripcion: "Ultimo dia domiciliacion 4T 2025", tipo: "domiciliacion" },
-  { fecha: "2026-01-30", modelo: "303/130/131/390/190", descripcion: "Declaraciones 4T 2025 + resumen anual IVA + retenciones", tipo: "trimestral" },
-  { fecha: "2026-02-28", modelo: "347", descripcion: "Declaracion operaciones con terceros >3.005,06 EUR", tipo: "anual" },
-  { fecha: "2026-04-08", modelo: "100", descripcion: "Inicio campana Renta 2025", tipo: "renta" },
-  { fecha: "2026-04-15", modelo: "Varios", descripcion: "Ultimo dia domiciliacion 1T 2026", tipo: "domiciliacion" },
-  { fecha: "2026-04-20", modelo: "303/130/131", descripcion: "Declaraciones 1T 2026 (IVA + IRPF)", tipo: "trimestral" },
-  { fecha: "2026-06-30", modelo: "100", descripcion: "Fin campana Renta 2025", tipo: "renta" },
-  { fecha: "2026-07-15", modelo: "Varios", descripcion: "Ultimo dia domiciliacion 2T 2026", tipo: "domiciliacion" },
-  { fecha: "2026-07-20", modelo: "303/130/131", descripcion: "Declaraciones 2T 2026 (IVA + IRPF)", tipo: "trimestral" },
-  { fecha: "2026-10-15", modelo: "Varios", descripcion: "Ultimo dia domiciliacion 3T 2026", tipo: "domiciliacion" },
-  { fecha: "2026-10-20", modelo: "303/130/131", descripcion: "Declaraciones 3T 2026 (IVA + IRPF)", tipo: "trimestral" },
-];
-
-// ============================================================
-// TIPOS IVA
-// ============================================================
-
-const TIPOS_IVA = {
-  general: 21,
-  reducido: 10,
-  superreducido: 4,
-  recargo_general: 5.2,
-  recargo_reducido: 1.4,
-  recargo_superreducido: 0.5,
-};
-
-// ============================================================
-// CATEGORIAS DE GASTOS PARA SIMULADOR
-// ============================================================
-
-const CATEGORIAS_GASTOS = [
-  { id: "cuota_ss", nombre: "Cuota autonomos (Seguridad Social)", deduccion: 100, iva: false, icono: "shield" },
-  { id: "alquiler_local", nombre: "Alquiler local/oficina/coworking", deduccion: 100, iva: true, icono: "building" },
-  { id: "suministros", nombre: "Suministros hogar (luz, agua, gas, internet)", deduccion: 30, iva: true, icono: "zap", nota: "Proporcion m2 afectos x 30%" },
-  { id: "telefono", nombre: "Telefono movil", deduccion: 50, iva: true, icono: "phone", nota: "50% si uso mixto, 100% si exclusivo" },
-  { id: "material_oficina", nombre: "Material de oficina y consumibles", deduccion: 100, iva: true, icono: "package" },
-  { id: "equipos", nombre: "Equipos informaticos", deduccion: 100, iva: true, icono: "monitor", nota: "Amortizacion 25% anual si >300 EUR" },
-  { id: "software", nombre: "Software y suscripciones", deduccion: 100, iva: true, icono: "code" },
-  { id: "hosting", nombre: "Hosting, dominio, cloud", deduccion: 100, iva: true, icono: "cloud" },
-  { id: "publicidad", nombre: "Publicidad y marketing", deduccion: 100, iva: true, icono: "megaphone" },
-  { id: "formacion", nombre: "Formacion profesional", deduccion: 100, iva: true, icono: "book" },
-  { id: "gestoria", nombre: "Gestoria/asesor fiscal/abogado", deduccion: 100, iva: true, icono: "briefcase" },
-  { id: "seguros_rc", nombre: "Seguros (RC, local, actividad)", deduccion: 100, iva: false, icono: "shield" },
-  { id: "seguro_medico", nombre: "Seguro medico privado", deduccion: 100, iva: false, icono: "heart", nota: "Max 500 EUR/persona (1500 discapacidad)" },
-  { id: "dietas", nombre: "Dietas y manutencion", deduccion: 100, iva: true, icono: "utensils", nota: "26,67 EUR/dia (sin pernocta)" },
-  { id: "desplazamientos", nombre: "Desplazamientos profesionales", deduccion: 100, iva: true, icono: "car", nota: "0,26 EUR/km o transporte publico" },
-  { id: "vehiculo", nombre: "Vehiculo (uso exclusivo profesional)", deduccion: 100, iva: true, icono: "truck", nota: "Solo si uso 100% profesional" },
-  { id: "colegio_profesional", nombre: "Colegio profesional", deduccion: 100, iva: false, icono: "award", nota: "Hasta 500 EUR" },
-  { id: "otros", nombre: "Otros gastos vinculados a actividad", deduccion: 100, iva: true, icono: "more" },
-];
-// ============================================================
-// MOTOR DE CALCULO FISCAL + UI
-// ============================================================
-
-// --- MOTOR DE CALCULO ---
-
-function calcularCuotaAutonomo(ingresosNetosMensuales) {
-  for (const tramo of CUOTAS_AUTONOMO) {
-    if (ingresosNetosMensuales <= tramo.max) {
-      return {
-        tramo: tramo,
-        cuotaMinima: tramo.cuota,
-        cuotaAnual: tramo.cuota * 12,
-        baseMin: tramo.baseMin,
-        baseMax: tramo.baseMax,
-        rangoIngresos: `${tramo.min.toFixed(0)} - ${tramo.max === Infinity ? '+' : tramo.max.toFixed(0)} EUR`,
-      };
+    function addCart(name) {
+      const t = document.getElementById('toast');
+      t.textContent = '✓ ' + name + ' añadido al carrito';
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2800);
     }
-  }
-  const ultimo = CUOTAS_AUTONOMO[CUOTAS_AUTONOMO.length - 1];
-  return { tramo: ultimo, cuotaMinima: ultimo.cuota, cuotaAnual: ultimo.cuota * 12, baseMin: ultimo.baseMin, baseMax: ultimo.baseMax, rangoIngresos: `> ${ultimo.min} EUR` };
-}
-
-function calcularIRPFTramos(baseLiquidable, tramos) {
-  let cuota = 0;
-  let restante = baseLiquidable;
-  let anterior = 0;
-  const desglose = [];
-
-  for (const tramo of tramos) {
-    if (restante <= 0) break;
-    const baseTramo = Math.min(restante, tramo.hasta - anterior);
-    const cuotaTramo = baseTramo * tramo.tipo / 100;
-    desglose.push({
-      desde: anterior,
-      hasta: Math.min(tramo.hasta, anterior + baseTramo),
-      tipo: tramo.tipo,
-      base: baseTramo,
-      cuota: cuotaTramo,
-    });
-    cuota += cuotaTramo;
-    restante -= baseTramo;
-    anterior = tramo.hasta;
-  }
-
-  return { cuota, desglose, tipoEfectivo: baseLiquidable > 0 ? (cuota / baseLiquidable * 100) : 0 };
-}
-
-function calcularIRPFCompleto(beneficioNeto, comunidadId, opciones = {}) {
-  const comunidad = COMUNIDADES[comunidadId];
-  if (!comunidad) return null;
-
-  const cuotaSSAnual = opciones.cuotaSSAnual || 0;
-  const minimoPersonal = opciones.minimoPersonal || MINIMOS.personal;
-
-  // Reduccion por cuota SS
-  let baseImponible = beneficioNeto - cuotaSSAnual;
-  if (baseImponible < 0) baseImponible = 0;
-
-  // Gastos dificil justificacion (solo EDS)
-  let gastosDJ = 0;
-  if (opciones.estimacionDirectaSimplificada !== false) {
-    gastosDJ = Math.min(baseImponible * 0.05, 2000);
-    baseImponible -= gastosDJ;
-  }
-
-  // Base liquidable
-  let baseLiquidable = baseImponible - minimoPersonal;
-  if (baseLiquidable < 0) baseLiquidable = 0;
-
-  // Calcular parte estatal y autonomica
-  let estatal, autonomica;
-  if (comunidad.esForal) {
-    // Regimen foral: la escala es unica (no se suma estatal)
-    autonomica = calcularIRPFTramos(baseLiquidable, comunidad.tramos);
-    estatal = { cuota: 0, desglose: [], tipoEfectivo: 0 };
-  } else {
-    estatal = calcularIRPFTramos(baseLiquidable, TRAMOS_ESTATALES);
-    autonomica = calcularIRPFTramos(baseLiquidable, comunidad.tramos);
-  }
-
-  const cuotaTotal = estatal.cuota + autonomica.cuota;
-  const tipoEfectivoTotal = beneficioNeto > 0 ? (cuotaTotal / beneficioNeto * 100) : 0;
-
-  // Retenciones ya pagadas
-  const retencionesAnuales = opciones.retencionesAnuales || 0;
-  const pagosFraccionados = opciones.pagosFraccionados || 0;
-
-  const resultadoRenta = cuotaTotal - retencionesAnuales - pagosFraccionados;
-
-  return {
-    beneficioNeto,
-    cuotaSSAnual,
-    gastosDificilJustificacion: gastosDJ,
-    baseImponible: baseImponible + gastosDJ, // antes de DJ
-    baseImponibleReducida: baseImponible,
-    minimoPersonal,
-    baseLiquidable,
-    estatal,
-    autonomica,
-    cuotaTotal,
-    tipoEfectivoTotal,
-    retencionesAnuales,
-    pagosFraccionados,
-    resultadoRenta,
-    comunidad: comunidad.nombre,
-    esForal: !!comunidad.esForal,
-  };
-}
-
-function compararComunidades(beneficioNeto, opciones = {}) {
-  const resultados = [];
-  for (const [id, comunidad] of Object.entries(COMUNIDADES)) {
-    const resultado = calcularIRPFCompleto(beneficioNeto, id, opciones);
-    resultados.push({
-      id,
-      nombre: comunidad.nombre,
-      cuotaTotal: resultado.cuotaTotal,
-      tipoEfectivo: resultado.tipoEfectivoTotal,
-      diferencia: 0,
-      tipoMaxAgregado: comunidad.tipoMaxAgregado,
-      notas: comunidad.notas,
-    });
-  }
-
-  resultados.sort((a, b) => a.cuotaTotal - b.cuotaTotal);
-  const min = resultados[0].cuotaTotal;
-  resultados.forEach(r => r.diferencia = r.cuotaTotal - min);
-
-  return resultados;
-}
-
-function calcularGastosDeducibles(gastos, m2Total, m2Actividad) {
-  let totalDeducible = 0;
-  let totalIVADeducible = 0;
-  const desglose = [];
-
-  for (const gasto of gastos) {
-    const cat = CATEGORIAS_GASTOS.find(c => c.id === gasto.categoria);
-    if (!cat) continue;
-
-    let importeDeducible = gasto.importe;
-    let porcentajeAplicado = cat.deduccion;
-
-    // Suministros hogar: formula especial
-    if (gasto.categoria === 'suministros' && m2Total > 0) {
-      const proporcionM2 = m2Actividad / m2Total;
-      importeDeducible = gasto.importe * proporcionM2 * 0.30;
-      porcentajeAplicado = Math.round(proporcionM2 * 30 * 100) / 100;
-    } else {
-      importeDeducible = gasto.importe * (cat.deduccion / 100);
-    }
-
-    // Limites especiales
-    if (gasto.categoria === 'seguro_medico') {
-      const personas = gasto.personas || 1;
-      const limite = personas * GASTOS_DEDUCIBLES.seguroMedico.limitePorPersona;
-      importeDeducible = Math.min(importeDeducible, limite);
-    }
-    if (gasto.categoria === 'colegio_profesional') {
-      importeDeducible = Math.min(importeDeducible, GASTOS_DEDUCIBLES.cuotasColegiosProfesionales.limite);
-    }
-
-    const ivaDeducible = cat.iva ? gasto.importe * 0.21 : 0;
-
-    totalDeducible += importeDeducible;
-    totalIVADeducible += ivaDeducible;
-
-    desglose.push({
-      categoria: cat.nombre,
-      importeOriginal: gasto.importe,
-      importeDeducible,
-      porcentajeAplicado,
-      ivaDeducible,
-      nota: cat.nota || '',
-    });
-  }
-
-  return { totalDeducible, totalIVADeducible, desglose };
-}
-
-function calcularPagoFraccionado(beneficioAcumulado, retencionesAcumuladas, pagosAnteriores) {
-  const cuota = beneficioAcumulado * 0.20;
-  const resultado = cuota - retencionesAcumuladas - pagosAnteriores;
-  return Math.max(0, resultado);
-}
-
-// --- UTILIDADES ---
-
-function formatEUR(n) {
-  return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(n);
-}
-
-function formatPct(n) {
-  return n.toFixed(2) + '%';
-}
-
-function esc(str) {
-  const div = document.createElement('div');
-  div.textContent = str;
-  return div.innerHTML;
-}
-
-// --- UI ---
-
-let activeSection = 'cuota';
-
-function init() {
-  setupNavigation();
-  setupCuotaCalculator();
-  setupIRPFCalculator();
-  setupComparador();
-  setupGastos();
-  setupDeducciones();
-  renderCalendario();
-  showSection('cuota');
-}
-
-function setupNavigation() {
-  document.querySelectorAll('[data-section]').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    function subscribe(e) {
       e.preventDefault();
-      showSection(btn.dataset.section);
-    });
-  });
-}
-
-function showSection(id) {
-  activeSection = id;
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('[data-section]').forEach(b => b.classList.remove('active'));
-
-  const section = document.getElementById('sec-' + id);
-  if (section) section.classList.add('active');
-
-  document.querySelectorAll(`[data-section="${id}"]`).forEach(b => b.classList.add('active'));
-
-  // Close mobile menu
-  const nav = document.querySelector('.nav-links');
-  if (nav) nav.classList.remove('open');
-}
-
-// --- CALCULADORA CUOTA AUTONOMO ---
-
-function setupCuotaCalculator() {
-  const form = document.getElementById('form-cuota');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    calcularCuota();
-  });
-
-  const input = document.getElementById('ingresos-netos');
-  if (input) input.addEventListener('input', debounce(calcularCuota, 300));
-
-  // Render tabla de tramos
-  renderTablaTramos();
-}
-
-function calcularCuota() {
-  const input = document.getElementById('ingresos-netos');
-  const tarifaPlana = document.getElementById('tarifa-plana');
-  const resultDiv = document.getElementById('resultado-cuota');
-  if (!input || !resultDiv) return;
-
-  const ingresosAnuales = parseFloat(input.value) || 0;
-  const ingresosMensuales = ingresosAnuales / 12;
-  const esTarifaPlana = tarifaPlana && tarifaPlana.checked;
-
-  if (ingresosAnuales <= 0) {
-    resultDiv.innerHTML = '<p class="hint">Introduce tus ingresos netos anuales para calcular.</p>';
-    return;
-  }
-
-  const resultado = calcularCuotaAutonomo(ingresosMensuales);
-
-  if (esTarifaPlana) {
-    resultDiv.innerHTML = `
-      <div class="result-cards">
-        <div class="result-card highlight">
-          <span class="result-label">Cuota mensual (Tarifa Plana)</span>
-          <span class="result-value">${formatEUR(TARIFA_PLANA)}</span>
-        </div>
-        <div class="result-card">
-          <span class="result-label">Cuota anual</span>
-          <span class="result-value">${formatEUR(TARIFA_PLANA * 12)}</span>
-        </div>
-        <div class="result-card save">
-          <span class="result-label">Ahorro vs cuota normal</span>
-          <span class="result-value">${formatEUR((resultado.cuotaMinima - TARIFA_PLANA) * 12)}/ano</span>
-        </div>
-        <div class="result-card">
-          <span class="result-label">Tu tramo real</span>
-          <span class="result-value">${resultado.rangoIngresos}/mes</span>
-        </div>
-        <div class="result-card">
-          <span class="result-label">Cuota que pagarias sin tarifa plana</span>
-          <span class="result-value">${formatEUR(resultado.cuotaMinima)}/mes</span>
-        </div>
-      </div>
-    `;
-  } else {
-    resultDiv.innerHTML = `
-      <div class="result-cards">
-        <div class="result-card highlight">
-          <span class="result-label">Cuota mensual minima</span>
-          <span class="result-value">${formatEUR(resultado.cuotaMinima)}</span>
-        </div>
-        <div class="result-card">
-          <span class="result-label">Cuota anual</span>
-          <span class="result-value">${formatEUR(resultado.cuotaAnual)}</span>
-        </div>
-        <div class="result-card">
-          <span class="result-label">Ingresos mensuales</span>
-          <span class="result-value">${formatEUR(ingresosMensuales)}</span>
-        </div>
-        <div class="result-card">
-          <span class="result-label">Tramo</span>
-          <span class="result-value">${resultado.rangoIngresos}/mes</span>
-        </div>
-        <div class="result-card">
-          <span class="result-label">Base cotizacion min.</span>
-          <span class="result-value">${formatEUR(resultado.baseMin)}</span>
-        </div>
-        <div class="result-card">
-          <span class="result-label">Base cotizacion max.</span>
-          <span class="result-value">${formatEUR(resultado.baseMax)}</span>
-        </div>
-      </div>
-      <p class="hint">Tipo de cotizacion: ${TIPO_COTIZACION}% (incluye MEI ${MEI_2026}%). Puedes cambiar de base hasta 6 veces al ano.</p>
-    `;
-  }
-}
-
-function renderTablaTramos() {
-  const container = document.getElementById('tabla-tramos-cuota');
-  if (!container) return;
-
-  let html = `<table class="data-table">
-    <thead><tr>
-      <th>Tramo</th><th>Ingresos netos/mes</th><th>Cuota min./mes</th><th>Cuota/ano</th><th>Base min.</th><th>Base max.</th>
-    </tr></thead><tbody>`;
-
-  CUOTAS_AUTONOMO.forEach((t, i) => {
-    html += `<tr>
-      <td>${i + 1}</td>
-      <td>${t.min.toFixed(0)} - ${t.max === Infinity ? '+ EUR' : t.max.toFixed(0) + ' EUR'}</td>
-      <td><strong>${formatEUR(t.cuota)}</strong></td>
-      <td>${formatEUR(t.cuota * 12)}</td>
-      <td>${formatEUR(t.baseMin)}</td>
-      <td>${formatEUR(t.baseMax)}</td>
-    </tr>`;
-  });
-
-  html += '</tbody></table>';
-  container.innerHTML = html;
-}
-
-// --- CALCULADORA IRPF ---
-
-function setupIRPFCalculator() {
-  const form = document.getElementById('form-irpf');
-  if (!form) return;
-
-  // Populate CCAA selector
-  const select = document.getElementById('ccaa-irpf');
-  if (select) {
-    for (const [id, c] of Object.entries(COMUNIDADES)) {
-      const opt = document.createElement('option');
-      opt.value = id;
-      opt.textContent = c.nombre;
-      select.appendChild(opt);
+      const btn = e.target.querySelector('button');
+      btn.textContent = '¡Suscrito!';
+      btn.style.background = '#4a6b30';
+      e.target.querySelector('input').value = '';
+      setTimeout(() => { btn.textContent = 'Suscribirme'; btn.style.background = ''; }, 3000);
     }
-  }
+  </script>
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    calcularIRPF();
-  });
-}
-
-function calcularIRPF() {
-  const beneficio = parseFloat(document.getElementById('beneficio-neto').value) || 0;
-  const ccaa = document.getElementById('ccaa-irpf').value;
-  const cuotaSSMensual = parseFloat(document.getElementById('cuota-ss-irpf').value) || 0;
-  const retenciones = parseFloat(document.getElementById('retenciones-irpf').value) || 0;
-  const hijos = parseInt(document.getElementById('hijos-irpf').value) || 0;
-  const nuevoAutonomo = document.getElementById('nuevo-autonomo-irpf');
-  const resultDiv = document.getElementById('resultado-irpf');
-
-  if (!resultDiv || !ccaa || beneficio <= 0) {
-    if (resultDiv) resultDiv.innerHTML = '<p class="hint">Rellena los campos para calcular.</p>';
-    return;
-  }
-
-  // Calcular minimo personal + familiar
-  let minimo = MINIMOS.personal;
-  if (hijos >= 1) minimo += MINIMOS.primerHijo;
-  if (hijos >= 2) minimo += MINIMOS.segundoHijo;
-  if (hijos >= 3) minimo += MINIMOS.tercerHijo;
-  if (hijos >= 4) minimo += MINIMOS.cuartoYSiguientes * (hijos - 3);
-
-  const resultado = calcularIRPFCompleto(beneficio, ccaa, {
-    cuotaSSAnual: cuotaSSMensual * 12,
-    minimoPersonal: minimo,
-    retencionesAnuales: retenciones,
-    estimacionDirectaSimplificada: true,
-  });
-
-  if (!resultado) return;
-
-  const esForal = resultado.esForal;
-
-  let html = `
-    <div class="result-cards">
-      <div class="result-card highlight">
-        <span class="result-label">IRPF total a pagar</span>
-        <span class="result-value">${formatEUR(resultado.cuotaTotal)}</span>
-      </div>
-      <div class="result-card ${resultado.resultadoRenta < 0 ? 'save' : 'warning'}">
-        <span class="result-label">Resultado Renta (${resultado.resultadoRenta < 0 ? 'A DEVOLVER' : 'A PAGAR'})</span>
-        <span class="result-value">${formatEUR(Math.abs(resultado.resultadoRenta))}</span>
-      </div>
-      <div class="result-card">
-        <span class="result-label">Tipo efectivo real</span>
-        <span class="result-value">${formatPct(resultado.tipoEfectivoTotal)}</span>
-      </div>
-      <div class="result-card">
-        <span class="result-label">Comunidad</span>
-        <span class="result-value">${esc(resultado.comunidad)}</span>
-      </div>
-    </div>
-
-    <h4>Desglose del calculo</h4>
-    <table class="data-table compact">
-      <tbody>
-        <tr><td>Beneficio neto anual</td><td class="right">${formatEUR(resultado.beneficioNeto)}</td></tr>
-        <tr><td>(-) Cuota SS anual</td><td class="right">-${formatEUR(resultado.cuotaSSAnual)}</td></tr>
-        <tr><td>(-) Gastos dificil justif. (5%)</td><td class="right">-${formatEUR(resultado.gastosDificilJustificacion)}</td></tr>
-        <tr><td>(-) Minimo personal/familiar</td><td class="right">-${formatEUR(resultado.minimoPersonal)}</td></tr>
-        <tr class="total"><td><strong>Base liquidable</strong></td><td class="right"><strong>${formatEUR(resultado.baseLiquidable)}</strong></td></tr>
-      </tbody>
-    </table>`;
-
-  if (!esForal) {
-    html += `
-    <h4>Cuota estatal (${formatPct(resultado.estatal.tipoEfectivo)} efectivo)</h4>
-    <table class="data-table compact">
-      <thead><tr><th>Tramo</th><th>Tipo</th><th>Base</th><th>Cuota</th></tr></thead>
-      <tbody>`;
-    resultado.estatal.desglose.forEach(d => {
-      html += `<tr>
-        <td>${formatEUR(d.desde)} - ${formatEUR(d.hasta)}</td>
-        <td>${formatPct(d.tipo)}</td>
-        <td class="right">${formatEUR(d.base)}</td>
-        <td class="right">${formatEUR(d.cuota)}</td>
-      </tr>`;
-    });
-    html += `<tr class="total"><td colspan="3"><strong>Total estatal</strong></td><td class="right"><strong>${formatEUR(resultado.estatal.cuota)}</strong></td></tr>`;
-    html += '</tbody></table>';
-  }
-
-  html += `
-    <h4>Cuota ${esForal ? 'foral' : 'autonomica'} (${formatPct(resultado.autonomica.tipoEfectivo)} efectivo)</h4>
-    <table class="data-table compact">
-      <thead><tr><th>Tramo</th><th>Tipo</th><th>Base</th><th>Cuota</th></tr></thead>
-      <tbody>`;
-  resultado.autonomica.desglose.forEach(d => {
-    html += `<tr>
-      <td>${formatEUR(d.desde)} - ${formatEUR(d.hasta)}</td>
-      <td>${formatPct(d.tipo)}</td>
-      <td class="right">${formatEUR(d.base)}</td>
-      <td class="right">${formatEUR(d.cuota)}</td>
-    </tr>`;
-  });
-  html += `<tr class="total"><td colspan="3"><strong>Total ${esForal ? 'foral' : 'autonomica'}</strong></td><td class="right"><strong>${formatEUR(resultado.autonomica.cuota)}</strong></td></tr>`;
-  html += '</tbody></table>';
-
-  html += `
-    <h4>Resultado final</h4>
-    <table class="data-table compact">
-      <tbody>
-        <tr><td>Cuota integra total</td><td class="right">${formatEUR(resultado.cuotaTotal)}</td></tr>
-        <tr><td>(-) Retenciones soportadas</td><td class="right">-${formatEUR(resultado.retencionesAnuales)}</td></tr>
-        <tr class="total ${resultado.resultadoRenta < 0 ? 'save' : 'warning'}">
-          <td><strong>${resultado.resultadoRenta < 0 ? 'A DEVOLVER' : 'A INGRESAR'}</strong></td>
-          <td class="right"><strong>${formatEUR(Math.abs(resultado.resultadoRenta))}</strong></td>
-        </tr>
-      </tbody>
-    </table>`;
-
-  resultDiv.innerHTML = html;
-}
-
-// --- COMPARADOR CCAA ---
-
-function setupComparador() {
-  const form = document.getElementById('form-comparador');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    calcularComparador();
-  });
-}
-
-function calcularComparador() {
-  const beneficio = parseFloat(document.getElementById('beneficio-comparador').value) || 0;
-  const resultDiv = document.getElementById('resultado-comparador');
-  if (!resultDiv || beneficio <= 0) return;
-
-  const ingresosMensuales = beneficio / 12;
-  const cuotaSS = calcularCuotaAutonomo(ingresosMensuales);
-
-  const resultados = compararComunidades(beneficio, {
-    cuotaSSAnual: cuotaSS.cuotaAnual,
-    minimoPersonal: MINIMOS.personal,
-    estimacionDirectaSimplificada: true,
-  });
-
-  const masCara = resultados[resultados.length - 1];
-  const masBarata = resultados[0];
-  const diferencia = masCara.cuotaTotal - masBarata.cuotaTotal;
-
-  let html = `
-    <div class="result-cards">
-      <div class="result-card save">
-        <span class="result-label">Donde menos pagas</span>
-        <span class="result-value">${esc(masBarata.nombre)}</span>
-        <span class="result-detail">${formatEUR(masBarata.cuotaTotal)} (${formatPct(masBarata.tipoEfectivo)})</span>
-      </div>
-      <div class="result-card warning">
-        <span class="result-label">Donde mas pagas</span>
-        <span class="result-value">${esc(masCara.nombre)}</span>
-        <span class="result-detail">${formatEUR(masCara.cuotaTotal)} (${formatPct(masCara.tipoEfectivo)})</span>
-      </div>
-      <div class="result-card highlight">
-        <span class="result-label">Diferencia maxima</span>
-        <span class="result-value">${formatEUR(diferencia)}</span>
-        <span class="result-detail">al ano, por el mismo beneficio</span>
-      </div>
-    </div>
-
-    <h4>Ranking completo (de menor a mayor IRPF)</h4>
-    <table class="data-table">
-      <thead><tr>
-        <th>#</th><th>Comunidad</th><th>IRPF anual</th><th>Tipo efectivo</th><th>Diferencia vs mejor</th><th>Tipo max. agregado</th>
-      </tr></thead><tbody>`;
-
-  resultados.forEach((r, i) => {
-    const barWidth = masBarata.cuotaTotal > 0 ? Math.round(r.cuotaTotal / masCara.cuotaTotal * 100) : 0;
-    html += `<tr class="${i === 0 ? 'row-best' : i === resultados.length - 1 ? 'row-worst' : ''}">
-      <td>${i + 1}</td>
-      <td><strong>${esc(r.nombre)}</strong></td>
-      <td>
-        <div class="bar-cell">
-          <div class="bar" style="width:${barWidth}%"></div>
-          <span>${formatEUR(r.cuotaTotal)}</span>
-        </div>
-      </td>
-      <td>${formatPct(r.tipoEfectivo)}</td>
-      <td class="${r.diferencia > 0 ? 'text-danger' : 'text-success'}">${r.diferencia > 0 ? '+' : ''}${formatEUR(r.diferencia)}</td>
-      <td>${formatPct(r.tipoMaxAgregado)}</td>
-    </tr>`;
-  });
-
-  html += '</tbody></table>';
-  resultDiv.innerHTML = html;
-}
-
-// --- GASTOS DEDUCIBLES ---
-
-let gastosLista = [];
-
-function setupGastos() {
-  const addBtn = document.getElementById('btn-add-gasto');
-  const calcBtn = document.getElementById('btn-calc-gastos');
-  const selectCat = document.getElementById('gasto-categoria');
-
-  if (selectCat) {
-    CATEGORIAS_GASTOS.forEach(cat => {
-      const opt = document.createElement('option');
-      opt.value = cat.id;
-      opt.textContent = cat.nombre;
-      selectCat.appendChild(opt);
-    });
-  }
-
-  if (addBtn) {
-    addBtn.addEventListener('click', () => {
-      const cat = document.getElementById('gasto-categoria').value;
-      const importe = parseFloat(document.getElementById('gasto-importe').value) || 0;
-      const frecuencia = document.getElementById('gasto-frecuencia').value;
-
-      if (!cat || importe <= 0) return;
-
-      let importeAnual = importe;
-      if (frecuencia === 'mensual') importeAnual = importe * 12;
-      if (frecuencia === 'trimestral') importeAnual = importe * 4;
-
-      gastosLista.push({ categoria: cat, importe: importeAnual, importeOriginal: importe, frecuencia });
-      renderGastosLista();
-      document.getElementById('gasto-importe').value = '';
-    });
-  }
-
-  if (calcBtn) {
-    calcBtn.addEventListener('click', calcularGastosUI);
-  }
-}
-
-function renderGastosLista() {
-  const container = document.getElementById('gastos-lista');
-  if (!container) return;
-
-  if (gastosLista.length === 0) {
-    container.innerHTML = '<p class="hint">Anade gastos para ver el desglose.</p>';
-    return;
-  }
-
-  let html = '<table class="data-table compact"><thead><tr><th>Gasto</th><th>Importe</th><th>Frecuencia</th><th>Anual</th><th></th></tr></thead><tbody>';
-  gastosLista.forEach((g, i) => {
-    const cat = CATEGORIAS_GASTOS.find(c => c.id === g.categoria);
-    html += `<tr>
-      <td>${cat ? esc(cat.nombre) : g.categoria}</td>
-      <td>${formatEUR(g.importeOriginal)}</td>
-      <td>${g.frecuencia}</td>
-      <td>${formatEUR(g.importe)}</td>
-      <td><button class="btn-small btn-danger" onclick="eliminarGasto(${i})">X</button></td>
-    </tr>`;
-  });
-  html += '</tbody></table>';
-  container.innerHTML = html;
-}
-
-function eliminarGasto(i) {
-  gastosLista.splice(i, 1);
-  renderGastosLista();
-}
-
-function calcularGastosUI() {
-  const m2Total = parseFloat(document.getElementById('m2-total').value) || 100;
-  const m2Actividad = parseFloat(document.getElementById('m2-actividad').value) || 0;
-  const ingresos = parseFloat(document.getElementById('ingresos-gastos').value) || 0;
-  const ccaa = document.getElementById('ccaa-gastos').value;
-  const resultDiv = document.getElementById('resultado-gastos');
-
-  if (!resultDiv) return;
-
-  const resultado = calcularGastosDeducibles(gastosLista, m2Total, m2Actividad);
-
-  // Gastos dificil justificacion
-  const rendimientoNeto = ingresos - resultado.totalDeducible;
-  const gastosDJ = Math.min(Math.max(rendimientoNeto, 0) * 0.05, 2000);
-
-  // Calcular ahorro fiscal
-  let ahorroFiscal = 0;
-  if (ccaa && ingresos > 0) {
-    const sinGastos = calcularIRPFCompleto(ingresos, ccaa, { minimoPersonal: MINIMOS.personal });
-    const conGastos = calcularIRPFCompleto(Math.max(0, rendimientoNeto), ccaa, { minimoPersonal: MINIMOS.personal });
-    if (sinGastos && conGastos) {
-      ahorroFiscal = sinGastos.cuotaTotal - conGastos.cuotaTotal;
-    }
-  }
-
-  let html = `
-    <div class="result-cards">
-      <div class="result-card highlight">
-        <span class="result-label">Total gastos deducibles</span>
-        <span class="result-value">${formatEUR(resultado.totalDeducible)}</span>
-      </div>
-      <div class="result-card">
-        <span class="result-label">Gastos dificil justificacion (5%)</span>
-        <span class="result-value">${formatEUR(gastosDJ)}</span>
-      </div>
-      <div class="result-card save">
-        <span class="result-label">Ahorro fiscal estimado en IRPF</span>
-        <span class="result-value">${formatEUR(ahorroFiscal)}</span>
-      </div>
-      <div class="result-card">
-        <span class="result-label">IVA deducible estimado</span>
-        <span class="result-value">${formatEUR(resultado.totalIVADeducible)}</span>
-      </div>
-    </div>
-
-    <h4>Desglose por gasto</h4>
-    <table class="data-table">
-      <thead><tr><th>Concepto</th><th>Importe</th><th>% deducible</th><th>Deducible</th><th>IVA deducible</th></tr></thead>
-      <tbody>`;
-
-  resultado.desglose.forEach(d => {
-    html += `<tr>
-      <td>${esc(d.categoria)}${d.nota ? ' <small>(' + esc(d.nota) + ')</small>' : ''}</td>
-      <td>${formatEUR(d.importeOriginal)}</td>
-      <td>${d.porcentajeAplicado}%</td>
-      <td>${formatEUR(d.importeDeducible)}</td>
-      <td>${formatEUR(d.ivaDeducible)}</td>
-    </tr>`;
-  });
-
-  html += `<tr class="total">
-    <td colspan="3"><strong>Total</strong></td>
-    <td><strong>${formatEUR(resultado.totalDeducible)}</strong></td>
-    <td><strong>${formatEUR(resultado.totalIVADeducible)}</strong></td>
-  </tr>`;
-  html += '</tbody></table>';
-
-  resultDiv.innerHTML = html;
-}
-
-// --- DEDUCCIONES AUTONOMICAS ---
-
-function setupDeducciones() {
-  const select = document.getElementById('ccaa-deducciones');
-  if (!select) return;
-
-  for (const [id, d] of Object.entries(DEDUCCIONES_AUTONOMICAS)) {
-    const opt = document.createElement('option');
-    opt.value = id;
-    opt.textContent = d.nombre;
-    select.appendChild(opt);
-  }
-
-  select.addEventListener('change', renderDeducciones);
-}
-
-function renderDeducciones() {
-  const ccaa = document.getElementById('ccaa-deducciones').value;
-  const resultDiv = document.getElementById('resultado-deducciones');
-  if (!resultDiv || !ccaa) return;
-
-  const datos = DEDUCCIONES_AUTONOMICAS[ccaa];
-  const comunidad = COMUNIDADES[ccaa];
-  if (!datos) return;
-
-  const categorias = {};
-  datos.deducciones.forEach(d => {
-    if (!categorias[d.categoria]) categorias[d.categoria] = [];
-    categorias[d.categoria].push(d);
-  });
-
-  const catNames = {
-    familia: 'Familia y natalidad',
-    vivienda: 'Vivienda',
-    educacion: 'Educacion',
-    emprendimiento: 'Emprendimiento e inversion',
-    discapacidad: 'Discapacidad',
-    donativos: 'Donativos',
-    territorio: 'Territorio y despoblacion',
-    salud: 'Salud',
-    otros: 'Otros',
-  };
-
-  let html = `
-    <div class="ccaa-header">
-      <h3>${esc(datos.nombre)}</h3>
-      ${comunidad ? `<p class="ccaa-notas">${esc(comunidad.notas)}</p>` : ''}
-      ${comunidad ? `<p>Tipo maximo agregado: <strong>${formatPct(comunidad.tipoMaxAgregado)}</strong></p>` : ''}
-    </div>
-    <div class="deducciones-grid">`;
-
-  for (const [catId, deducciones] of Object.entries(categorias)) {
-    html += `<div class="deduccion-category">
-      <h4>${catNames[catId] || catId}</h4>
-      <div class="deduccion-list">`;
-
-    deducciones.forEach(d => {
-      let importeStr = '';
-      if (d.tipo === 'fija') importeStr = formatEUR(d.importe);
-      else if (d.tipo === 'hasta') importeStr = 'hasta ' + formatEUR(d.importeMax || d.importe);
-      else if (d.tipo === 'porcentaje') importeStr = d.porcentaje + '%';
-      else if (d.tipo === 'variable') importeStr = d.importeMin ? formatEUR(d.importeMin) + ' - ' + formatEUR(d.importeMax) : 'Variable';
-      else if (d.tipo === 'info') importeStr = 'Info';
-
-      html += `<div class="deduccion-item">
-        <div class="deduccion-header">
-          <span class="deduccion-nombre">${esc(d.nombre)}</span>
-          <span class="deduccion-importe">${importeStr}</span>
-        </div>
-        <p class="deduccion-detalle">${esc(d.detalle)}</p>
-      </div>`;
-    });
-
-    html += '</div></div>';
-  }
-
-  html += '</div>';
-  resultDiv.innerHTML = html;
-}
-
-// --- CALENDARIO FISCAL ---
-
-function renderCalendario() {
-  const container = document.getElementById('calendario-contenido');
-  if (!container) return;
-
-  const hoy = new Date();
-
-  let html = '<div class="calendario-grid">';
-
-  CALENDARIO_FISCAL.forEach(evento => {
-    const fecha = new Date(evento.fecha);
-    const isPast = fecha < hoy;
-    const isNear = !isPast && (fecha - hoy) < 30 * 24 * 60 * 60 * 1000;
-
-    const tipoClass = {
-      trimestral: 'tipo-trimestral',
-      domiciliacion: 'tipo-domiciliacion',
-      anual: 'tipo-anual',
-      renta: 'tipo-renta',
-    }[evento.tipo] || '';
-
-    html += `<div class="calendario-item ${isPast ? 'past' : ''} ${isNear ? 'near' : ''} ${tipoClass}">
-      <div class="cal-fecha">
-        <span class="cal-dia">${fecha.getDate()}</span>
-        <span class="cal-mes">${fecha.toLocaleDateString('es-ES', { month: 'short' }).toUpperCase()}</span>
-      </div>
-      <div class="cal-info">
-        <span class="cal-modelo">${esc(evento.modelo)}</span>
-        <span class="cal-desc">${esc(evento.descripcion)}</span>
-      </div>
-      <span class="cal-badge ${evento.tipo}">${evento.tipo}</span>
-    </div>`;
-  });
-
-  html += '</div>';
-
-  // Add modelo info
-  html += `
-    <h4 style="margin-top:2rem">Modelos que presenta un autonomo tipico</h4>
-    <table class="data-table">
-      <thead><tr><th>Modelo</th><th>Que es</th><th>Frecuencia</th><th>Quien lo presenta</th></tr></thead>
-      <tbody>
-        <tr><td><strong>303</strong></td><td>Autoliquidacion IVA</td><td>Trimestral</td><td>Todos sujetos a IVA</td></tr>
-        <tr><td><strong>130</strong></td><td>Pago fraccionado IRPF</td><td>Trimestral</td><td>Estimacion directa</td></tr>
-        <tr><td><strong>131</strong></td><td>Pago fraccionado IRPF</td><td>Trimestral</td><td>Modulos</td></tr>
-        <tr><td><strong>111</strong></td><td>Retenciones trabajadores</td><td>Trimestral</td><td>Si tienes empleados</td></tr>
-        <tr><td><strong>115</strong></td><td>Retenciones alquileres</td><td>Trimestral</td><td>Si alquilas local</td></tr>
-        <tr><td><strong>100</strong></td><td>Declaracion de la Renta</td><td>Anual (abr-jun)</td><td>Todos</td></tr>
-        <tr><td><strong>390</strong></td><td>Resumen anual IVA</td><td>Anual (enero)</td><td>Todos sujetos a IVA</td></tr>
-        <tr><td><strong>190</strong></td><td>Resumen anual retenciones</td><td>Anual (enero)</td><td>Si retienes</td></tr>
-        <tr><td><strong>347</strong></td><td>Operaciones >3.005 EUR</td><td>Anual (febrero)</td><td>Si facturas >3.005 a un cliente</td></tr>
-      </tbody>
-    </table>
-    <div class="tip-box">
-      <strong>Regla de oro:</strong> Domicilia el dia 15; presenta el dia 20. En enero: domicilia el 25, presenta el 30. Aunque no tengas cuota a ingresar, DEBES presentar las declaraciones.
-    </div>`;
-
-  container.innerHTML = html;
-}
-
-// --- UTILIDADES UI ---
-
-function debounce(fn, ms) {
-  let timer;
-  return function(...args) {
-    clearTimeout(timer);
-    timer = setTimeout(() => fn.apply(this, args), ms);
-  };
-}
-
-// Hamburger menu toggle
-function toggleMenu() {
-  const nav = document.querySelector('.nav-links');
-  if (nav) nav.classList.toggle('open');
-}
-
-// --- INIT ---
-document.addEventListener('DOMContentLoaded', init);
-</script>
 </body>
 </html>
