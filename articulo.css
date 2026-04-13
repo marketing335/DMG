@@ -121,6 +121,8 @@
 }
 .article-body strong { color: var(--navy); }
 .article-body em { font-style: italic; }
+.article-body a { color: #094588; text-decoration: underline; text-underline-offset: 3px; }
+.article-body a:hover { color: var(--gold); }
 
 /* Examples */
 .article-example {
