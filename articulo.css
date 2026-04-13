@@ -201,7 +201,7 @@
 .article-table tr:nth-child(even) td { background: var(--cream); }
 
 /* Sidebar */
-.article-sidebar { position: sticky; top: 96px; }
+.article-sidebar { position: sticky; top: 96px; z-index: 0; }
 .sidebar-widget {
   background: var(--cream);
   border-radius: var(--radius);
