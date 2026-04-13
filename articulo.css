@@ -292,6 +292,55 @@
   .comment-form-section { padding: 20px; }
 }
 
+/* h4 inside article */
+.article-body h4 {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--navy);
+  margin: 24px 0 10px;
+  font-weight: 600;
+}
+
+/* WordPress block figures */
+.article-body figure.wp-block-image {
+  margin: 20px auto;
+  text-align: center;
+}
+.article-body figure.wp-block-image img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+  border-radius: var(--radius-sm);
+}
+.article-body figure.wp-block-image figcaption,
+.article-body figure.wp-block-image .wp-element-caption {
+  font-size: 13px;
+  color: var(--text-light);
+  margin-top: 8px;
+  font-style: italic;
+  text-align: center;
+}
+
+/* WordPress Gutenberg highlight paragraphs */
+.article-body p.has-background {
+  padding: 12px 20px;
+  border-radius: 6px;
+  margin: 16px 0;
+}
+.article-body p.has-text-align-center { text-align: center; }
+.article-body p.has-cyan-bluish-gray-background-color { background: #e8ecef; }
+.article-body p.has-pale-cyan-blue-background-color { background: #e8f4f8; }
+.article-body p.has-pale-green-background-color { background: #e8f5e9; }
+.article-body p.has-vivid-red-background-color { background: #fee2e2; }
+.article-body p.has-luminous-vivid-amber-background-color { background: #fef3c7; }
+.article-body p.has-light-green-cyan-background-color { background: #e0f7f4; }
+.article-body p.has-very-light-gray-background-color { background: #f5f5f5; }
+
+/* Remove inline color overrides from headings — keep our theme */
+.article-body h2, .article-body h3, .article-body h4 {
+  color: var(--navy);
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .article-layout { grid-template-columns: 1fr; }
