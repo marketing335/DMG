@@ -81,6 +81,13 @@
 /* Article body */
 .article-body {
   max-width: 680px;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+.article-body img {
+  max-width: 100%;
+  height: auto;
 }
 .article-lead {
   font-size: 19px;
@@ -411,7 +418,7 @@
 .article-body h4 { font-family: var(--font-serif); font-size: 1.1rem; margin: 24px 0 10px; font-weight: 600; }
 
 /* Responsive */
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .article-layout { grid-template-columns: 1fr; }
   .article-sidebar { position: static; }
 }

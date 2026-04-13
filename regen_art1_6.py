@@ -56,14 +56,38 @@ with open('articulo-17.html') as f: TEMPLATE = f.read()
 nav_m = re.search(r'(<header class="navbar".*?</header>)', TEMPLATE, re.DOTALL)
 NAV_HTML = nav_m.group(1) if nav_m else ''
 
-FULL_SIDEBAR = '''        <aside class="article-sidebar">
+RELATED = [
+    (14, 'No es lo mismo folk horror que gótico rural'),
+    (7,  'Guía para solucionar las dudas de escritores noveles'),
+    (17, '9 libros sobre escritura que quizá no conozcas'),
+    (8,  '¿Miedo a publicar tu segunda novela? No eres el único'),
+    (9,  'Narrador en primera persona: pros y contras'),
+    (18, '10 tipos de trama que necesitas conocer para no atascarte'),
+]
+
+def make_sidebar_1_6(art_num):
+    related_items = ''.join(
+        f'              <li><a href="articulo-{n}.html">{t}</a></li>\n'
+        for n, t in RELATED if n != art_num
+    )[:3 * 200]  # limit to first 3
+    # Rebuild properly with max 3
+    pool = [(n, t) for n, t in RELATED if n != art_num][:3]
+    related_items = ''.join(
+        f'              <li><a href="articulo-{n}.html">{t}</a></li>\n'
+        for n, t in pool
+    )
+    return f'''        <aside class="article-sidebar">
           <div class="sidebar-widget">
-            <img src="https://relatosmagar.com/wp-content/uploads/2022/05/esther-magar-correctora.jpg"
+            <img src="https://i.ibb.co/zH7DxvJS/dame-esta-mujercon-202603241403.jpg"
                  onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1455390582262-044cdead277a?w=200&h=200&fit=crop&q=80'"
-                 referrerpolicy="no-referrer" alt="Esther Magar" class="sidebar-avatar" />
-            <h4>Esther Magar</h4>
-            <p>Correctora de estilo y ortotipográfica. Autora de <em>Las semillas del rencor</em> y <em>Lo que mamá calla</em>.</p>
-            <a href="sobre-mi.html" class="sidebar-link">Sobre mí →</a>
+                 alt="Esther Magar" class="sidebar-avatar" />
+            <p><strong>Esther Magar</strong> es correctora y editora de textos con más de diez años de experiencia.</p>
+            <a href="sobre-mi.html" class="sidebar-link">Conocer más →</a>
+          </div>
+          <div class="sidebar-widget">
+            <h4>Artículos relacionados</h4>
+            <ul class="sidebar-related">
+{related_items}            </ul>
           </div>
           <div class="sidebar-widget" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;background:none;box-shadow:none;padding:0;">
             <div style="background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08);">
@@ -72,7 +96,7 @@ FULL_SIDEBAR = '''        <aside class="article-sidebar">
               </div>
               <h4 style="font-size:.82rem;margin-bottom:6px">¿Buscas corrector de textos?</h4>
               <p style="font-size:.78rem;color:#666;margin-bottom:10px;">Pídeme presupuesto sin compromiso, te responderé lo antes posible.</p>
-              <a href="contacto.html" class="btn btn-primary btn-sm" style="width:100%;color:#fff!important;text-decoration:none!important;">Quiero presupuesto</a>
+              <a href="contacto.html" class="btn btn-primary btn-sm" style="width:100%;">Quiero presupuesto</a>
             </div>
             <div style="background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08);">
               <div style="width:46px;height:46px;background:#094588;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
@@ -80,7 +104,7 @@ FULL_SIDEBAR = '''        <aside class="article-sidebar">
               </div>
               <h4 style="font-size:.82rem;margin-bottom:6px">¿Te parece interesante?</h4>
               <p style="font-size:.78rem;color:#666;margin-bottom:10px;">Para no perderte ningún artículo, suscríbete a mi lista.</p>
-              <a href="suscripcion.html" class="btn btn-primary btn-sm" style="width:100%;color:#fff!important;text-decoration:none!important;">Me suscribo</a>
+              <a href="suscripcion.html" class="btn btn-primary btn-sm" style="width:100%;">Me suscribo</a>
             </div>
           </div>
           <div class="sidebar-widget" style="text-align:center;border:1px solid #e8e4df;border-radius:12px;padding:20px;">
@@ -90,8 +114,8 @@ FULL_SIDEBAR = '''        <aside class="article-sidebar">
               <img src="https://m.media-amazon.com/images/P/B0GQ3JZ7M1.01._SCLZZZZZZZ_SX500_.jpg" alt="Lo que mamá calla" style="width:70px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.15);" />
             </div>
             <div style="display:flex;gap:8px;justify-content:center;">
-              <a href="https://amzn.to/3Yrt4oo" target="_blank" rel="noopener" class="btn btn-primary btn-sm" style="font-size:.72rem;padding:8px 10px;color:#fff!important;text-decoration:none!important;">Las semillas del…</a>
-              <a href="http://amzn.to/4aRt4TY" target="_blank" rel="noopener" class="btn btn-primary btn-sm" style="font-size:.72rem;padding:8px 10px;color:#fff!important;text-decoration:none!important;">Lo que mamá calla</a>
+              <a href="https://amzn.to/3Yrt4oo" target="_blank" rel="noopener" class="btn btn-primary btn-sm" style="font-size:.72rem;padding:8px 10px;">Las semillas del…</a>
+              <a href="http://amzn.to/4aRt4TY" target="_blank" rel="noopener" class="btn btn-primary btn-sm" style="font-size:.72rem;padding:8px 10px;">Lo que mamá calla</a>
             </div>
           </div>
         </aside>'''
@@ -216,14 +240,14 @@ for i, (d, title, item) in enumerate(selected):
           </div>
         </article>
 
-{FULL_SIDEBAR}
+{make_sidebar_1_6(art_num)}
       </div>
 
     </div>
 
     <div class="article-container">
   <section class="comments-section">
-<h2 class="comments-title">Deja un comentario</h2>
+    <h2 class="comments-title">Deja un comentario</h2>
     <div class="comment-form-section">
       <form class="comment-form" action="https://formspree.io/f/contacto" method="POST">
         <input type="hidden" name="_subject" value="Comentario en: {slug}" />
@@ -241,7 +265,7 @@ for i, (d, title, item) in enumerate(selected):
           <label for="comment-text">Comentario *</label>
           <textarea id="comment-text" name="comentario" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary comment-submit" style="color:#fff!important;">Publicar comentario</button>
+        <button type="submit" class="btn btn-primary comment-submit">Publicar comentario</button>
       </form>
     </div>
   </section>
@@ -257,13 +281,7 @@ for i, (d, title, item) in enumerate(selected):
     </div>
   </footer>
 
-  <script>
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
-    document.getElementById('hamburger').addEventListener('click', () => {{
-      document.getElementById('navLinks').classList.toggle('open');
-    }});
-  </script>
+  <script src="magar.js"></script>
 </body>
 </html>'''
 
