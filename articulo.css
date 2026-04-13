@@ -123,6 +123,10 @@
 .article-body em { font-style: italic; }
 .article-body a { color: #094588; text-decoration: underline; text-underline-offset: 3px; }
 .article-body a:hover { color: var(--gold); }
+.article-body a.btn,
+.article-body .btn-primary,
+.article-body .article-cta-box a { color: #fff !important; text-decoration: none !important; }
+.article-body a.btn-ghost { color: var(--navy) !important; }
 
 /* Examples */
 .article-example {
