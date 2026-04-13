@@ -205,10 +205,34 @@ SIDEBAR = '''        <aside class="article-sidebar">
             <p>Correctora de estilo y ortotipográfica. Autora de <em>Las semillas del rencor</em> y <em>Lo que mamá calla</em>.</p>
             <a href="sobre-mi.html" class="sidebar-link">Sobre mí →</a>
           </div>
-          <div class="sidebar-widget">
-            <h4>¿Tu texto necesita revisión?</h4>
-            <p>Solicita una corrección gratuita sin compromiso.</p>
-            <a href="contacto.html" class="btn btn-primary btn-sm" style="width:100%;text-align:center;display:block;">Solicitar presupuesto</a>
+          <div class="sidebar-widget" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;background:none;box-shadow:none;padding:0;">
+            <div style="background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08);">
+              <div style="width:46px;height:46px;background:#094588;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
+                <svg width="22" height="22" fill="#fff" viewBox="0 0 8 8"><path d="M6 0l-1 1 2 2 1-1-2-2zm-2 2l-4 4v2h2l4-4-2-2z"/></svg>
+              </div>
+              <h4 style="font-size:.82rem;margin-bottom:6px">¿Buscas corrector de textos?</h4>
+              <p style="font-size:.78rem;color:#666;margin-bottom:10px;">Pídeme presupuesto sin compromiso, te responderé lo antes posible.</p>
+              <a href="contacto.html" style="display:block;background:#094588;color:#ffffff;padding:8px 10px;border-radius:6px;font-weight:600;font-size:.72rem;text-decoration:none;text-align:center;">Quiero presupuesto</a>
+            </div>
+            <div style="background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08);">
+              <div style="width:46px;height:46px;background:#094588;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
+                <svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              </div>
+              <h4 style="font-size:.82rem;margin-bottom:6px">¿Te parece interesante?</h4>
+              <p style="font-size:.78rem;color:#666;margin-bottom:10px;">Para no perderte ningún artículo y acceder a contenido exclusivo, suscríbete a mi lista.</p>
+              <a href="suscripcion.html" style="display:block;background:#094588;color:#ffffff;padding:8px 10px;border-radius:6px;font-weight:600;font-size:.72rem;text-decoration:none;text-align:center;">Me suscribo</a>
+            </div>
+          </div>
+          <div class="sidebar-widget" style="text-align:center;border:1px solid #e8e4df;border-radius:12px;padding:20px;">
+            <p style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#094588;font-weight:700;margin-bottom:14px;">Conoce mi universo literario</p>
+            <div style="display:flex;justify-content:center;gap:10px;margin-bottom:14px;">
+              <img src="https://m.media-amazon.com/images/P/B093Z7T8HV.01._SCLZZZZZZZ_SX500_.jpg" alt="Las semillas del rencor" style="width:70px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.15);" />
+              <img src="https://m.media-amazon.com/images/P/B0GQ3JZ7M1.01._SCLZZZZZZZ_SX500_.jpg" alt="Lo que mamá calla" style="width:70px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.15);" />
+            </div>
+            <div style="display:flex;gap:8px;justify-content:center;">
+              <a href="https://amzn.to/3Yrt4oo" target="_blank" rel="noopener" style="display:inline-block;background:#094588;color:#ffffff;padding:8px 10px;border-radius:6px;font-weight:600;font-size:.72rem;text-decoration:none;">Las semillas del…</a>
+              <a href="http://amzn.to/4aRt4TY" target="_blank" rel="noopener" style="display:inline-block;background:#094588;color:#ffffff;padding:8px 10px;border-radius:6px;font-weight:600;font-size:.72rem;text-decoration:none;">Lo que mamá calla</a>
+            </div>
           </div>
         </aside>'''
 
@@ -275,9 +299,9 @@ def build_html(art_num, title, date_str, tag, hero_img, body_html, prev_n, next_
 
           {nav_btns}
 
-          <div class="article-cta-box" style="margin-top:40px;">
-            <p>¿Tu texto necesita una revisión profesional?</p>
-            <a href="contacto.html" class="btn btn-primary">Solicitar corrección gratuita</a>
+          <div style="background:#0f1b2d;border-radius:12px;padding:36px;margin:40px 0;text-align:center;">
+            <p style="color:#ffffff;font-size:16px;margin-bottom:20px;">¿Tu texto necesita una revisión profesional?</p>
+            <a href="contacto.html" style="display:inline-block;background:#1a3a8f;color:#ffffff;padding:14px 28px;border-radius:8px;font-weight:600;font-size:15px;text-decoration:none;">Solicitar corrección gratuita</a>
           </div>
         </article>
 
