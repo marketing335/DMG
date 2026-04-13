@@ -257,6 +257,39 @@
 /* More articles section */
 .more-articles { background: var(--cream); }
 
+/* Comments section */
+.comments-section { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--border); }
+.comments-title { font-family: var(--font-serif); font-size: 1.5rem; color: var(--navy); margin-bottom: 32px; }
+.comment-list { list-style: none; padding: 0; margin: 0 0 48px; display: flex; flex-direction: column; gap: 28px; }
+.comment-item { display: flex; gap: 16px; }
+.comment-avatar { width: 44px; height: 44px; min-width: 44px; border-radius: 50%; background: #094588; color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; }
+.comment-body { flex: 1; background: #f8f7f5; border-radius: 10px; padding: 16px 20px; }
+.comment-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+.comment-author { font-weight: 600; color: var(--navy); font-size: .92rem; }
+.comment-date { font-size: .8rem; color: var(--text-light); }
+.comment-content { font-size: .95rem; line-height: 1.7; color: var(--text); }
+.comment-content p { margin: 0; }
+
+/* Comment form */
+.comment-form-section { background: #f8f7f5; border-radius: 14px; padding: 32px; }
+.comment-form-title { font-family: var(--font-serif); font-size: 1.2rem; color: var(--navy); margin-bottom: 24px; }
+.comment-form { display: flex; flex-direction: column; gap: 16px; }
+.comment-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.comment-field { display: flex; flex-direction: column; gap: 6px; }
+.comment-field label { font-size: .85rem; font-weight: 600; color: var(--navy); }
+.comment-field input, .comment-field textarea {
+  border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px;
+  font-family: var(--font-sans); font-size: .95rem; color: var(--text);
+  background: #fff; transition: border-color .2s;
+}
+.comment-field input:focus, .comment-field textarea:focus { outline: none; border-color: #094588; }
+.comment-field textarea { min-height: 120px; resize: vertical; }
+.comment-submit { align-self: flex-start; }
+@media (max-width: 600px) {
+  .comment-form-row { grid-template-columns: 1fr; }
+  .comment-form-section { padding: 20px; }
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .article-layout { grid-template-columns: 1fr; }
