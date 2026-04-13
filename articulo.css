@@ -411,7 +411,7 @@
 .article-body h4 { font-family: var(--font-serif); font-size: 1.1rem; margin: 24px 0 10px; font-weight: 600; }
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 600px) {
   .article-layout { grid-template-columns: 1fr; }
   .article-sidebar { position: static; }
 }
