@@ -195,15 +195,42 @@ with open('articulo-17.html', 'r') as f:
 nav_m = re.search(r'(<header class="navbar".*?</header>)', TEMPLATE, re.DOTALL)
 NAV_HTML = nav_m.group(1) if nav_m else ''
 
-SIDEBAR = '''        <aside class="article-sidebar">
+# Títulos conocidos para artículos relacionados
+KNOWN_TITLES = {
+    14: 'No es lo mismo folk horror que gótico rural',
+    8:  '¿Miedo a publicar tu segunda novela? No eres el único',
+    9:  'Narrador en primera persona: pros y contras',
+    10: '¿Te atreves a escuchar «Lo que mamá calla»?',
+    11: 'Bloqueo creativo, ¿cómo se supera? Te cuento mi odisea',
+    12: '¿Qué es mejor: ser buen escritor o buen novelista?',
+    13: "4 consejos sobre escritura que leí en 'Misery'",
+    15: 'Lugares comunes en la literatura, ¿cómo usarlos bien?',
+    16: 'Esas palabras no significan lo que crees: Impropiedades léxicas',
+    7:  'Guía para solucionar las dudas de escritores noveles',
+    17: '9 libros sobre escritura que quizá no conozcas',
+    18: '10 tipos de trama que necesitas conocer para no atascarte',
+    19: 'El mejor consejo de escritura del mundo',
+}
+
+def make_sidebar(art_num):
+    pool = [14, 8, 9, 10, 11, 12, 13, 15, 16, 7, 17, 18, 19]
+    related = [n for n in pool if n != art_num][:3]
+    related_items = ''.join(
+        f'              <li><a href="articulo-{n}.html">{KNOWN_TITLES.get(n, f"Artículo {n}")}</a></li>\n'
+        for n in related
+    )
+    return f'''        <aside class="article-sidebar">
           <div class="sidebar-widget">
-            <img src="https://relatosmagar.com/wp-content/uploads/2022/05/esther-magar-correctora.jpg"
+            <img src="https://i.ibb.co/zH7DxvJS/dame-esta-mujercon-202603241403.jpg"
                  onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1455390582262-044cdead277a?w=200&h=200&fit=crop&q=80\'"
-                 referrerpolicy="no-referrer"
                  alt="Esther Magar" class="sidebar-avatar" />
-            <h4>Esther Magar</h4>
-            <p>Correctora de estilo y ortotipográfica. Autora de <em>Las semillas del rencor</em> y <em>Lo que mamá calla</em>.</p>
-            <a href="sobre-mi.html" class="sidebar-link">Sobre mí →</a>
+            <p><strong>Esther Magar</strong> es correctora y editora de textos con más de diez años de experiencia.</p>
+            <a href="sobre-mi.html" class="sidebar-link">Conocer más →</a>
+          </div>
+          <div class="sidebar-widget">
+            <h4>Artículos relacionados</h4>
+            <ul class="sidebar-related">
+{related_items}            </ul>
           </div>
           <div class="sidebar-widget" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;background:none;box-shadow:none;padding:0;">
             <div style="background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08);">
@@ -212,7 +239,7 @@ SIDEBAR = '''        <aside class="article-sidebar">
               </div>
               <h4 style="font-size:.82rem;margin-bottom:6px">¿Buscas corrector de textos?</h4>
               <p style="font-size:.78rem;color:#666;margin-bottom:10px;">Pídeme presupuesto sin compromiso, te responderé lo antes posible.</p>
-              <a href="contacto.html" style="display:block;background:#094588;color:#ffffff;padding:8px 10px;border-radius:6px;font-weight:600;font-size:.72rem;text-decoration:none;text-align:center;">Quiero presupuesto</a>
+              <a href="contacto.html" class="btn btn-primary btn-sm" style="width:100%;">Quiero presupuesto</a>
             </div>
             <div style="background:#fff;border-radius:12px;padding:16px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.08);">
               <div style="width:46px;height:46px;background:#094588;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
@@ -220,7 +247,7 @@ SIDEBAR = '''        <aside class="article-sidebar">
               </div>
               <h4 style="font-size:.82rem;margin-bottom:6px">¿Te parece interesante?</h4>
               <p style="font-size:.78rem;color:#666;margin-bottom:10px;">Para no perderte ningún artículo y acceder a contenido exclusivo, suscríbete a mi lista.</p>
-              <a href="suscripcion.html" style="display:block;background:#094588;color:#ffffff;padding:8px 10px;border-radius:6px;font-weight:600;font-size:.72rem;text-decoration:none;text-align:center;">Me suscribo</a>
+              <a href="suscripcion.html" class="btn btn-primary btn-sm" style="width:100%;">Me suscribo</a>
             </div>
           </div>
           <div class="sidebar-widget" style="text-align:center;border:1px solid #e8e4df;border-radius:12px;padding:20px;">
@@ -230,8 +257,8 @@ SIDEBAR = '''        <aside class="article-sidebar">
               <img src="https://m.media-amazon.com/images/P/B0GQ3JZ7M1.01._SCLZZZZZZZ_SX500_.jpg" alt="Lo que mamá calla" style="width:70px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.15);" />
             </div>
             <div style="display:flex;gap:8px;justify-content:center;">
-              <a href="https://amzn.to/3Yrt4oo" target="_blank" rel="noopener" style="display:inline-block;background:#094588;color:#ffffff;padding:8px 10px;border-radius:6px;font-weight:600;font-size:.72rem;text-decoration:none;">Las semillas del…</a>
-              <a href="http://amzn.to/4aRt4TY" target="_blank" rel="noopener" style="display:inline-block;background:#094588;color:#ffffff;padding:8px 10px;border-radius:6px;font-weight:600;font-size:.72rem;text-decoration:none;">Lo que mamá calla</a>
+              <a href="https://amzn.to/3Yrt4oo" target="_blank" rel="noopener" class="btn btn-primary btn-sm" style="font-size:.72rem;padding:8px 10px;">Las semillas del…</a>
+              <a href="http://amzn.to/4aRt4TY" target="_blank" rel="noopener" class="btn btn-primary btn-sm" style="font-size:.72rem;padding:8px 10px;">Lo que mamá calla</a>
             </div>
           </div>
         </aside>'''
@@ -305,19 +332,22 @@ def build_html(art_num, title, date_str, tag, hero_img, body_html, prev_n, next_
           </div>
         </article>
 
-{SIDEBAR}
+{make_sidebar(art_num)}
       </div>
 
     </div>
   </main>
 
-  <script>
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
-    document.getElementById('hamburger').addEventListener('click', () => {{
-      document.getElementById('navLinks').classList.toggle('open');
-    }});
-  </script>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top:1px solid rgba(255,255,255,.06);padding-top:24px;">
+        <p>© 2025 Magar · Corrección y edición profesional</p>
+        <a href="blog.html" style="color:rgba(255,255,255,.5);font-size:13px;">← Volver al blog</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="magar.js"></script>
 </body>
 </html>'''
 
