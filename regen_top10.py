@@ -85,6 +85,54 @@ def add_img_fallback(html, idx):
         return tag
     return re.sub(r'<img\b[^>]*/?>',  fix_img, html)
 
+def unwrap_div_by_class(html, class_pattern):
+    """Remove div wrapper matching class_pattern but keep inner content (including matching </div>)."""
+    result = []
+    pos = 0
+    while pos < len(html):
+        div_start = html.find('<div', pos)
+        if div_start == -1:
+            result.append(html[pos:])
+            break
+        tag_end = html.find('>', div_start)
+        if tag_end == -1:
+            result.append(html[pos:])
+            break
+        tag = html[div_start:tag_end+1]
+        if tag.endswith('/>'):
+            result.append(html[pos:tag_end+1])
+            pos = tag_end + 1
+            continue
+        if re.search(class_pattern, tag):
+            result.append(html[pos:div_start])
+            depth = 1
+            scan_pos = tag_end + 1
+            inner_start = scan_pos
+            while scan_pos < len(html) and depth > 0:
+                next_open = html.find('<div', scan_pos)
+                next_close = html.find('</div>', scan_pos)
+                if next_close == -1:
+                    result.append(html[inner_start:])
+                    scan_pos = len(html)
+                    break
+                if next_open != -1 and next_open < next_close:
+                    depth += 1
+                    oe = html.find('>', next_open)
+                    scan_pos = (oe + 1) if oe != -1 else (next_open + 4)
+                else:
+                    depth -= 1
+                    if depth == 0:
+                        result.append(html[inner_start:next_close])
+                        scan_pos = next_close + 6
+                        break
+                    scan_pos = next_close + 6
+            pos = scan_pos
+        else:
+            result.append(html[pos:tag_end+1])
+            pos = tag_end + 1
+    return ''.join(result)
+
+
 def clean_content(raw):
     """Limpia el contenido WordPress preservando TODO el contenido semántico."""
     # 1. Eliminar SOLO los comentarios de bloque WordPress
@@ -105,12 +153,12 @@ def clean_content(raw):
     cleaned = re.sub(r'<h1(\s[^>]*)?>', lambda m: '<h2' + (m.group(1) or '') + '>', cleaned)
     cleaned = cleaned.replace('</h1>', '</h2>')
 
-    # 4. Limpiar class de Kadence en divs wrapper pero MANTENER el contenido
+    # 4. Limpiar class de Kadence/UAGB en divs wrapper pero MANTENER el contenido
     cleaned = re.sub(r'<div[^>]*class="[^"]*(?:wp-block-kadence|wp-block-uagb)[^"]*"[^>]*>', '<div>', cleaned)
 
-    # 5. Limpiar class de wp-block-buttons/button wrapper pero mantener el enlace
-    cleaned = re.sub(r'<div[^>]*class="[^"]*wp-block-buttons[^"]*"[^>]*>', '', cleaned)
-    cleaned = re.sub(r'<div[^>]*class="[^"]*wp-block-button[^"]*"[^>]*>', '', cleaned)
+    # 5. Desenvuelve divs wp-block-buttons/button (elimina wrapper + </div> correspondiente, mantiene <a>)
+    cleaned = unwrap_div_by_class(cleaned, r'class="[^"]*wp-block-buttons[^"]*"')
+    cleaned = unwrap_div_by_class(cleaned, r'class="[^"]*wp-block-button\b[^"]*"')
 
     # 6. Convertir pullquote en blockquote estilizado
     cleaned = re.sub(
@@ -286,8 +334,8 @@ def build_html(art_num, title, date_str, tag, hero_img, body_html, prev_n, next_
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="magar.css?v=4" />
-  <link rel="stylesheet" href="articulo.css?v=4" />
+  <link rel="stylesheet" href="magar.css?v=5" />
+  <link rel="stylesheet" href="articulo.css?v=5" />
 </head>
 <body>
 
