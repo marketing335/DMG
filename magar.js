@@ -207,4 +207,42 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   window.addEventListener('scroll', highlightNav, { passive: true });
 
+  // Blog search (homepage)
+  const blogSearch = document.getElementById('blogSearch');
+  if (blogSearch) {
+    const featuredLabel  = document.querySelector('.blog-featured-label');
+    const featuredSection = document.querySelector('.blog-featured');
+    const recentLabel    = document.querySelector('.blog-recent-label');
+    const cards          = Array.from(document.querySelectorAll('.blog-card'));
+    const featMain       = document.querySelector('article.blog-featured-main');
+    const featSmalls     = Array.from(document.querySelectorAll('article.blog-featured-small'));
+    const noneMsg        = document.getElementById('blogSearchNone');
+    const featSide       = document.querySelector('.blog-featured-side');
+
+    blogSearch.addEventListener('input', () => {
+      const q = blogSearch.value.trim().toLowerCase();
+
+      if (!q) {
+        [featuredLabel, featuredSection, recentLabel].forEach(el => el && (el.style.display = ''));
+        cards.forEach(c => c.style.display = '');
+        noneMsg.style.display = 'none';
+        return;
+      }
+
+      // Hide featured layout headers; filter inline
+      featuredLabel.style.display = 'none';
+      featuredSection.style.display = 'none';
+      recentLabel.style.display = 'none';
+
+      let count = 0;
+      cards.forEach(c => {
+        const match = c.textContent.toLowerCase().includes(q);
+        c.style.display = match ? '' : 'none';
+        if (match) count++;
+      });
+
+      noneMsg.style.display = count === 0 ? 'block' : 'none';
+    });
+  }
+
 });

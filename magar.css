@@ -560,6 +560,30 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; }
 .blog-card p { font-size: 13px; color: var(--text-light); line-height: 1.6; }
 .blog-more { text-align: center; margin-top: 40px; }
 
+/* Blog search */
+.blog-search-wrap { margin: 28px 0 36px; }
+.blog-search-box {
+  display: flex; align-items: center; gap: 12px;
+  border: 1.5px solid var(--border); border-radius: 40px;
+  padding: 13px 22px; background: var(--white);
+  max-width: 500px; transition: border-color .2s, box-shadow .2s;
+}
+.blog-search-box:focus-within {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(15,27,45,.07);
+}
+.blog-search-box svg { color: var(--text-light); flex-shrink: 0; }
+.blog-search-box input {
+  border: none; outline: none; width: 100%;
+  font-size: 15px; color: var(--text); background: transparent;
+}
+.blog-search-box input::placeholder { color: var(--text-light); }
+.blog-search-none {
+  font-size: 14px; color: var(--text-light); margin-top: 20px;
+  display: none;
+}
+.blog-search-none a { color: var(--gold); font-weight: 600; }
+
 /* ======================== CONTACT ======================== */
 .contact-grid { display: grid; grid-template-columns: .45fr .55fr; gap: 48px; margin-top: 12px; }
 .contact-item { display: flex; gap: 16px; margin-bottom: 24px; }
