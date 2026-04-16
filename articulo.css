@@ -82,24 +82,32 @@
 .article-body {
   max-width: 680px;
   min-width: 0;
+  overflow: hidden;
   overflow-wrap: break-word;
   word-break: break-word;
 }
 .article-body img,
 .article-body video,
-.article-body iframe {
-  max-width: 100%;
+.article-body iframe,
+.article-body embed,
+.article-body object {
+  max-width: 100% !important;
+  width: 100%;
   height: auto;
+  display: block;
 }
 .article-body figure.wp-block-video {
-  max-width: 100%;
+  width: 100%;
   margin: 24px 0;
 }
 .article-body figure.wp-block-video video {
   width: 100%;
+  max-width: 100% !important;
   height: auto;
-  display: block;
+  max-height: 480px;
+  object-fit: contain;
   border-radius: var(--radius-sm);
+  background: #000;
 }
 
 /* WordPress image alignment */
