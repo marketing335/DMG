@@ -30,6 +30,17 @@ tree = ET.parse('esthermagarcorreccindeestiloyortotipografa.WordPress.2026-04-13
 root = tree.getroot()
 channel = root.find('channel')
 
+# --- Mapa attachment_id -> URL de imagen ---
+attachments = {}
+for item in channel.findall('item'):
+    if item.findtext('wp:post_type', namespaces=NS) == 'attachment':
+        pid = item.findtext('wp:post_id', namespaces=NS)
+        url = item.findtext('wp:attachment_url', namespaces=NS, default='')
+        if not url:
+            url = item.findtext('guid', '').strip()
+        if pid and url and 'wp-content/uploads' in url:
+            attachments[pid] = url
+
 # --- Mapa slug -> articulo-N (para redirigir enlaces internos) ---
 slug_to_art = {}
 for i in range(7, 161):
@@ -218,20 +229,17 @@ def reading_time(text):
     return max(1, round(words / 200))
 
 def get_hero_image(item, content_raw):
-    """Obtiene la imagen de portada del post."""
-    # Try featured image attachment URL from XML meta
-    raw_xml = ET.tostring(item, encoding='unicode')
-    # Look for _thumbnail_id in postmeta
-    thumb_id = None
+    """Obtiene la imagen de portada del post usando el thumbnail destacado del XML."""
+    # 1. Usar el thumbnail destacado (_thumbnail_id) → URL exacta de la imagen
     for pm in item.findall('wp:postmeta', NS):
-        key = pm.findtext('wp:meta_key', namespaces=NS)
-        if key == '_thumbnail_id':
-            thumb_id = pm.findtext('wp:meta_value', namespaces=NS)
+        if pm.findtext('wp:meta_key', namespaces=NS) == '_thumbnail_id':
+            tid = pm.findtext('wp:meta_value', namespaces=NS)
+            if tid and tid in attachments:
+                return attachments[tid]
 
-    # If no thumbnail, get first meaningful image from content
-    imgs = re.findall(r'<img[^>]+src="([^"]+)"', content_raw)
-    for img in imgs:
-        if 'wp-content/uploads' in img:
+    # 2. Fallback: primera imagen de wp-content/uploads en el contenido
+    for img in re.findall(r'src="(https?://[^"]*wp-content/uploads/[^"]+\.(?:jpg|jpeg|png|webp|gif))"', content_raw, re.IGNORECASE):
+        if not re.search(r'-\d+x\d+\.', img):  # evitar miniaturas recortadas
             return img
 
     return ''
