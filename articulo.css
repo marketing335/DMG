@@ -85,9 +85,21 @@
   overflow-wrap: break-word;
   word-break: break-word;
 }
-.article-body img {
+.article-body img,
+.article-body video,
+.article-body iframe {
   max-width: 100%;
   height: auto;
+}
+.article-body figure.wp-block-video {
+  max-width: 100%;
+  margin: 24px 0;
+}
+.article-body figure.wp-block-video video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-sm);
 }
 
 /* WordPress image alignment */
