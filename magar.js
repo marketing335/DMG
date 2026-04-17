@@ -224,24 +224,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!q) {
         [featuredLabel, featuredSection, recentLabel].forEach(el => el && (el.style.display = ''));
-        cards.forEach(c => c.style.display = '');
-        noneMsg.style.display = 'none';
+        cards.forEach(c => { c.style.display = ''; });
+        if (noneMsg) noneMsg.style.display = 'none';
         return;
       }
 
-      // Hide featured layout headers; filter inline
-      featuredLabel.style.display = 'none';
-      featuredSection.style.display = 'none';
-      recentLabel.style.display = 'none';
+      if (featuredLabel) featuredLabel.style.display = 'none';
+      if (featuredSection) featuredSection.style.display = 'none';
+      if (recentLabel) recentLabel.style.display = 'none';
 
       let count = 0;
       cards.forEach(c => {
         const match = c.textContent.toLowerCase().includes(q);
-        c.style.display = match ? '' : 'none';
-        if (match) count++;
+        if (match) {
+          c.style.display = '';
+          // Force card visible even if it hasn't scrolled into view yet
+          c.classList.remove('reveal-hidden');
+          c.classList.add('reveal-visible');
+          count++;
+        } else {
+          c.style.display = 'none';
+        }
       });
 
-      noneMsg.style.display = count === 0 ? 'block' : 'none';
+      if (noneMsg) noneMsg.style.display = count === 0 ? 'block' : 'none';
     });
   }
 
